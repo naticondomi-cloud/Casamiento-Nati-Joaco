@@ -229,6 +229,14 @@
 
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
 
+    /* ── FOTO STRIP ── */
+    .foto-strip { overflow: hidden; width: 100%; background: var(--cream-dark); padding: 32px 0; border-top: 0.5px solid #DDD5C4; }
+    .foto-strip-track { display: flex; gap: 6px; animation: scroll-strip 90s linear infinite; width: max-content; }
+    .foto-strip-track:hover { animation-play-state: paused; }
+    .foto-strip-item { flex-shrink: 0; height: 220px; }
+    .foto-strip-item img { height: 100%; width: auto; display: block; object-fit: cover; border-radius: 1px; }
+    @keyframes scroll-strip { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
     @media (min-width: 641px) {
       .hero-slides .hero-slide { background-attachment: fixed; }
     }
@@ -242,6 +250,7 @@
       .section-title { font-size: clamp(28px, 8vw, 40px); }
       .form-wrap, .regalos-block, .playlist-wrap { padding: 32px 20px; }
       .countdown-strip { gap: 20px; padding: 20px; }
+      .foto-strip-item { height: 140px; }
       .story-band { padding: 36px 20px; }
       .story-text { font-size: 17px; }
       .cta-band { padding: 44px 20px; }
@@ -269,28 +278,9 @@
 
   <div class="hero">
     <div class="hero-slides">
-      <div class="hero-slide active" style="background-image:url('civil1.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil5.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil9.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil13.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil17.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil21.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil25.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil29.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil33.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil37.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil41.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil45.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil49.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil53.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil57.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil61.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil65.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil69.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil73.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil77.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil81.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('civil85.jpg')"></div>
+      <div class="hero-slide active" style="background-image:url('chacra1.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('chacra4.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('chacra6.jpg')"></div>
     </div>
     <div class="hero-overlay"></div>
 
@@ -603,6 +593,99 @@
     </div>
 
   </section>
+  <div class="foto-strip">
+    <div class="foto-strip-track">
+      <div class="foto-strip-item"><img src="civil1.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil3.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil5.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil7.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil9.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil11.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil13.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil15.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil17.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil19.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil21.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil23.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil25.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil27.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil29.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil31.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil33.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil35.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil37.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil39.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil41.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil43.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil45.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil47.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil49.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil51.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil53.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil55.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil57.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil59.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil61.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil63.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil65.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil67.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil69.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil71.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil73.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil75.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil77.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil79.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil81.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil83.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil85.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil87.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil1.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil3.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil5.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil7.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil9.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil11.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil13.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil15.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil17.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil19.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil21.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil23.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil25.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil27.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil29.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil31.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil33.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil35.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil37.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil39.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil41.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil43.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil45.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil47.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil49.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil51.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil53.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil55.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil57.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil59.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil61.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil63.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil65.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil67.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil69.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil71.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil73.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil75.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil77.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil79.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil81.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil83.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil85.jpg" loading="lazy" alt=""></div>
+      <div class="foto-strip-item"><img src="civil87.jpg" loading="lazy" alt=""></div>
+    </div>
+  </div>
+
 
   <footer>
     <div class="footer-monogram">
@@ -685,5 +768,6 @@
 
 </body>
 </html>
+
 
 
