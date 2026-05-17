@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natalia & Joaquín · 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --verde: #2E4A35;
+      --verde-mid: #3D6145;
+      --verde-pale: #8AAB8F;
+      --verde-wash: #EBF0EB;
+      --cream: #F8F4ED;
+      --cream-dark: #EDE5D8;
+      --burg: #6B2D3E;
+      --burg-pale: #C4909A;
+      --sand: #C8AE88;
+      --sand-light: #DDD0B8;
+      --text: #1E2820;
+      --text-mid: #4A5448;
+      --text-light: #8A9488;
+    }
+
+    body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--cream); border-bottom: 0.5px solid var(--cream-dark);
+      padding: 14px 40px; display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;
+    }
+    nav a { font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--verde); text-decoration: none; transition: color 0.2s; }
+    nav a:hover { color: var(--burg); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; background: var(--verde);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; padding: 80px 40px; text-align: center;
+    }
+    
+    .hero-content { position: relative; z-index: 2; animation: fadeInUp 1.4s ease both; }
+
+    .monogram-wrap { display: flex; justify-content: center; margin-bottom: 28px; }
+    .monogram-letters { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--sand); line-height: 1; display: flex; align-items: flex-start; letter-spacing: -2px; }
+    .monogram-n { font-size: 72px; }
+    .monogram-j { font-size: 72px; margin-top: 22px; }
+
+    .hero-eyebrow { font-size: 9px; font-weight: 300; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(200,174,136,0.75); margin-bottom: 20px; }
+    .hero-names { font-family: 'Playfair Display', serif; font-size: clamp(48px, 9vw, 80px); font-weight: 400; color: var(--cream); line-height: 1; }
+    .hero-amp { font-family: 'EB Garamond', serif; font-size: clamp(56px, 11vw, 96px); font-weight: 400; color: var(--sand); display: block; line-height: 0.85; margin: 10px 0; }
+    .hero-divider { width: 52px; height: 0.5px; background: var(--sand); margin: 22px auto; opacity: 0.5; }
+    .hero-date { font-size: 10px; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(200,174,136,0.75); }
+    .hero-location { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; color: rgba(248,244,237,0.4); margin-top: 10px; }
+
+    /* ── COUNTDOWN ── */
+    .countdown-strip {
+      background: var(--cream-dark); padding: 24px 40px;
+      display: flex; justify-content: center; gap: 48px; align-items: center;
+      border-bottom: 0.5px solid #DDD5C4;
+    }
+    .count-item { text-align: center; }
+    .count-num { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--verde); line-height: 1; display: block; }
+    .count-label { font-size: 9px; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-light); margin-top: 4px; display: block; }
+    .count-sep { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--verde-pale); opacity: 0.6; align-self: flex-start; margin-top: 6px; }
+
+    /* ── SECCIONES ── */
+    section { padding: 80px 40px; max-width: 860px; margin: 0 auto; }
+    .section-tag { font-size: 9px; font-weight: 400; letter-spacing: 0.28em; text-transform: uppercase; color: var(--verde-mid); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+    .section-tag::after { content: ''; flex: 1; max-width: 40px; height: 0.5px; background: var(--verde-mid); opacity: 0.5; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 5vw, 44px); font-weight: 400; font-style: italic; color: var(--text); line-height: 1.1; margin-bottom: 32px; }
+    .olive-divider { text-align: center; padding: 6px 0; font-size: 16px; opacity: 0.15; color: var(--verde); }
+
+    /* ── HISTORIA ── */
+    .historia-intro {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 18px; color: var(--text-mid); line-height: 1.9;
+      text-align: center; max-width: 620px; margin: 0 auto;
+      padding: 28px 24px;
+      border-top: 0.5px solid var(--cream-dark);
+      border-bottom: 0.5px solid var(--cream-dark);
+    }
+    .historia-intro em { color: var(--burg); }
+    .historia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 0.5px solid var(--cream-dark); margin-top: 40px; }
+    .historia-item { padding: 32px 28px; position: relative; border-right: 0.5px solid var(--cream-dark); border-bottom: 0.5px solid var(--cream-dark); }
+    .historia-item:nth-child(even) { border-right: none; }
+    .historia-item:nth-child(3), .historia-item:nth-child(4) { border-bottom: none; }
+    .historia-year { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--verde-wash); position: absolute; top: 16px; right: 20px; line-height: 1; }
+    .historia-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--verde-mid); margin-bottom: 10px; font-weight: 400; }
+    .historia-text { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--text-mid); line-height: 1.65; }
+    .historia-quote { font-style: italic; color: var(--burg); font-size: 16px; border-left: 2px solid var(--burg-pale); padding-left: 14px; margin-top: 12px; font-family: 'Playfair Display', serif; line-height: 1.6; }
+
+    /* ── FECHAS ── */
+    .fechas-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .fecha-card { background: var(--verde); border-radius: 2px; padding: 36px 32px; position: relative; overflow: hidden; }
+    .fecha-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--sand); }
+    .fecha-tipo { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(200,174,136,0.8); margin-bottom: 16px; font-weight: 400; display: block; }
+    .fecha-dia { font-family: 'Playfair Display', serif; font-size: 56px; color: var(--cream); line-height: 1; margin-bottom: 4px; display: block; }
+    .fecha-mes { font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: var(--sand); margin-bottom: 20px; display: block; }
+    .fecha-info { font-size: 13px; font-weight: 300; color: rgba(248,244,237,0.45); line-height: 1.9; letter-spacing: 0.03em; }
+
+    /* ── ILUSTRACIONES ── */
+    .ilustraciones-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 0.5px solid var(--cream-dark); }
+    .ilustracion-item { padding: 40px 24px 32px; text-align: center; border-right: 0.5px solid var(--cream-dark); }
+    .ilustracion-item:last-child { border-right: none; }
+    .ilustracion-tag { font-size: 8px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--verde-mid); margin-top: 20px; font-weight: 400; display: block; }
+    .ilustracion-name { font-family: 'Playfair Display', serif; font-style: italic; font-size: 17px; color: var(--text); margin-top: 6px; display: block; }
+    .ilustracion-date { font-size: 9px; letter-spacing: 0.14em; color: var(--text-light); margin-top: 5px; display: block; font-weight: 300; }
+
+    /* ── EL LUGAR ── */
+    .lugar-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .lugar-ilustracion { background: var(--cream-dark); border-radius: 2px; overflow: hidden; padding: 20px; }
+    .lugar-ilustracion img { width: 100%; display: block; }
+    .lugar-info-sub { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--verde-mid); margin-bottom: 16px; font-weight: 400; }
+    .lugar-info-text { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--text-mid); line-height: 1.75; margin-bottom: 24px; }
+    .lugar-map-btn { display: inline-block; background: var(--verde); color: var(--cream); padding: 12px 24px; font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; border-radius: 1px; transition: background 0.2s; }
+    .lugar-map-btn:hover { background: var(--verde-mid); }
+
+    /* ── DRESS CODE ── */
+    .dress-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+    .color-chip { aspect-ratio: 1; border-radius: 2px; display: flex; align-items: flex-end; padding: 10px; }
+    .color-chip-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; }
+    .dress-note { font-family: 'Playfair Display', serif; font-size: 17px; font-style: italic; color: var(--text-mid); line-height: 1.7; border-left: 2px solid var(--verde-pale); padding-left: 20px; }
+
+    /* ── REGALOS ── */
+    .regalos-block { background: var(--cream-dark); border-radius: 2px; padding: 44px 48px; text-align: center; }
+    .regalos-block p { font-family: 'Playfair Display', serif; font-size: 19px; font-style: italic; color: var(--text-mid); line-height: 1.7; margin-bottom: 28px; }
+    .cuenta-info { display: inline-block; background: var(--verde); color: var(--cream); padding: 14px 28px; font-size: 13px; letter-spacing: 0.1em; font-weight: 300; border-radius: 1px; }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 0; border: 0.5px solid var(--cream-dark); }
+    .faq-item { border-bottom: 0.5px solid var(--cream-dark); overflow: hidden; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-question { width: 100%; background: none; border: none; cursor: pointer; padding: 22px 28px; display: flex; justify-content: space-between; align-items: center; text-align: left; transition: background 0.2s; }
+    .faq-question:hover { background: rgba(46,74,53,0.04); }
+    .faq-q-text { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--text); font-weight: 400; }
+    .faq-icon { font-size: 20px; color: var(--verde-mid); font-weight: 300; transition: transform 0.3s; flex-shrink: 0; margin-left: 16px; font-family: 'Jost', sans-serif; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 28px; }
+    .faq-item.open .faq-answer { max-height: 300px; padding: 0 28px 22px; }
+    .faq-answer p { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--text-mid); line-height: 1.7; font-style: italic; }
+
+    /* ── PLAYLIST ── */
+    .playlist-wrap { background: var(--verde); border-radius: 2px; padding: 44px 48px; text-align: center; }
+    .playlist-wrap .section-title { color: var(--cream); margin-bottom: 8px; }
+    .playlist-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: rgba(248,244,237,0.45); margin-bottom: 32px; }
+    .playlist-embed { border-radius: 2px; overflow: hidden; }
+
+    /* ── GALERÍA ── */
+    .galeria-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .galeria-item { aspect-ratio: 1; background: var(--cream-dark); border-radius: 1px; overflow: hidden; cursor: pointer; }
+    .galeria-item:first-child { grid-column: span 2; grid-row: span 2; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .galeria-item:hover img { transform: scale(1.04); }
+
+    /* Lightbox */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(30,40,32,0.96); z-index: 1000; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 2px; }
+    .lightbox-close { position: fixed; top: 20px; right: 28px; font-size: 28px; color: var(--cream); cursor: pointer; opacity: 0.6; font-family: 'Jost', sans-serif; font-weight: 300; }
+    .lightbox-prev, .lightbox-next { position: fixed; top: 50%; transform: translateY(-50%); font-size: 32px; color: var(--cream); cursor: pointer; opacity: 0.5; font-family: 'Jost', sans-serif; font-weight: 300; user-select: none; }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+
+    /* ── CONFIRMACIÓN ── */
+    .form-wrap { background: var(--verde); padding: 44px 48px; border-radius: 2px; }
+    .form-wrap .section-title { color: var(--cream); margin-bottom: 8px; }
+    .form-subtitle { font-size: 12px; font-weight: 300; color: rgba(248,244,237,0.4); letter-spacing: 0.08em; margin-bottom: 32px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-field { display: flex; flex-direction: column; gap: 8px; }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(248,244,237,0.4); font-weight: 400; }
+    .form-field input, .form-field select, .form-field textarea {
+      background: rgba(248,244,237,0.07); border: 0.5px solid rgba(248,244,237,0.15); border-radius: 1px;
+      padding: 12px 14px; font-family: 'Jost', sans-serif; font-size: 13px;
+      color: var(--cream); font-weight: 300; outline: none; transition: border-color 0.2s; width: 100%;
+    }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(248,244,237,0.22); }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--sand); }
+    .form-field select option { background: var(--verde); color: var(--cream); }
+    .form-field textarea { resize: vertical; min-height: 80px; }
+    .btn-send { margin-top: 24px; width: 100%; padding: 15px; background: var(--sand); border: none; border-radius: 1px; font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--verde); cursor: pointer; transition: background 0.2s; }
+    .btn-send:hover { background: var(--sand-light); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--verde); text-align: center; padding: 56px 40px; }
+    .footer-monogram { display: flex; justify-content: center; margin-bottom: 16px; }
+    .footer-nj { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--sand); line-height: 1; display: flex; align-items: flex-start; letter-spacing: -1px; }
+    .footer-nj .fn { font-size: 36px; }
+    .footer-nj .fj { font-size: 36px; margin-top: 11px; }
+    .footer-names { font-family: 'Playfair Display', serif; font-size: 26px; font-style: italic; color: var(--cream); margin-bottom: 10px; }
+    .footer-amp { font-family: 'EB Garamond', serif; font-weight: 400; }
+    .footer-sub { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(248,244,237,0.25); font-weight: 300; }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 640px) {
+      nav { gap: 12px; padding: 12px 16px; }
+      .historia-grid, .fechas-wrap, .form-row, .dress-grid, .lugar-wrap { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; }
+      .galeria-item:first-child { grid-column: span 2; grid-row: span 1; }
+      section { padding: 60px 20px; }
+      .form-wrap, .regalos-block, .playlist-wrap { padding: 32px 20px; }
+      .countdown-strip { gap: 20px; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#historia">Nuestra historia</a>
+    <a href="#fechas">Fechas</a>
+    <a href="#lugar">El lugar</a>
+    <a href="#dress">Vestimenta</a>
+    <a href="#regalos">Regalos</a>
+    <a href="#faq">Preguntas</a>
+    <a href="#playlist">Música</a>
+    <a href="#confirm">Confirmación</a>
+    <a href="#fotos-civil">Fotos del civil</a>
+    <a href="#galeria">Galería</a>
+  </nav>
+
+  <div class="hero">
+    
+    <div class="hero-content">
+      <div class="monogram-wrap">
+        <div class="monogram-letters"><span class="monogram-n">N</span><span class="monogram-j">J</span></div>
+      </div>
+      <p class="hero-eyebrow">Nos casamos</p>
+      <div class="hero-names">Natalia</div>
+      <span class="hero-amp">&</span>
+      <div class="hero-names">Joaquín</div>
+      <div class="hero-divider"></div>
+      <p class="hero-date">17 de abril &nbsp;·&nbsp; 28 de noviembre &nbsp;·&nbsp; 2026</p>
+      <p class="hero-location">Buenos Aires, Argentina</p>
+    </div>
+  </div>
+
+  <div class="countdown-strip">
+    <div class="count-item"><span class="count-num" id="cd-dias">—</span><span class="count-label">días</span></div>
+    <span class="count-sep">·</span>
+    <div class="count-item"><span class="count-num" id="cd-horas">—</span><span class="count-label">horas</span></div>
+    <span class="count-sep">·</span>
+    <div class="count-item"><span class="count-num" id="cd-min">—</span><span class="count-label">minutos</span></div>
+    <span class="count-sep">·</span>
+    <div class="count-item"><span class="count-num" id="cd-seg">—</span><span class="count-label">segundos</span></div>
+  </div>
+
+  <section id="historia">
+    <p class="section-tag reveal">Nuestra historia</p>
+    <h2 class="section-title reveal reveal-delay-1">Cómo llegamos hasta acá</h2>
+    <p class="historia-intro reveal reveal-delay-2">
+      Hay cosas que no se explican. Que se sienten antes de saberse.<br>
+      <em>Algo divino se encargó de encontrarnos — y de traernos hasta acá.</em>
+    </p>
+    <div class="historia-grid">
+      <div class="historia-item reveal reveal-delay-1">
+        <span class="historia-year">I</span>
+        <p class="historia-label">El comienzo</p>
+        <p class="historia-text">Natalia es muy introvertida. Conocer gente nueva siempre le costó — no porque no quisiera, sino porque así es ella. Una gran amiga, que la conoce bien, la convenció de intentarlo. Con mucho cariño y algo de insistencia, logró que diera ese primer paso.</p>
+      </div>
+      <div class="historia-item reveal reveal-delay-2">
+        <span class="historia-year">II</span>
+        <p class="historia-label">Él</p>
+        <p class="historia-text">Dos semanas, muchas conversaciones que no llegaban a ningún lado. Nada la movía. Hasta que apareció uno diferente — sin rodeos, sin vueltas. Que reservó antes de que ella confirmara, eligió el lugar antes de que ella preguntara, y no hizo falta que hablaran nada más.</p>
+        <div class="historia-quote">"Nos vemos el domingo a las 20."</div>
+      </div>
+      <div class="historia-item reveal reveal-delay-3">
+        <span class="historia-year">III</span>
+        <p class="historia-label">La primera cita</p>
+        <p class="historia-text">Apenas se vieron, sintieron que se conocían de toda la vida. Hablaron, rieron, perdieron la noción del tiempo — hasta que el bar cerró y les tuvieron que pedir que se vayan.</p>
+      </div>
+      <div class="historia-item reveal reveal-delay-4">
+        <span class="historia-year">IV</span>
+        <p class="historia-label">Hoy</p>
+        <p class="historia-text">Lo que empezó como una simple cita se convirtió en lo más importante de sus vidas. Hoy se casan, convencidos — como lo estuvieron desde el primer momento — de que esto era exactamente lo que tenían que encontrar.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="olive-divider">✦</div>
+
+  <section id="fechas">
+    <p class="section-tag reveal">28 de noviembre · 2026</p>
+    <h2 class="section-title reveal reveal-delay-1">El gran día</h2>
+    <div class="ilustraciones-wrap reveal reveal-delay-2">
+
+      <!-- IGLESIA DE LIMA -->
+      <div class="ilustracion-item">
+        <svg viewBox="0 0 160 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:220px;height:auto;">
+          <g stroke="#2E4A35" stroke-width="0.7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="22" y="72" width="24" height="68" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.7"/>
+            <rect x="114" y="72" width="24" height="68" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.7"/>
+            <polygon points="22,72 34,46 46,72" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.7"/>
+            <polygon points="114,72 126,46 138,72" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.7"/>
+            <line x1="34" y1="46" x2="34" y2="35" stroke="#2E4A35" stroke-width="0.7"/>
+            <line x1="29" y1="40" x2="39" y2="40" stroke="#2E4A35" stroke-width="0.7"/>
+            <line x1="126" y1="46" x2="126" y2="35" stroke="#2E4A35" stroke-width="0.7"/>
+            <line x1="121" y1="40" x2="131" y2="40" stroke="#2E4A35" stroke-width="0.7"/>
+            <rect x="46" y="104" width="68" height="36" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.7"/>
+            <polygon points="40,104 80,80 120,104" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.7"/>
+            <circle cx="80" cy="95" r="8" fill="#F8F4ED" stroke="#2E4A35" stroke-width="0.6"/>
+            <circle cx="80" cy="95" r="4" fill="#F8F4ED" stroke="#2E4A35" stroke-width="0.4"/>
+            <line x1="80" y1="87" x2="80" y2="103" stroke="#2E4A35" stroke-width="0.4"/>
+            <line x1="72" y1="95" x2="88" y2="95" stroke="#2E4A35" stroke-width="0.4"/>
+            <path d="M69,140 L69,122 Q80,113 91,122 L91,140" fill="#F8F4ED" stroke="#2E4A35" stroke-width="0.7"/>
+            <path d="M27,90 Q34,83 41,90" fill="#F8F4ED" stroke="#2E4A35" stroke-width="0.5"/>
+            <rect x="27" y="90" width="14" height="14" fill="#F8F4ED" stroke="#2E4A35" stroke-width="0.5"/>
+            <path d="M119,90 Q126,83 133,90" fill="#F8F4ED" stroke="#2E4A35" stroke-width="0.5"/>
+            <rect x="119" y="90" width="14" height="14" fill="#F8F4ED" stroke="#2E4A35" stroke-width="0.5"/>
+            <rect x="60" y="140" width="40" height="3" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.5"/>
+            <rect x="63" y="143" width="34" height="3" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.5"/>
+            <line x1="8" y1="146" x2="152" y2="146" stroke="#2E4A35" stroke-width="0.8"/>
+            <line x1="14" y1="146" x2="14" y2="122" stroke="#6B4A2A" stroke-width="1"/>
+            <ellipse cx="14" cy="116" rx="7" ry="9" fill="#3D6145" stroke="#2E4A35" stroke-width="0.5"/>
+            <line x1="146" y1="146" x2="146" y2="122" stroke="#6B4A2A" stroke-width="1"/>
+            <ellipse cx="146" cy="116" rx="7" ry="9" fill="#3D6145" stroke="#2E4A35" stroke-width="0.5"/>
+            <circle cx="80" cy="163" r="7" fill="none" stroke="#6B2D3E" stroke-width="0.6"/>
+            <text x="80" y="167" text-anchor="middle" font-family="Playfair Display" font-size="8" fill="#6B2D3E" font-style="italic">NJ</text>
+          </g>
+        </svg>
+        <span class="ilustracion-tag">Ceremonia religiosa</span>
+        <span class="ilustracion-name">Iglesia de Lima</span>
+        <span class="ilustracion-date">Lima · Buenos Aires</span>
+      </div>
+
+      <!-- CHACRAS EL ADUAR -->
+      <div class="ilustracion-item">
+        <svg viewBox="0 0 160 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:220px;height:auto;">
+          <g stroke="#2E4A35" stroke-width="0.7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="4,96 80,68 156,96" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.8"/>
+            <line x1="4" y1="96" x2="42" y2="82" stroke="#C8AE88" stroke-width="0.4"/>
+            <line x1="4" y1="96" x2="28" y2="72" stroke="#C8AE88" stroke-width="0.4"/>
+            <line x1="156" y1="96" x2="118" y2="82" stroke="#C8AE88" stroke-width="0.4"/>
+            <line x1="156" y1="96" x2="132" y2="72" stroke="#C8AE88" stroke-width="0.4"/>
+            <line x1="80" y1="68" x2="60" y2="96" stroke="#C8AE88" stroke-width="0.4"/>
+            <line x1="80" y1="68" x2="100" y2="96" stroke="#C8AE88" stroke-width="0.4"/>
+            <rect x="28" y="72" width="9" height="20" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.6"/>
+            <rect x="26" y="70" width="13" height="3" fill="#C8AE88" stroke="#2E4A35" stroke-width="0.5"/>
+            <path d="M32,70 Q30,62 34,56 Q36,50 32,44" stroke="#C8AE88" stroke-width="0.5" stroke-dasharray="2,2"/>
+            <rect x="8" y="96" width="144" height="50" fill="#F8F4ED" stroke="#2E4A35" stroke-width="0.7"/>
+            <line x1="8" y1="108" x2="152" y2="108" stroke="#2E4A35" stroke-width="0.5"/>
+            <line x1="28" y1="108" x2="28" y2="146" stroke="#2E4A35" stroke-width="0.6"/>
+            <line x1="52" y1="108" x2="52" y2="146" stroke="#2E4A35" stroke-width="0.6"/>
+            <line x1="108" y1="108" x2="108" y2="146" stroke="#2E4A35" stroke-width="0.6"/>
+            <line x1="132" y1="108" x2="132" y2="146" stroke="#2E4A35" stroke-width="0.6"/>
+            <rect x="34" y="112" width="14" height="16" fill="#F8F4ED" stroke="#2E4A35" stroke-width="0.6"/>
+            <line x1="41" y1="112" x2="41" y2="128" stroke="#2E4A35" stroke-width="0.4"/>
+            <rect x="30" y="112" width="4" height="16" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.4"/>
+            <rect x="48" y="112" width="4" height="16" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.4"/>
+            <rect x="112" y="112" width="14" height="16" fill="#F8F4ED" stroke="#2E4A35" stroke-width="0.6"/>
+            <line x1="119" y1="112" x2="119" y2="128" stroke="#2E4A35" stroke-width="0.4"/>
+            <rect x="108" y="112" width="4" height="16" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.4"/>
+            <rect x="126" y="112" width="4" height="16" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.4"/>
+            <rect x="66" y="118" width="28" height="28" fill="#F8F4ED" stroke="#2E4A35" stroke-width="0.7"/>
+            <line x1="80" y1="118" x2="80" y2="146" stroke="#2E4A35" stroke-width="0.5"/>
+            <path d="M66,118 Q80,110 94,118" fill="#EDE5D8" stroke="#2E4A35" stroke-width="0.6"/>
+            <circle cx="76" cy="133" r="1.2" fill="#C8AE88" stroke="#C8AE88" stroke-width="0.5"/>
+            <circle cx="84" cy="133" r="1.2" fill="#C8AE88" stroke="#C8AE88" stroke-width="0.5"/>
+            <line x1="4" y1="146" x2="156" y2="146" stroke="#2E4A35" stroke-width="0.9"/>
+            <line x1="4" y1="149" x2="156" y2="149" stroke="#C8AE88" stroke-width="0.4"/>
+            <line x1="18" y1="146" x2="18" y2="90" stroke="#6B4A2A" stroke-width="2"/>
+            <line x1="18" y1="120" x2="8" y2="108" stroke="#6B4A2A" stroke-width="1.2"/>
+            <line x1="18" y1="112" x2="28" y2="100" stroke="#6B4A2A" stroke-width="1"/>
+            <ellipse cx="18" cy="82" rx="16" ry="12" fill="#3D6145" stroke="#2E4A35" stroke-width="0.6"/>
+            <ellipse cx="8" cy="90" rx="9" ry="8" fill="#2E4A35" stroke="#2E4A35" stroke-width="0.4"/>
+            <ellipse cx="30" cy="88" rx="9" ry="7" fill="#2E4A35" stroke="#2E4A35" stroke-width="0.4"/>
+            <line x1="144" y1="146" x2="144" y2="92" stroke="#6B4A2A" stroke-width="1.8"/>
+            <line x1="144" y1="118" x2="134" y2="106" stroke="#6B4A2A" stroke-width="1"/>
+            <line x1="144" y1="110" x2="154" y2="100" stroke="#6B4A2A" stroke-width="1"/>
+            <ellipse cx="144" cy="84" rx="14" ry="11" fill="#3D6145" stroke="#2E4A35" stroke-width="0.6"/>
+            <ellipse cx="133" cy="91" rx="8" ry="7" fill="#2E4A35" stroke="#2E4A35" stroke-width="0.4"/>
+            <ellipse cx="154" cy="90" rx="8" ry="6" fill="#2E4A35" stroke="#2E4A35" stroke-width="0.4"/>
+            <ellipse cx="36" cy="145" rx="9" ry="6" fill="#3D6145" stroke="#2E4A35" stroke-width="0.5"/>
+            <ellipse cx="50" cy="143" rx="7" ry="5" fill="#2E4A35" stroke="#2E4A35" stroke-width="0.4"/>
+            <ellipse cx="110" cy="143" rx="7" ry="5" fill="#2E4A35" stroke="#2E4A35" stroke-width="0.4"/>
+            <ellipse cx="124" cy="145" rx="9" ry="6" fill="#3D6145" stroke="#2E4A35" stroke-width="0.5"/>
+            <path d="M60,152 Q62,148 64,152" stroke="#3D6145" stroke-width="0.5"/>
+            <path d="M68,152 Q70,147 72,152" stroke="#3D6145" stroke-width="0.5"/>
+            <path d="M88,152 Q90,148 92,152" stroke="#3D6145" stroke-width="0.5"/>
+            <path d="M96,152 Q98,147 100,152" stroke="#3D6145" stroke-width="0.5"/>
+            <circle cx="80" cy="165" r="7" fill="none" stroke="#6B2D3E" stroke-width="0.6"/>
+            <text x="80" y="169" text-anchor="middle" font-family="Playfair Display" font-size="8" fill="#6B2D3E" font-style="italic">NJ</text>
+          </g>
+        </svg>
+        <span class="ilustracion-tag">La fiesta</span>
+        <span class="ilustracion-name">Chacras El Aduar</span>
+        <span class="ilustracion-date">Zárate · Buenos Aires</span>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="olive-divider">✦</div>
+
+  <section id="lugar">
+    <p class="section-tag reveal">El lugar</p>
+    <h2 class="section-title reveal reveal-delay-1">Chacras El Aduar</h2>
+    <div class="reveal reveal-delay-2" style="width:100%; margin-bottom: 28px;">
+      <img src="salon.png" alt="Ilustración de Chacras El Aduar" style="width:100%; display:block; border-radius:2px;">
+    </div>
+    <div class="reveal reveal-delay-3" style="text-align:center;">
+      <p class="lugar-info-sub">Zárate, Buenos Aires</p>
+      <p class="lugar-info-text" style="max-width:580px; margin: 12px auto 24px;">Un espacio único rodeado de naturaleza, árboles centenarios y jardines que invitan a celebrar rodeados de belleza y paz. El lugar perfecto para el día más importante de nuestras vidas.</p>
+      <a class="lugar-map-btn" href="https://maps.app.goo.gl/QE3DutwZmn54rYF5A" target="_blank">Ver en Google Maps →</a>
+    </div>
+  </section>
+
+  <div class="olive-divider">✦</div>
+
+  <section id="dress">
+    <p class="section-tag reveal">Vestimenta</p>
+    <h2 class="section-title reveal reveal-delay-1">Elegante</h2>
+    <div class="dress-grid reveal reveal-delay-2">
+      <div class="color-chip" style="background:#2E4A35;"><span class="color-chip-label" style="color:rgba(248,244,237,0.8);">Verde bosque</span></div>
+      <div class="color-chip" style="background:#6B2D3E;"><span class="color-chip-label" style="color:rgba(248,244,237,0.9);">Borgoña</span></div>
+      <div class="color-chip" style="background:#C8AE88;"><span class="color-chip-label" style="color:rgba(30,40,32,0.7);">Arena</span></div>
+      <div class="color-chip" style="background:#EDE5D8; border:0.5px solid #C8B89A;"><span class="color-chip-label" style="color:#4A5448;">Crema</span></div>
+    </div>
+    <p class="dress-note reveal reveal-delay-3">Nos encantaría que se sumen a nuestra paleta de colores — aunque sino, no pasa nada.</p>
+  </section>
+
+  <div class="olive-divider">✦</div>
+
+  <section id="regalos">
+    <p class="section-tag reveal">Lista de bodas</p>
+    <h2 class="section-title reveal reveal-delay-1">Regalos</h2>
+    <div class="regalos-block reveal reveal-delay-2">
+      <p>Su presencia es el mejor regalo.<br>Si aun así quieren hacernos llegar algo, pueden hacerlo a través de una transferencia.</p>
+      <div class="cuenta-info">Alias: NATALIA.JOACO.2026 &nbsp;·&nbsp; CBU: XXXX XXXX XXXX XXXX XXXX</div>
+    </div>
+  </section>
+
+  <div class="olive-divider">✦</div>
+
+  <section id="faq">
+    <p class="section-tag reveal">Preguntas frecuentes</p>
+    <h2 class="section-title reveal reveal-delay-1">¿Dudas?</h2>
+    <div class="faq-list reveal reveal-delay-2">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿A qué distancia queda Zárate de Buenos Aires?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>Zárate queda a aproximadamente 90 km de la Ciudad de Buenos Aires, unos 60–70 minutos por la Autopista Panamericana (Ruta 9). Un viaje corto y muy manejable para disfrutar el día.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Cómo llego?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>La mejor forma es en auto por la Autopista Panamericana, tomando la salida hacia Zárate. También podés llegar en tren desde Retiro hasta la estación Zárate. Compartiremos la dirección exacta y más detalles de acceso próximamente.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Dónde es la ceremonia religiosa?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>La ceremonia religiosa es en la Iglesia de Lima, en Lima, Buenos Aires. Está a pocos minutos de Zárate, y desde allí nos trasladamos juntos a Chacras El Aduar para la celebración.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Dónde es la fiesta?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>La celebración es en Chacras El Aduar, un hermoso espacio en Zárate rodeado de naturaleza. ¡Los esperamos ahí para bailar y festejar toda la noche!</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="olive-divider">✦</div>
+
+  <section id="playlist" style="max-width:860px;">
+    <div class="playlist-wrap reveal">
+      <p class="section-tag" style="color:rgba(200,174,136,0.7); justify-content:center;">Música</p>
+      <h2 class="section-title">Las canciones de nuestra historia</h2>
+      <p class="playlist-sub">La música que nos acompañó y nos va a acompañar siempre.</p>
+      <div class="playlist-embed">
+        <iframe style="border-radius:2px"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1DX0s5kDXi1oC5?utm_source=generator&theme=0"
+          width="100%" height="352" frameBorder="0" allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <div class="olive-divider">✦</div>
+
+  <section id="fotos-civil" style="max-width:860px;">
+    <div style="background: var(--verde); border-radius: 2px; padding: 52px 48px; text-align: center;" class="reveal">
+      <p class="section-tag" style="color:rgba(200,174,136,0.7); justify-content:center;">17 de abril · 2026</p>
+      <h2 class="section-title" style="color:var(--cream); margin-bottom:12px;">¿Sacaste fotos en el civil?</h2>
+      <p style="font-family:'Playfair Display',serif; font-style:italic; font-size:17px; color:rgba(248,244,237,0.55); margin-bottom:36px; line-height:1.75;">
+        Nos encantaría tenerlas. Subí tus fotos y videos acá:
+      </p>
+      <div style="background:white; display:inline-block; padding:16px; border-radius:2px; margin-bottom:28px;">
+        <img src="qr-fotos.jpg" alt="QR Google Fotos" style="width:180px; height:180px; display:block;">
+      </div>
+      <p style="font-size:11px; letter-spacing:0.08em; color:rgba(248,244,237,0.4); line-height:1.8; font-weight:300;">
+        Escaneá el QR con la cámara de tu celular<br>y subí todo lo que quieras — fotos, videos, boomerangs.
+      </p>
+    </div>
+  </section>
+
+  <div class="olive-divider">✦</div>
+
+  <section id="galeria">
+    <p class="section-tag reveal">Galería</p>
+    <h2 class="section-title reveal reveal-delay-1">Momentos</h2>
+    <div class="galeria-grid reveal reveal-delay-2">
+      <div class="galeria-item" onclick="openLightbox(0)"><img src="foto1.jpg" alt="Foto 1"></div>
+      <div class="galeria-item" onclick="openLightbox(1)"><img src="foto2.jpg" alt="Foto 2"></div>
+      <div class="galeria-item" onclick="openLightbox(2)"><img src="foto3.jpg" alt="Foto 3"></div>
+      <div class="galeria-item" onclick="openLightbox(3)"><img src="foto4.jpg" alt="Foto 4"></div>
+      <div class="galeria-item" onclick="openLightbox(4)"><img src="foto5.jpg" alt="Foto 5"></div>
+      <div class="galeria-item" onclick="openLightbox(5)"><img src="foto6.jpg" alt="Foto 6"></div>
+      <div class="galeria-item" onclick="openLightbox(6)"><img src="foto7.jpg" alt="Foto 7"></div>
+      <div class="galeria-item" onclick="openLightbox(7)"><img src="foto8.jpg" alt="Foto 8"></div>
+      <div class="galeria-item" onclick="openLightbox(8)"><img src="foto9.jpg" alt="Foto 9"></div>
+      <div class="galeria-item" onclick="openLightbox(9)"><img src="foto10.jpg" alt="Foto 10"></div>
+      <div class="galeria-item" onclick="openLightbox(10)"><img src="foto11.jpg" alt="Foto 11"></div>
+      <div class="galeria-item" onclick="openLightbox(11)"><img src="foto12.jpg" alt="Foto 12"></div>
+      <div class="galeria-item" onclick="openLightbox(12)"><img src="foto13.jpg" alt="Foto 13"></div>
+      <div class="galeria-item" onclick="openLightbox(13)"><img src="foto14.jpg" alt="Foto 14"></div>
+      <div class="galeria-item" onclick="openLightbox(14)"><img src="foto15.jpg" alt="Foto 15"></div>
+      <div class="galeria-item" onclick="openLightbox(15)"><img src="foto16.jpg" alt="Foto 16"></div>
+      <div class="galeria-item" onclick="openLightbox(16)"><img src="foto17.jpg" alt="Foto 17"></div>
+      <div class="galeria-item" onclick="openLightbox(17)"><img src="foto18.jpg" alt="Foto 18"></div>
+      <div class="galeria-item" onclick="openLightbox(18)"><img src="foto19.jpg" alt="Foto 19"></div>
+      <div class="galeria-item" onclick="openLightbox(19)"><img src="foto20.jpg" alt="Foto 20"></div>
+      <div class="galeria-item" onclick="openLightbox(20)"><img src="foto21.jpg" alt="Foto 21"></div>
+      <div class="galeria-item" onclick="openLightbox(21)"><img src="foto22.jpg" alt="Foto 22"></div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+    <span class="lightbox-prev" onclick="changeFoto(-1)">‹</span>
+    <img id="lightbox-img" src="" alt="">
+    <span class="lightbox-next" onclick="changeFoto(1)">›</span>
+  </div>
+
+  <div class="olive-divider">✦</div>
+
+  <section id="confirm" style="max-width:860px;">
+    <div class="form-wrap reveal">
+      <p class="section-tag" style="color:rgba(200,174,136,0.7);">Confirmación de asistencia</p>
+      <h2 class="section-title">¿Venís?</h2>
+      <p class="form-subtitle">Confirmá antes del [fecha límite] · Para el 17 de abril y/o el 28 de noviembre</p>
+      <div class="form-row">
+        <div class="form-field"><label class="form-label">Nombre completo</label><input type="text" placeholder="Tu nombre"></div>
+        <div class="form-field"><label class="form-label">Teléfono</label><input type="tel" placeholder="11 XXXX-XXXX"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">¿A cuál ceremonia vas?</label>
+          <select>
+            <option value="">Seleccioná</option>
+            <option>Sólo civil (17 abril)</option>
+            <option>Sólo religiosa (28 noviembre)</option>
+            <option>A las dos</option>
+          </select>
+        </div>
+        <div class="form-field"><label class="form-label">Personas que confirman</label><input type="number" min="1" max="10" placeholder="1"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field full"><label class="form-label">Restricciones alimentarias o alergias</label><input type="text" placeholder="Ninguna / vegetariano / celiaco..."></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field full"><label class="form-label">¿Algo más que quieras contarnos?</label><textarea placeholder="Mensaje opcional..."></textarea></div>
+      </div>
+      <button class="btn-send">Confirmar asistencia</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-monogram">
+      <div class="footer-nj"><span class="fn">N</span><span class="fj">J</span></div>
+    </div>
+    <div class="footer-names">Natalia <span class="footer-amp">&</span> Joaquín</div>
+    <p class="footer-sub">17 · IV · 2026 &nbsp;|&nbsp; 28 · XI · 2026 &nbsp;·&nbsp; Buenos Aires</p>
+  </footer>
+
+  <script>
+    // Cuenta regresiva
+    function updateCountdown() {
+      var target = new Date('2026-11-28T19:00:00');
+      var now = new Date();
+      var diff = target - now;
+      if (diff <= 0) return;
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-dias').textContent = d;
+      document.getElementById('cd-horas').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
+      document.getElementById('cd-seg').textContent = String(s).padStart(2,'0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Animaciones scroll
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+    // Lightbox
+    var fotos = [];
+    for (var i = 1; i <= 22; i++) { fotos.push('foto' + i + '.jpg'); }
+    var currentFoto = 0;
+    function openLightbox(idx) {
+      currentFoto = idx;
+      document.getElementById('lightbox-img').src = fotos[idx];
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function changeFoto(dir) {
+      currentFoto = (currentFoto + dir + fotos.length) % fotos.length;
+      document.getElementById('lightbox-img').src = fotos[currentFoto];
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') changeFoto(1);
+      if (e.key === 'ArrowLeft') changeFoto(-1);
+    });
+
+    // FAQ
+    function toggleFaq(btn) {
+      var item = btn.parentElement;
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+</body>
+</html>
