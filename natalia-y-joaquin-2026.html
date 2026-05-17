@@ -87,8 +87,18 @@
     section { padding: 80px 40px; max-width: 860px; margin: 0 auto; }
     .section-tag { font-size: 9px; font-weight: 400; letter-spacing: 0.28em; text-transform: uppercase; color: var(--verde-mid); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
     .section-tag::after { content: ''; flex: 1; max-width: 40px; height: 0.5px; background: var(--verde-mid); opacity: 0.5; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 5vw, 44px); font-weight: 400; font-style: italic; color: var(--text); line-height: 1.1; margin-bottom: 32px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 56px); font-weight: 400; font-style: italic; color: var(--text); line-height: 1.1; margin-bottom: 32px; }
+    .section-intro { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--text-mid); line-height: 1.75; max-width: 540px; margin: -16px auto 32px; text-align: center; }
     .olive-divider { text-align: center; padding: 6px 0; font-size: 16px; opacity: 0.15; color: var(--verde); }
+
+    /* ── STORY BAND ── */
+    .story-band { padding: 52px 40px; text-align: center; border-bottom: 0.5px solid var(--cream-dark); background: var(--cream); }
+    .story-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 21px; color: var(--text-mid); line-height: 1.85; max-width: 580px; margin: 0 auto; }
+    .story-text em { color: var(--burg); font-style: normal; }
+
+    /* ── CTA BAND ── */
+    .cta-band { background: var(--burg); padding: 28px 40px; text-align: center; }
+    .cta-band-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; color: rgba(248,244,237,0.9); line-height: 1.6; }
 
     /* ── HISTORIA ── */
     .historia-intro {
@@ -126,8 +136,8 @@
     .ilustracion-name { font-family: 'Playfair Display', serif; font-style: italic; font-size: 17px; color: var(--text); margin-top: 6px; display: block; }
     .ilustracion-date { font-size: 9px; letter-spacing: 0.14em; color: var(--text-light); margin-top: 5px; display: block; font-weight: 300; }
     .ilustracion-hora { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.12em; color: var(--verde); margin-top: 8px; display: block; font-weight: 500; }
-    .ilustracion-mapa { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sand-dark, #C8AE88); margin-top: 10px; display: inline-block; text-decoration: none; border-bottom: 0.5px solid currentColor; padding-bottom: 1px; }
-    .ilustracion-mapa:hover { color: var(--verde); }
+    .ilustracion-mapa { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sand-dark, #C8AE88); margin-top: 10px; display: inline-block; text-decoration: none; border-bottom: 0.5px solid currentColor; padding-bottom: 1px; transition: letter-spacing 0.3s ease, color 0.2s; }
+    .ilustracion-mapa:hover { color: var(--verde); letter-spacing: 0.22em; }
 
     /* ── EL LUGAR ── */
     .lugar-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
@@ -135,8 +145,8 @@
     .lugar-ilustracion img { width: 100%; display: block; }
     .lugar-info-sub { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--verde-mid); margin-bottom: 16px; font-weight: 400; }
     .lugar-info-text { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--text-mid); line-height: 1.75; margin-bottom: 24px; }
-    .lugar-map-btn { display: inline-block; background: var(--verde); color: var(--cream); padding: 12px 24px; font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; border-radius: 1px; transition: background 0.2s; }
-    .lugar-map-btn:hover { background: var(--verde-mid); }
+    .lugar-map-btn { display: inline-block; background: var(--verde); color: var(--cream); padding: 12px 24px; font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; border-radius: 1px; border: 1px solid var(--verde); transition: background 0.25s ease, transform 0.25s ease; }
+    .lugar-map-btn:hover { background: var(--verde-mid); transform: translateY(-1px); }
 
     /* ── DRESS CODE ── */
     .dress-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
@@ -201,8 +211,8 @@
     .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--sand); }
     .form-field select option { background: var(--verde); color: var(--cream); }
     .form-field textarea { resize: vertical; min-height: 80px; }
-    .btn-send { margin-top: 24px; width: 100%; padding: 15px; background: var(--sand); border: none; border-radius: 1px; font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--verde); cursor: pointer; transition: background 0.2s; }
-    .btn-send:hover { background: var(--sand-light); }
+    .btn-send { margin-top: 28px; width: 100%; padding: 18px; background: var(--burg); border: none; border-radius: 1px; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); cursor: pointer; transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; }
+    .btn-send:hover { background: #8B3D52; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(107,45,62,0.35); }
 
     /* ── FOOTER ── */
     footer { background: var(--verde); text-align: center; padding: 56px 40px; }
@@ -216,14 +226,28 @@
 
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
 
+    @media (min-width: 641px) {
+      .hero-slides .hero-slide { background-attachment: fixed; }
+    }
+
     @media (max-width: 640px) {
       nav { gap: 12px; padding: 12px 16px; }
       .historia-grid, .fechas-wrap, .form-row, .dress-grid, .lugar-wrap { grid-template-columns: 1fr; }
       .galeria-grid { grid-template-columns: 1fr 1fr; }
       .galeria-item:first-child { grid-column: span 2; grid-row: span 1; }
-      section { padding: 60px 20px; }
+      section { padding: 44px 20px; }
+      .section-title { font-size: clamp(28px, 8vw, 40px); }
       .form-wrap, .regalos-block, .playlist-wrap { padding: 32px 20px; }
       .countdown-strip { gap: 20px; padding: 20px; }
+      .story-band { padding: 36px 20px; }
+      .story-text { font-size: 17px; }
+      .cta-band { padding: 20px 20px; }
+      .cta-band-text { font-size: 15px; }
+      .historia-intro { font-size: 16px; padding: 20px 16px; }
+      .olive-divider { padding: 2px 0; }
+    }
+    @media (max-width: 400px) {
+      section { padding: 36px 16px; }
     }
   </style>
 </head>
@@ -273,6 +297,13 @@
     <div class="count-item"><span class="count-num" id="cd-min">—</span><span class="count-label">minutos</span></div>
     <span class="count-sep">·</span>
     <div class="count-item"><span class="count-num" id="cd-seg">—</span><span class="count-label">segundos</span></div>
+  </div>
+
+  <div class="story-band reveal">
+    <p class="story-text">
+      Después de tanto, llegó el momento.<br>
+      <em>Queremos celebrar este día con las personas que más queremos — y sos una de ellas.</em>
+    </p>
   </div>
 
   <section id="fechas">
@@ -392,6 +423,10 @@
 
   <div class="olive-divider">✦</div>
 
+  <div class="cta-band">
+    <p class="cta-band-text">¿Nos acompañás? <em style="font-style:normal; color:var(--sand);">Confirmá tu lugar antes del 15 de octubre.</em></p>
+  </div>
+
   <section id="confirm" style="max-width:860px; padding: 40px 20px;">
     <div class="form-wrap reveal">
       <p class="section-tag" style="color:rgba(200,174,136,0.7);">Confirmanos tu asistencia</p>
@@ -442,7 +477,7 @@
     <h2 class="section-title reveal reveal-delay-1">Elegante</h2>
     <p class="dress-note reveal reveal-delay-2" style="margin-bottom:40px;">La idea es que estés cómodo/a y te permita pasarla bien, ¡pero sin dejar de estar elegante!</p>
     <div class="reveal reveal-delay-3" style="text-align:center;">
-      <img src="VESTIMENTA.jpg" alt="Vestimenta" style="max-width:100%; border-radius:2px; display:inline-block;">
+      <img src="VESTIMENTA.jpg" alt="Vestimenta" loading="lazy" style="max-width:100%; border-radius:2px; display:inline-block;">
     </div>
   </section>
 
@@ -479,6 +514,20 @@
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer"><p>La celebración es en Chacras El Aduar, un hermoso espacio en Zárate rodeado de naturaleza. ¡Los esperamos ahí para bailar y festejar toda la noche!</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Hay alojamiento cerca?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>Sí, en Zárate y alrededores hay varias opciones de alojamiento. Próximamente compartiremos recomendaciones de hoteles y apart-hoteles cercanos a la chacra.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Pueden venir los chicos?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>¡Los chicos son bienvenidos! Si tienen alguna necesidad especial, no duden en avisarnos al confirmar la asistencia.</p></div>
       </div>
     </div>
   </section>
@@ -541,75 +590,75 @@
     <p class="section-tag reveal">Galería</p>
     <h2 class="section-title reveal reveal-delay-1">Momentos</h2>
     <div class="galeria-grid reveal reveal-delay-2">
-      <div class="galeria-item" onclick="openLightbox(0)"><img src="civil1.jpg" alt="Foto 1"></div>
-      <div class="galeria-item" onclick="openLightbox(1)"><img src="civil2.jpg" alt="Foto 2"></div>
-      <div class="galeria-item" onclick="openLightbox(2)"><img src="civil3.jpg" alt="Foto 3"></div>
-      <div class="galeria-item" onclick="openLightbox(3)"><img src="civil4.jpg" alt="Foto 4"></div>
-      <div class="galeria-item" onclick="openLightbox(4)"><img src="civil5.jpg" alt="Foto 5"></div>
-      <div class="galeria-item" onclick="openLightbox(5)"><img src="civil6.jpg" alt="Foto 6"></div>
-      <div class="galeria-item" onclick="openLightbox(6)"><img src="civil7.jpg" alt="Foto 7"></div>
-      <div class="galeria-item" onclick="openLightbox(7)"><img src="civil8.jpg" alt="Foto 8"></div>
-      <div class="galeria-item" onclick="openLightbox(8)"><img src="civil9.jpg" alt="Foto 9"></div>
-      <div class="galeria-item" onclick="openLightbox(9)"><img src="civil10.jpg" alt="Foto 10"></div>
-      <div class="galeria-item" onclick="openLightbox(10)"><img src="civil11.jpg" alt="Foto 11"></div>
-      <div class="galeria-item" onclick="openLightbox(11)"><img src="civil12.jpg" alt="Foto 12"></div>
-      <div class="galeria-item" onclick="openLightbox(12)"><img src="civil13.jpg" alt="Foto 13"></div>
-      <div class="galeria-item" onclick="openLightbox(13)"><img src="civil14.jpg" alt="Foto 14"></div>
-      <div class="galeria-item" onclick="openLightbox(14)"><img src="civil15.jpg" alt="Foto 15"></div>
-      <div class="galeria-item" onclick="openLightbox(15)"><img src="civil16.jpg" alt="Foto 16"></div>
-      <div class="galeria-item" onclick="openLightbox(16)"><img src="civil17.jpg" alt="Foto 17"></div>
-      <div class="galeria-item" onclick="openLightbox(17)"><img src="civil18.jpg" alt="Foto 18"></div>
-      <div class="galeria-item" onclick="openLightbox(18)"><img src="civil19.jpg" alt="Foto 19"></div>
-      <div class="galeria-item" onclick="openLightbox(19)"><img src="civil20.jpg" alt="Foto 20"></div>
-      <div class="galeria-item" onclick="openLightbox(20)"><img src="civil21.jpg" alt="Foto 21"></div>
-      <div class="galeria-item" onclick="openLightbox(21)"><img src="civil22.jpg" alt="Foto 22"></div>
-      <div class="galeria-item" onclick="openLightbox(22)"><img src="civil23.jpg" alt="Foto 23"></div>
-      <div class="galeria-item" onclick="openLightbox(23)"><img src="civil24.jpg" alt="Foto 24"></div>
-      <div class="galeria-item" onclick="openLightbox(24)"><img src="civil25.jpg" alt="Foto 25"></div>
-      <div class="galeria-item" onclick="openLightbox(25)"><img src="civil26.jpg" alt="Foto 26"></div>
-      <div class="galeria-item" onclick="openLightbox(26)"><img src="civil27.jpg" alt="Foto 27"></div>
-      <div class="galeria-item" onclick="openLightbox(27)"><img src="civil28.jpg" alt="Foto 28"></div>
-      <div class="galeria-item" onclick="openLightbox(28)"><img src="civil29.jpg" alt="Foto 29"></div>
-      <div class="galeria-item" onclick="openLightbox(29)"><img src="civil30.jpg" alt="Foto 30"></div>
-      <div class="galeria-item" onclick="openLightbox(30)"><img src="civil31.jpg" alt="Foto 31"></div>
-      <div class="galeria-item" onclick="openLightbox(31)"><img src="civil32.jpg" alt="Foto 32"></div>
-      <div class="galeria-item" onclick="openLightbox(32)"><img src="civil33.jpg" alt="Foto 33"></div>
-      <div class="galeria-item" onclick="openLightbox(33)"><img src="civil34.jpg" alt="Foto 34"></div>
-      <div class="galeria-item" onclick="openLightbox(34)"><img src="civil35.jpg" alt="Foto 35"></div>
-      <div class="galeria-item" onclick="openLightbox(35)"><img src="civil36.jpg" alt="Foto 36"></div>
-      <div class="galeria-item" onclick="openLightbox(36)"><img src="civil37.jpg" alt="Foto 37"></div>
-      <div class="galeria-item" onclick="openLightbox(37)"><img src="civil38.jpg" alt="Foto 38"></div>
-      <div class="galeria-item" onclick="openLightbox(38)"><img src="civil39.jpg" alt="Foto 39"></div>
-      <div class="galeria-item" onclick="openLightbox(39)"><img src="civil40.jpg" alt="Foto 40"></div>
-      <div class="galeria-item" onclick="openLightbox(40)"><img src="civil41.jpg" alt="Foto 41"></div>
-      <div class="galeria-item" onclick="openLightbox(41)"><img src="civil42.jpg" alt="Foto 42"></div>
-      <div class="galeria-item" onclick="openLightbox(42)"><img src="civil43.jpg" alt="Foto 43"></div>
-      <div class="galeria-item" onclick="openLightbox(43)"><img src="civil44.jpg" alt="Foto 44"></div>
-      <div class="galeria-item" onclick="openLightbox(44)"><img src="civil45.jpg" alt="Foto 45"></div>
-      <div class="galeria-item" onclick="openLightbox(45)"><img src="civil46.jpg" alt="Foto 46"></div>
-      <div class="galeria-item" onclick="openLightbox(46)"><img src="civil47.jpg" alt="Foto 47"></div>
-      <div class="galeria-item" onclick="openLightbox(47)"><img src="civil48.jpg" alt="Foto 48"></div>
-      <div class="galeria-item" onclick="openLightbox(48)"><img src="civil49.jpg" alt="Foto 49"></div>
-      <div class="galeria-item" onclick="openLightbox(49)"><img src="civil50.jpg" alt="Foto 50"></div>
-      <div class="galeria-item" onclick="openLightbox(50)"><img src="civil51.jpg" alt="Foto 51"></div>
-      <div class="galeria-item" onclick="openLightbox(51)"><img src="civil52.jpg" alt="Foto 52"></div>
-      <div class="galeria-item" onclick="openLightbox(52)"><img src="civil53.jpg" alt="Foto 53"></div>
-      <div class="galeria-item" onclick="openLightbox(53)"><img src="civil54.jpg" alt="Foto 54"></div>
-      <div class="galeria-item" onclick="openLightbox(54)"><img src="civil55.jpg" alt="Foto 55"></div>
-      <div class="galeria-item" onclick="openLightbox(55)"><img src="civil56.jpg" alt="Foto 56"></div>
-      <div class="galeria-item" onclick="openLightbox(56)"><img src="civil57.jpg" alt="Foto 57"></div>
-      <div class="galeria-item" onclick="openLightbox(57)"><img src="civil58.jpg" alt="Foto 58"></div>
-      <div class="galeria-item" onclick="openLightbox(58)"><img src="civil59.jpg" alt="Foto 59"></div>
-      <div class="galeria-item" onclick="openLightbox(59)"><img src="civil60.jpg" alt="Foto 60"></div>
-      <div class="galeria-item" onclick="openLightbox(60)"><img src="civil61.jpg" alt="Foto 61"></div>
-      <div class="galeria-item" onclick="openLightbox(61)"><img src="civil62.jpg" alt="Foto 62"></div>
-      <div class="galeria-item" onclick="openLightbox(62)"><img src="civil63.jpg" alt="Foto 63"></div>
-      <div class="galeria-item" onclick="openLightbox(63)"><img src="civil64.jpg" alt="Foto 64"></div>
-      <div class="galeria-item" onclick="openLightbox(64)"><img src="civil65.jpg" alt="Foto 65"></div>
-      <div class="galeria-item" onclick="openLightbox(65)"><img src="civil66.jpg" alt="Foto 66"></div>
-      <div class="galeria-item" onclick="openLightbox(66)"><img src="civil67.jpg" alt="Foto 67"></div>
-      <div class="galeria-item" onclick="openLightbox(67)"><img src="civil68.jpg" alt="Foto 68"></div>
-      <div class="galeria-item" onclick="openLightbox(68)"><img src="civil69.jpg" alt="Foto 69"></div>
+      <div class="galeria-item" onclick="openLightbox(0)"><img loading="lazy" src="civil1.jpg" alt="Foto 1"></div>
+      <div class="galeria-item" onclick="openLightbox(1)"><img loading="lazy" src="civil2.jpg" alt="Foto 2"></div>
+      <div class="galeria-item" onclick="openLightbox(2)"><img loading="lazy" src="civil3.jpg" alt="Foto 3"></div>
+      <div class="galeria-item" onclick="openLightbox(3)"><img loading="lazy" src="civil4.jpg" alt="Foto 4"></div>
+      <div class="galeria-item" onclick="openLightbox(4)"><img loading="lazy" src="civil5.jpg" alt="Foto 5"></div>
+      <div class="galeria-item" onclick="openLightbox(5)"><img loading="lazy" src="civil6.jpg" alt="Foto 6"></div>
+      <div class="galeria-item" onclick="openLightbox(6)"><img loading="lazy" src="civil7.jpg" alt="Foto 7"></div>
+      <div class="galeria-item" onclick="openLightbox(7)"><img loading="lazy" src="civil8.jpg" alt="Foto 8"></div>
+      <div class="galeria-item" onclick="openLightbox(8)"><img loading="lazy" src="civil9.jpg" alt="Foto 9"></div>
+      <div class="galeria-item" onclick="openLightbox(9)"><img loading="lazy" src="civil10.jpg" alt="Foto 10"></div>
+      <div class="galeria-item" onclick="openLightbox(10)"><img loading="lazy" src="civil11.jpg" alt="Foto 11"></div>
+      <div class="galeria-item" onclick="openLightbox(11)"><img loading="lazy" src="civil12.jpg" alt="Foto 12"></div>
+      <div class="galeria-item" onclick="openLightbox(12)"><img loading="lazy" src="civil13.jpg" alt="Foto 13"></div>
+      <div class="galeria-item" onclick="openLightbox(13)"><img loading="lazy" src="civil14.jpg" alt="Foto 14"></div>
+      <div class="galeria-item" onclick="openLightbox(14)"><img loading="lazy" src="civil15.jpg" alt="Foto 15"></div>
+      <div class="galeria-item" onclick="openLightbox(15)"><img loading="lazy" src="civil16.jpg" alt="Foto 16"></div>
+      <div class="galeria-item" onclick="openLightbox(16)"><img loading="lazy" src="civil17.jpg" alt="Foto 17"></div>
+      <div class="galeria-item" onclick="openLightbox(17)"><img loading="lazy" src="civil18.jpg" alt="Foto 18"></div>
+      <div class="galeria-item" onclick="openLightbox(18)"><img loading="lazy" src="civil19.jpg" alt="Foto 19"></div>
+      <div class="galeria-item" onclick="openLightbox(19)"><img loading="lazy" src="civil20.jpg" alt="Foto 20"></div>
+      <div class="galeria-item" onclick="openLightbox(20)"><img loading="lazy" src="civil21.jpg" alt="Foto 21"></div>
+      <div class="galeria-item" onclick="openLightbox(21)"><img loading="lazy" src="civil22.jpg" alt="Foto 22"></div>
+      <div class="galeria-item" onclick="openLightbox(22)"><img loading="lazy" src="civil23.jpg" alt="Foto 23"></div>
+      <div class="galeria-item" onclick="openLightbox(23)"><img loading="lazy" src="civil24.jpg" alt="Foto 24"></div>
+      <div class="galeria-item" onclick="openLightbox(24)"><img loading="lazy" src="civil25.jpg" alt="Foto 25"></div>
+      <div class="galeria-item" onclick="openLightbox(25)"><img loading="lazy" src="civil26.jpg" alt="Foto 26"></div>
+      <div class="galeria-item" onclick="openLightbox(26)"><img loading="lazy" src="civil27.jpg" alt="Foto 27"></div>
+      <div class="galeria-item" onclick="openLightbox(27)"><img loading="lazy" src="civil28.jpg" alt="Foto 28"></div>
+      <div class="galeria-item" onclick="openLightbox(28)"><img loading="lazy" src="civil29.jpg" alt="Foto 29"></div>
+      <div class="galeria-item" onclick="openLightbox(29)"><img loading="lazy" src="civil30.jpg" alt="Foto 30"></div>
+      <div class="galeria-item" onclick="openLightbox(30)"><img loading="lazy" src="civil31.jpg" alt="Foto 31"></div>
+      <div class="galeria-item" onclick="openLightbox(31)"><img loading="lazy" src="civil32.jpg" alt="Foto 32"></div>
+      <div class="galeria-item" onclick="openLightbox(32)"><img loading="lazy" src="civil33.jpg" alt="Foto 33"></div>
+      <div class="galeria-item" onclick="openLightbox(33)"><img loading="lazy" src="civil34.jpg" alt="Foto 34"></div>
+      <div class="galeria-item" onclick="openLightbox(34)"><img loading="lazy" src="civil35.jpg" alt="Foto 35"></div>
+      <div class="galeria-item" onclick="openLightbox(35)"><img loading="lazy" src="civil36.jpg" alt="Foto 36"></div>
+      <div class="galeria-item" onclick="openLightbox(36)"><img loading="lazy" src="civil37.jpg" alt="Foto 37"></div>
+      <div class="galeria-item" onclick="openLightbox(37)"><img loading="lazy" src="civil38.jpg" alt="Foto 38"></div>
+      <div class="galeria-item" onclick="openLightbox(38)"><img loading="lazy" src="civil39.jpg" alt="Foto 39"></div>
+      <div class="galeria-item" onclick="openLightbox(39)"><img loading="lazy" src="civil40.jpg" alt="Foto 40"></div>
+      <div class="galeria-item" onclick="openLightbox(40)"><img loading="lazy" src="civil41.jpg" alt="Foto 41"></div>
+      <div class="galeria-item" onclick="openLightbox(41)"><img loading="lazy" src="civil42.jpg" alt="Foto 42"></div>
+      <div class="galeria-item" onclick="openLightbox(42)"><img loading="lazy" src="civil43.jpg" alt="Foto 43"></div>
+      <div class="galeria-item" onclick="openLightbox(43)"><img loading="lazy" src="civil44.jpg" alt="Foto 44"></div>
+      <div class="galeria-item" onclick="openLightbox(44)"><img loading="lazy" src="civil45.jpg" alt="Foto 45"></div>
+      <div class="galeria-item" onclick="openLightbox(45)"><img loading="lazy" src="civil46.jpg" alt="Foto 46"></div>
+      <div class="galeria-item" onclick="openLightbox(46)"><img loading="lazy" src="civil47.jpg" alt="Foto 47"></div>
+      <div class="galeria-item" onclick="openLightbox(47)"><img loading="lazy" src="civil48.jpg" alt="Foto 48"></div>
+      <div class="galeria-item" onclick="openLightbox(48)"><img loading="lazy" src="civil49.jpg" alt="Foto 49"></div>
+      <div class="galeria-item" onclick="openLightbox(49)"><img loading="lazy" src="civil50.jpg" alt="Foto 50"></div>
+      <div class="galeria-item" onclick="openLightbox(50)"><img loading="lazy" src="civil51.jpg" alt="Foto 51"></div>
+      <div class="galeria-item" onclick="openLightbox(51)"><img loading="lazy" src="civil52.jpg" alt="Foto 52"></div>
+      <div class="galeria-item" onclick="openLightbox(52)"><img loading="lazy" src="civil53.jpg" alt="Foto 53"></div>
+      <div class="galeria-item" onclick="openLightbox(53)"><img loading="lazy" src="civil54.jpg" alt="Foto 54"></div>
+      <div class="galeria-item" onclick="openLightbox(54)"><img loading="lazy" src="civil55.jpg" alt="Foto 55"></div>
+      <div class="galeria-item" onclick="openLightbox(55)"><img loading="lazy" src="civil56.jpg" alt="Foto 56"></div>
+      <div class="galeria-item" onclick="openLightbox(56)"><img loading="lazy" src="civil57.jpg" alt="Foto 57"></div>
+      <div class="galeria-item" onclick="openLightbox(57)"><img loading="lazy" src="civil58.jpg" alt="Foto 58"></div>
+      <div class="galeria-item" onclick="openLightbox(58)"><img loading="lazy" src="civil59.jpg" alt="Foto 59"></div>
+      <div class="galeria-item" onclick="openLightbox(59)"><img loading="lazy" src="civil60.jpg" alt="Foto 60"></div>
+      <div class="galeria-item" onclick="openLightbox(60)"><img loading="lazy" src="civil61.jpg" alt="Foto 61"></div>
+      <div class="galeria-item" onclick="openLightbox(61)"><img loading="lazy" src="civil62.jpg" alt="Foto 62"></div>
+      <div class="galeria-item" onclick="openLightbox(62)"><img loading="lazy" src="civil63.jpg" alt="Foto 63"></div>
+      <div class="galeria-item" onclick="openLightbox(63)"><img loading="lazy" src="civil64.jpg" alt="Foto 64"></div>
+      <div class="galeria-item" onclick="openLightbox(64)"><img loading="lazy" src="civil65.jpg" alt="Foto 65"></div>
+      <div class="galeria-item" onclick="openLightbox(65)"><img loading="lazy" src="civil66.jpg" alt="Foto 66"></div>
+      <div class="galeria-item" onclick="openLightbox(66)"><img loading="lazy" src="civil67.jpg" alt="Foto 67"></div>
+      <div class="galeria-item" onclick="openLightbox(67)"><img loading="lazy" src="civil68.jpg" alt="Foto 68"></div>
+      <div class="galeria-item" onclick="openLightbox(68)"><img loading="lazy" src="civil69.jpg" alt="Foto 69"></div>
     </div>
   </section>
 
