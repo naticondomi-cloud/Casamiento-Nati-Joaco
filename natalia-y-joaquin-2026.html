@@ -206,16 +206,21 @@
     .form-field.full { grid-column: 1 / -1; }
     .form-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(248,244,237,0.4); font-weight: 400; }
     .form-field input, .form-field select, .form-field textarea {
-      background: rgba(248,244,237,0.07); border: 0.5px solid rgba(248,244,237,0.15); border-radius: 1px;
-      padding: 12px 14px; font-family: 'Jost', sans-serif; font-size: 13px;
-      color: var(--cream); font-weight: 300; outline: none; transition: border-color 0.2s; width: 100%;
+      background: rgba(248,244,237,0.05); border: none; border-bottom: 0.5px solid rgba(248,244,237,0.2);
+      padding: 14px 2px; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.03em;
+      color: var(--cream); font-weight: 300; outline: none; transition: border-color 0.3s ease; width: 100%; border-radius: 0;
     }
-    .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(248,244,237,0.22); }
-    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--sand); }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(248,244,237,0.18); letter-spacing: 0.02em; }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-bottom-color: var(--sand); }
     .form-field select option { background: var(--verde); color: var(--cream); }
-    .form-field textarea { resize: vertical; min-height: 80px; }
-    .btn-send { margin-top: 32px; width: 100%; padding: 20px 48px; background: transparent; border: 0.5px solid rgba(248,244,237,0.5); border-radius: 1px; font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cream); cursor: pointer; transition: background 0.35s ease, border-color 0.35s ease, transform 0.3s ease, letter-spacing 0.3s ease, box-shadow 0.35s ease; }
-    .btn-send:hover { background: rgba(248,244,237,0.1); border-color: var(--sand); color: var(--sand); transform: translateY(-2px); letter-spacing: 0.36em; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+    .form-field textarea { resize: none; min-height: 80px; }
+    .btn-send { margin-top: 40px; width: 100%; padding: 22px 48px; background: transparent; border: 0.5px solid rgba(248,244,237,0.35); border-radius: 2px; font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.32em; text-transform: uppercase; color: var(--cream); cursor: pointer; transition: background 0.4s ease, border-color 0.4s ease, transform 0.3s ease, letter-spacing 0.4s ease, box-shadow 0.4s ease, color 0.4s ease; }
+    .btn-send:hover { background: rgba(248,244,237,0.07); border-color: var(--sand); color: var(--sand); transform: translateY(-3px); letter-spacing: 0.4em; box-shadow: 0 12px 40px rgba(0,0,0,0.18); }
+    .btn-send:active { transform: translateY(-1px); }
+    .form-success { text-align: center; padding: 48px 24px; animation: fadeInUp 0.6s ease both; }
+    .form-success-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+    .form-success-title { font-family: 'Playfair Display', serif; font-size: 28px; font-style: italic; color: var(--sand); margin-bottom: 12px; }
+    .form-success-sub { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(248,244,237,0.4); font-weight: 300; }
 
     /* ── FOOTER ── */
     footer { background: var(--verde); text-align: center; padding: 56px 40px; }
@@ -701,6 +706,38 @@
   </footer>
 
   <script>
+    // Formulario — envío async con mensaje de éxito
+    var form = document.getElementById('confirm-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = form.querySelector('.btn-send');
+        btn.textContent = 'Enviando...';
+        btn.disabled = true;
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(function(r) {
+          if (r.ok) {
+            form.innerHTML = '<div class="form-success">'
+              + '<span class="form-success-icon">✦</span>'
+              + '<p class="form-success-title">¡Gracias por confirmar!</p>'
+              + '<p class="form-success-sub">Los esperamos el 28 de noviembre</p>'
+              + '</div>';
+          } else {
+            btn.textContent = 'Confirmar asistencia';
+            btn.disabled = false;
+            alert('Hubo un problema. Intentá de nuevo.');
+          }
+        }).catch(function() {
+          btn.textContent = 'Confirmar asistencia';
+          btn.disabled = false;
+          alert('Hubo un problema. Intentá de nuevo.');
+        });
+      });
+    }
+
     // Slideshow hero
     (function() {
       var slides = document.querySelectorAll('.hero-slide');
