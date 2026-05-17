@@ -428,35 +428,37 @@
   </div>
 
   <section id="confirm" style="max-width:860px; padding: 40px 20px;">
-    <div class="form-wrap reveal">
+    <form class="form-wrap reveal" action="https://formspree.io/f/mpqnzwno" method="POST">
+      <input type="hidden" name="_language" value="es">
+      <input type="hidden" name="_subject" value="Nueva confirmación — Nati & Joaco 2026">
       <p class="section-tag" style="color:rgba(200,174,136,0.7);">Confirmanos tu asistencia</p>
       <h2 class="section-title">¿Venís?</h2>
       <div class="form-row">
-        <div class="form-field"><label class="form-label">Nombre completo</label><input type="text" placeholder="Tu nombre"></div>
-        <div class="form-field"><label class="form-label">Teléfono</label><input type="tel" placeholder="11 XXXX-XXXX"></div>
+        <div class="form-field"><label class="form-label">Nombre completo</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+        <div class="form-field"><label class="form-label">Teléfono</label><input type="tel" name="telefono" placeholder="11 XXXX-XXXX"></div>
       </div>
       <div class="form-row">
         <div class="form-field">
           <label class="form-label">¿Confirmás asistencia?</label>
-          <select>
+          <select name="asistencia" required>
             <option value="">Seleccioná</option>
             <option>Sí, confirmo</option>
             <option>No puedo ir</option>
           </select>
         </div>
-        <div class="form-field"><label class="form-label">Personas que confirman</label><input type="number" min="1" max="10" placeholder="1"></div>
+        <div class="form-field"><label class="form-label">Personas que confirman</label><input type="number" name="personas" min="1" max="10" placeholder="1"></div>
       </div>
       <div class="form-row">
-        <div class="form-field full"><label class="form-label">Restricciones alimentarias o alergias</label><input type="text" placeholder="Ninguna / vegetariano / celiaco..."></div>
+        <div class="form-field full"><label class="form-label">Restricciones alimentarias o alergias</label><input type="text" name="restricciones" placeholder="Ninguna / vegetariano / celiaco..."></div>
       </div>
       <div class="form-row">
-        <div class="form-field full"><label class="form-label">¿Alguna canción que no pueda faltar?</label><input type="text" placeholder="Artista o canción..."></div>
+        <div class="form-field full"><label class="form-label">¿Alguna canción que no pueda faltar?</label><input type="text" name="cancion" placeholder="Artista o canción..."></div>
       </div>
       <div class="form-row">
-        <div class="form-field full"><label class="form-label">¿Algo más que quieras contarnos?</label><textarea placeholder="Mensaje opcional..."></textarea></div>
+        <div class="form-field full"><label class="form-label">¿Algo más que quieras contarnos?</label><textarea name="mensaje" placeholder="Mensaje opcional..."></textarea></div>
       </div>
-      <button class="btn-send">Confirmar asistencia</button>
-    </div>
+      <button type="submit" class="btn-send">Confirmar asistencia</button>
+    </form>
   </section>
 
   <div class="olive-divider">✦</div>
