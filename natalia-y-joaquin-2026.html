@@ -158,22 +158,23 @@
     .dress-note { font-family: 'Playfair Display', serif; font-size: 17px; font-style: italic; color: var(--text-mid); line-height: 1.7; border-left: 2px solid var(--verde-pale); padding-left: 20px; }
 
     /* ── REGALOS ── */
-    .regalos-intro { font-family: 'Playfair Display', serif; font-style: italic; font-size: 22px; color: var(--text-mid); line-height: 2; max-width: 460px; margin: -8px auto 56px; text-align: center; }
+    .regalos-intro { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-mid); line-height: 1.95; max-width: 500px; margin: 0 auto 52px; text-align: center; }
+    .regalos-deco { display: block; margin: -16px auto 40px; opacity: 0.4; }
     .cuentas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .cuenta-card { background: var(--verde); padding: 44px 40px 40px; border-radius: 2px; box-shadow: 0 6px 40px rgba(30,40,32,0.1); transition: transform 0.35s ease, box-shadow 0.35s ease; }
-    .cuenta-card:hover { transform: translateY(-5px); box-shadow: 0 16px 56px rgba(30,40,32,0.16); }
-    .cuenta-moneda { font-size: 8px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--sand); margin-bottom: 22px; display: block; opacity: 0.8; }
-    .cuenta-nombre { font-family: 'Playfair Display', serif; font-style: italic; font-size: 26px; color: var(--cream); line-height: 1.25; margin-bottom: 28px; }
-    .cuenta-sep { width: 28px; height: 0.5px; background: rgba(200,174,136,0.4); margin-bottom: 28px; }
-    .cuenta-fila { display: flex; justify-content: space-between; align-items: flex-start; padding: 10px 0; border-bottom: 0.5px solid rgba(248,244,237,0.06); }
+    .cuenta-card { background: var(--cream-dark); padding: 40px 36px 36px; border-radius: 14px; box-shadow: 0 2px 24px rgba(30,40,32,0.07); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .cuenta-card:hover { transform: translateY(-4px); box-shadow: 0 10px 40px rgba(30,40,32,0.11); }
+    .cuenta-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .cuenta-icon { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid rgba(46,74,53,0.3); display: flex; align-items: center; justify-content: center; font-family: 'Jost', sans-serif; font-size: 11px; color: var(--verde); flex-shrink: 0; font-weight: 500; }
+    .cuenta-moneda { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-mid); font-weight: 400; }
+    .cuenta-nombre { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--text); margin-bottom: 20px; font-weight: 400; line-height: 1.2; }
+    .cuenta-sep { width: 100%; height: 0.5px; background: rgba(46,74,53,0.12); margin-bottom: 16px; }
+    .cuenta-fila { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid rgba(46,74,53,0.07); }
     .cuenta-fila:last-child { border-bottom: none; }
-    .cuenta-campo { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(248,244,237,0.3); padding-top: 2px; flex-shrink: 0; margin-right: 16px; }
-    .cuenta-valor-wrap { text-align: right; }
-    .cuenta-valor { font-size: 13px; color: rgba(248,244,237,0.85); font-weight: 300; letter-spacing: 0.04em; display: block; }
-    .cuenta-alias .cuenta-valor { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: var(--sand); letter-spacing: 0.02em; }
-    .btn-copiar { background: transparent; border: none; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(248,244,237,0.22); padding: 5px 0 0; transition: color 0.25s ease; display: block; text-align: right; }
-    .btn-copiar:hover { color: var(--sand); }
-    .btn-copiar.copiado { color: var(--sand); }
+    .cuenta-campo { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
+    .cuenta-valor { font-size: 13px; color: var(--text); font-weight: 300; }
+    .btn-copiar { background: transparent; border: 0.5px solid rgba(46,74,53,0.28); border-radius: 5px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mid); padding: 6px 10px; transition: border-color 0.25s, color 0.25s; white-space: nowrap; }
+    .btn-copiar:hover { border-color: var(--verde); color: var(--verde); }
+    .btn-copiar.copiado { border-color: var(--verde); color: var(--verde); }
 
     /* ── FAQ ── */
     .faq-list { display: flex; flex-direction: column; gap: 0; border: 0.5px solid var(--cream-dark); }
@@ -497,62 +498,67 @@
   <section id="regalos">
     <p class="section-tag reveal">Lista de bodas</p>
     <h2 class="section-title reveal reveal-delay-1">Regalos</h2>
+    <svg class="regalos-deco reveal reveal-delay-2" width="80" height="36" viewBox="0 0 80 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40 32 Q30 20 10 18 Q20 14 32 22 Q28 10 20 4 Q30 10 36 24 Q38 16 34 6 Q42 14 40 28 Q42 16 46 6 Q44 16 40 28 Q44 10 56 4 Q48 10 44 22 Q58 14 70 18 Q50 20 40 32Z" fill="#2E4A35" opacity="0.25"/>
+    </svg>
     <p class="regalos-intro reveal reveal-delay-2">Su presencia es el mejor regalo.<br>Si aun así quieren hacernos llegar algo, pueden hacerlo a través de una transferencia.</p>
     <div class="cuentas-grid reveal reveal-delay-3">
 
       <div class="cuenta-card">
-        <span class="cuenta-moneda">$ Pesos argentinos</span>
+        <div class="cuenta-header">
+          <div class="cuenta-icon">$</div>
+          <span class="cuenta-moneda">Pesos argentinos</span>
+        </div>
         <p class="cuenta-nombre">Joaquín Fernando Figaredo</p>
         <div class="cuenta-sep"></div>
-        <div class="cuenta-fila cuenta-alias">
+        <div class="cuenta-fila">
           <span class="cuenta-campo">Alias</span>
-          <div class="cuenta-valor-wrap">
-            <span class="cuenta-valor">boda.nati.joaco</span>
-            <button class="btn-copiar" onclick="copiarTexto(this,'boda.nati.joaco')">Copiar</button>
-          </div>
+          <span class="cuenta-valor">boda.nati.joaco</span>
+          <button class="btn-copiar" onclick="copiarTexto(this,'boda.nati.joaco')">Copiar □</button>
         </div>
         <div class="cuenta-fila">
           <span class="cuenta-campo">CBU</span>
-          <div class="cuenta-valor-wrap">
-            <span class="cuenta-valor">0070133030004026589658</span>
-            <button class="btn-copiar" onclick="copiarTexto(this,'0070133030004026589658')">Copiar</button>
-          </div>
+          <span class="cuenta-valor">0070133030004026589658</span>
+          <button class="btn-copiar" onclick="copiarTexto(this,'0070133030004026589658')">Copiar □</button>
         </div>
         <div class="cuenta-fila">
           <span class="cuenta-campo">Cuenta</span>
-          <div class="cuenta-valor-wrap"><span class="cuenta-valor">4026589-6 133-5</span></div>
+          <span class="cuenta-valor">4026589-6 133-5</span>
+          <span></span>
         </div>
         <div class="cuenta-fila">
           <span class="cuenta-campo">Banco</span>
-          <div class="cuenta-valor-wrap"><span class="cuenta-valor">Galicia</span></div>
+          <span class="cuenta-valor">Galicia</span>
+          <span></span>
         </div>
       </div>
 
       <div class="cuenta-card">
-        <span class="cuenta-moneda">USD Dólares</span>
+        <div class="cuenta-header">
+          <div class="cuenta-icon">$</div>
+          <span class="cuenta-moneda">USD Dólares</span>
+        </div>
         <p class="cuenta-nombre">Joaquín Fernando Figaredo</p>
         <div class="cuenta-sep"></div>
-        <div class="cuenta-fila cuenta-alias">
+        <div class="cuenta-fila">
           <span class="cuenta-campo">Alias</span>
-          <div class="cuenta-valor-wrap">
-            <span class="cuenta-valor">boda.nati.joaco.usd</span>
-            <button class="btn-copiar" onclick="copiarTexto(this,'boda.nati.joaco.usd')">Copiar</button>
-          </div>
+          <span class="cuenta-valor">boda.nati.joaco.usd</span>
+          <button class="btn-copiar" onclick="copiarTexto(this,'boda.nati.joaco.usd')">Copiar □</button>
         </div>
         <div class="cuenta-fila">
           <span class="cuenta-campo">CBU</span>
-          <div class="cuenta-valor-wrap">
-            <span class="cuenta-valor">0070133031004024937887</span>
-            <button class="btn-copiar" onclick="copiarTexto(this,'0070133031004024937887')">Copiar</button>
-          </div>
+          <span class="cuenta-valor">0070133031004024937887</span>
+          <button class="btn-copiar" onclick="copiarTexto(this,'0070133031004024937887')">Copiar □</button>
         </div>
         <div class="cuenta-fila">
           <span class="cuenta-campo">Cuenta</span>
-          <div class="cuenta-valor-wrap"><span class="cuenta-valor">4024937-8 133-8</span></div>
+          <span class="cuenta-valor">4024937-8 133-8</span>
+          <span></span>
         </div>
         <div class="cuenta-fila">
           <span class="cuenta-campo">Banco</span>
-          <div class="cuenta-valor-wrap"><span class="cuenta-valor">Galicia</span></div>
+          <span class="cuenta-valor">Galicia</span>
+          <span></span>
         </div>
       </div>
 
