@@ -13,13 +13,13 @@
       --verde-mid: #3D6145;
       --verde-pale: #8AAB8F;
       --verde-wash: #EBF0EB;
-      --cream: #F8F4ED;
-      --cream-dark: #EDE5D8;
+      --cream: #F6F3EE;
+      --cream-dark: #EAE5DA;
       --burg: #6B2D3E;
       --burg-pale: #C4909A;
       --sand: #C8AE88;
       --sand-light: #DDD0B8;
-      --text: #1E2820;
+      --text: #2D3427;
       --text-mid: #4A5448;
       --text-light: #8A9488;
     }
@@ -161,22 +161,22 @@
     .regalos-intro { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-mid); line-height: 1.95; max-width: 500px; margin: 0 auto 52px; text-align: center; }
     .regalos-deco { display: block; margin: -16px auto 40px; opacity: 0.4; }
     .cuentas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .cuenta-card { background: var(--cream-dark); padding: 40px 36px 36px; border-radius: 14px; box-shadow: 0 2px 24px rgba(30,40,32,0.07); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .cuenta-card:hover { transform: translateY(-4px); box-shadow: 0 10px 40px rgba(30,40,32,0.11); }
+    .cuenta-card { background: var(--cream-dark); padding: 40px 36px 36px; border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,0.04); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .cuenta-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.07); }
     .cuenta-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
     .cuenta-icon { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid rgba(46,74,53,0.3); display: flex; align-items: center; justify-content: center; font-family: 'Jost', sans-serif; font-size: 11px; color: var(--verde); flex-shrink: 0; font-weight: 500; }
     .cuenta-moneda { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-mid); font-weight: 400; }
     .cuenta-nombre { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--text); margin-bottom: 20px; font-weight: 400; line-height: 1.2; }
-    .cuenta-sep { width: 100%; height: 0.5px; background: rgba(46,74,53,0.12); margin-bottom: 16px; }
-    .cuenta-fila { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid rgba(46,74,53,0.07); }
+    .cuenta-sep { width: 100%; height: 0.5px; background: rgba(45,52,39,0.12); margin-bottom: 16px; }
+    .cuenta-fila { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid rgba(45,52,39,0.08); }
     .cuenta-fila:last-child { border-bottom: none; }
     .cuenta-campo { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
     .cuenta-valor { font-size: 13px; color: var(--text); font-weight: 300; }
-    .btn-copiar { background: transparent; border: 0.5px solid rgba(46,74,53,0.28); border-radius: 5px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mid); padding: 6px 10px; transition: border-color 0.25s, color 0.25s; white-space: nowrap; }
+    .btn-copiar { background: transparent; border: 0.5px solid rgba(45,52,39,0.25); border-radius: 999px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mid); padding: 5px 12px; transition: border-color 0.25s, color 0.25s; white-space: nowrap; }
     .btn-copiar:hover { border-color: var(--verde); color: var(--verde); }
     .btn-copiar.copiado { border-color: var(--verde); color: var(--verde); }
-    .cuenta-card-ars { background: #98A56A; }
-    .cuenta-card-usd { background: #68722E; }
+    .cuenta-card-ars { background: #A2AE74; }
+    .cuenta-card-usd { background: #75813B; }
     .cuenta-card-ars .cuenta-nombre, .cuenta-card-usd .cuenta-nombre { color: var(--cream); }
     .cuenta-card-ars .cuenta-campo, .cuenta-card-usd .cuenta-campo { color: rgba(248,244,237,0.5); }
     .cuenta-card-ars .cuenta-valor, .cuenta-card-usd .cuenta-valor { color: rgba(248,244,237,0.88); }
