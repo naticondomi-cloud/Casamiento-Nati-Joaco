@@ -56,7 +56,7 @@
       opacity: 0; transition: opacity 1.6s ease;
     }
     .hero-slide.active { opacity: 1; }
-    .hero-overlay { position: absolute; inset: 0; z-index: 1; background: rgba(30,40,32,0.58); }
+    .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(30,40,32,0.55) 0%, rgba(30,40,32,0.72) 60%, rgba(30,40,32,0.82) 100%); }
 
     .hero-content { position: relative; z-index: 2; animation: fadeInUp 1.4s ease both; }
 
@@ -97,8 +97,11 @@
     .story-text em { color: var(--burg); font-style: normal; }
 
     /* ── CTA BAND ── */
-    .cta-band { background: var(--cream-dark); padding: 28px 40px; text-align: center; border-bottom: 0.5px solid #DDD5C4; }
-    .cta-band-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; color: var(--text-mid); line-height: 1.6; }
+    .cta-band { background: var(--verde); padding: 56px 40px; text-align: center; }
+    .cta-band-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 22px; color: var(--cream); line-height: 1.6; margin-bottom: 28px; display: block; }
+    .cta-band-sub { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(248,244,237,0.4); font-weight: 300; display: block; margin-bottom: 32px; }
+    .cta-band-btn { display: inline-block; padding: 18px 56px; border: 0.5px solid rgba(248,244,237,0.45); font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cream); text-decoration: none; transition: background 0.35s ease, border-color 0.35s ease, letter-spacing 0.3s ease; cursor: pointer; background: transparent; }
+    .cta-band-btn:hover { background: rgba(248,244,237,0.08); border-color: var(--sand); color: var(--sand); letter-spacing: 0.38em; }
 
     /* ── HISTORIA ── */
     .historia-intro {
@@ -145,8 +148,8 @@
     .lugar-ilustracion img { width: 100%; display: block; }
     .lugar-info-sub { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--verde-mid); margin-bottom: 16px; font-weight: 400; }
     .lugar-info-text { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--text-mid); line-height: 1.75; margin-bottom: 24px; }
-    .lugar-map-btn { display: inline-block; background: var(--verde); color: var(--cream); padding: 12px 24px; font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; border-radius: 1px; border: 1px solid var(--verde); transition: background 0.25s ease, transform 0.25s ease; }
-    .lugar-map-btn:hover { background: var(--verde-mid); transform: translateY(-1px); }
+    .lugar-map-btn { display: inline-block; background: transparent; color: var(--cream); padding: 13px 36px; font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase; text-decoration: none; border-radius: 1px; border: 0.5px solid rgba(248,244,237,0.5); transition: background 0.35s ease, border-color 0.35s ease, transform 0.3s ease, letter-spacing 0.3s ease; }
+    .lugar-map-btn:hover { background: rgba(248,244,237,0.08); border-color: rgba(248,244,237,0.9); transform: translateY(-2px); letter-spacing: 0.3em; }
 
     /* ── DRESS CODE ── */
     .dress-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
@@ -211,8 +214,8 @@
     .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--sand); }
     .form-field select option { background: var(--verde); color: var(--cream); }
     .form-field textarea { resize: vertical; min-height: 80px; }
-    .btn-send { margin-top: 28px; width: 100%; padding: 18px; background: var(--cream-dark); border: none; border-radius: 1px; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--verde); cursor: pointer; transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; }
-    .btn-send:hover { background: var(--sand-light); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(200,174,136,0.3); }
+    .btn-send { margin-top: 32px; width: 100%; padding: 20px 48px; background: transparent; border: 0.5px solid rgba(248,244,237,0.5); border-radius: 1px; font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cream); cursor: pointer; transition: background 0.35s ease, border-color 0.35s ease, transform 0.3s ease, letter-spacing 0.3s ease, box-shadow 0.35s ease; }
+    .btn-send:hover { background: rgba(248,244,237,0.1); border-color: var(--sand); color: var(--sand); transform: translateY(-2px); letter-spacing: 0.36em; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
 
     /* ── FOOTER ── */
     footer { background: var(--verde); text-align: center; padding: 56px 40px; }
@@ -241,8 +244,9 @@
       .countdown-strip { gap: 20px; padding: 20px; }
       .story-band { padding: 36px 20px; }
       .story-text { font-size: 17px; }
-      .cta-band { padding: 20px 20px; }
-      .cta-band-text { font-size: 15px; }
+      .cta-band { padding: 44px 20px; }
+      .cta-band-text { font-size: 18px; }
+      .cta-band-btn { padding: 16px 36px; }
       .historia-intro { font-size: 16px; padding: 20px 16px; }
       .olive-divider { padding: 2px 0; }
     }
@@ -300,10 +304,7 @@
   </div>
 
   <div class="story-band reveal">
-    <p class="story-text">
-      Después de tanto, llegó el momento.<br>
-      <em>Queremos celebrar este día con las personas que más queremos — y sos una de ellas.</em>
-    </p>
+    <p class="story-text">Estamos felices de celebrar este día con ustedes.</p>
   </div>
 
   <section id="fechas">
@@ -424,11 +425,13 @@
   <div class="olive-divider">✦</div>
 
   <div class="cta-band">
-    <p class="cta-band-text">¿Nos acompañás? <em style="font-style:normal; color:var(--verde);">Confirmá tu lugar antes del 15 de octubre.</em></p>
+    <span class="cta-band-text">¿Nos acompañás?</span>
+    <span class="cta-band-sub">Confirmá tu lugar antes del 15 de octubre</span>
+    <a href="#confirm-form" class="cta-band-btn">Confirmar asistencia</a>
   </div>
 
   <section id="confirm" style="max-width:860px; padding: 40px 20px;">
-    <form class="form-wrap reveal" action="https://formspree.io/f/mpqnzwno" method="POST">
+    <form id="confirm-form" class="form-wrap reveal" action="https://formspree.io/f/mpqnzwno" method="POST">
       <input type="hidden" name="_language" value="es">
       <input type="hidden" name="_subject" value="Nueva confirmación — Nati & Joaco 2026">
       <p class="section-tag" style="color:rgba(200,174,136,0.7);">Confirmanos tu asistencia</p>
