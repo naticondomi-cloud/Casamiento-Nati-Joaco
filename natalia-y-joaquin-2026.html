@@ -132,16 +132,16 @@
     .fecha-mes { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--sand); margin-bottom: 20px; display: block; }
     .fecha-info { font-size: 13px; font-weight: 300; color: rgba(248,244,237,0.45); line-height: 1.9; letter-spacing: 0.03em; }
 
-    /* ── ILUSTRACIONES ── */
-    .ilustraciones-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .ilustracion-item { text-align: center; border-radius: 12px; overflow: hidden; background: var(--cream-dark); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-    .ilustracion-foto { width: 100%; height: 280px; object-fit: cover; object-position: center top; display: block; }
-    .ilustracion-body { padding: 24px 20px 28px; }
-    .ilustracion-tag { font-size: 8px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--verde-mid); font-weight: 500; display: block; margin-bottom: 6px; }
-    .ilustracion-name { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; color: var(--text); display: block; margin-bottom: 4px; }
-    .ilustracion-date { font-size: 9px; letter-spacing: 0.14em; color: var(--text-light); display: block; font-weight: 300; margin-bottom: 8px; }
-    .ilustracion-hora { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.14em; color: var(--verde); display: block; font-weight: 500; margin-bottom: 10px; }
-    .ilustracion-mapa { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-light); display: inline-block; text-decoration: none; border-bottom: 0.5px solid currentColor; padding-bottom: 1px; transition: color 0.25s ease; }
+/* ── ILUSTRACIONES ── */
+    .ilustraciones-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
+    .ilustracion-item { text-align: center; }
+    .ilustracion-foto { width: 100%; height: 300px; object-fit: contain; display: block; mix-blend-mode: multiply; }
+    .ilustracion-body { padding: 32px 16px 0; }
+    .ilustracion-tag { font-size: 8px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--text-light); display: block; margin-bottom: 14px; }
+    .ilustracion-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--text); display: block; margin-bottom: 10px; font-weight: 400; letter-spacing: -0.01em; font-style: normal; }
+    .ilustracion-date { font-size: 10px; letter-spacing: 0.14em; color: var(--text-light); display: block; font-weight: 300; margin-bottom: 14px; }
+    .ilustracion-hora { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--text); display: block; font-weight: 300; letter-spacing: 0.06em; margin-bottom: 18px; }
+    .ilustracion-mapa { font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-light); display: inline-block; text-decoration: none; border-bottom: 0.5px solid currentColor; padding-bottom: 2px; transition: color 0.3s ease; }
     .ilustracion-mapa:hover { color: var(--verde); }
 
     /* ── EL LUGAR ── */
@@ -349,27 +349,23 @@
     <div class="ilustraciones-wrap reveal reveal-delay-2">
 
       <!-- IGLESIA DE LIMA -->
-      <div class="ilustracion-item">
-        <img src="Iglesia.png" alt="Iglesia de Lima" class="ilustracion-foto" loading="lazy">
-        <div class="ilustracion-body">
-          <span class="ilustracion-tag">Ceremonia religiosa</span>
-          <span class="ilustracion-name">Iglesia de Lima</span>
-          <span class="ilustracion-date">Lima · Buenos Aires</span>
-          <span class="ilustracion-hora">16:00 h</span>
-          <a class="ilustracion-mapa" href="https://maps.app.goo.gl/AFt39m4bcoL6gsdo9" target="_blank">Ver en Google Maps →</a>
-        </div>
+      <div class="ilustracion-item reveal">
+        <img src="Iglesia.png" alt="Iglesia de Lima" class="ilustracion-foto">
+        <span class="ilustracion-tag">Ceremonia religiosa</span>
+        <span class="ilustracion-name">Iglesia de Lima</span>
+        <span class="ilustracion-date">Lima · Buenos Aires</span>
+        <span class="ilustracion-hora">16:00 h</span>
+        <a class="ilustracion-mapa" href="https://maps.app.goo.gl/AFt39m4bcoL6gsdo9" target="_blank">Ver en Google Maps →</a>
       </div>
 
       <!-- CHACRAS EL ADUAR -->
-      <div class="ilustracion-item">
-        <img src="salon.png" alt="Chacras El Aduar" class="ilustracion-foto" loading="lazy">
-        <div class="ilustracion-body">
-          <span class="ilustracion-tag">La fiesta</span>
-          <span class="ilustracion-name">Chacras El Aduar</span>
-          <span class="ilustracion-date">Zárate · Buenos Aires</span>
-          <span class="ilustracion-hora">18:00 h</span>
-          <a class="ilustracion-mapa" href="https://maps.app.goo.gl/NCFduDQNpT9jeaGE6" target="_blank">Ver en Google Maps →</a>
-        </div>
+      <div class="ilustracion-item reveal reveal-delay-2">
+        <img src="salon.png" alt="Chacras El Aduar" class="ilustracion-foto">
+        <span class="ilustracion-tag">La fiesta</span>
+        <span class="ilustracion-name">Chacras El Aduar</span>
+        <span class="ilustracion-date">Zárate · Buenos Aires</span>
+        <span class="ilustracion-hora">18:00 h</span>
+        <a class="ilustracion-mapa" href="https://maps.app.goo.gl/NCFduDQNpT9jeaGE6" target="_blank">Ver en Google Maps →</a>
       </div>
 
     </div>
@@ -815,6 +811,8 @@
 
 </body>
 </html>
+
+
 
 
 
