@@ -715,17 +715,20 @@
 
   <script>
     // Bienvenida personalizada
-    (function() {
-      var params = new URLSearchParams(window.location.search);
-      var nombre = params.get('nombre');
+    function getNombreParam() {
+      var search = window.location.search || window.location.href.split('?')[1] || '';
+      var match = search.match(/[?&]nombre=([^&]*)/);
+      return match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : null;
+    }
+    window.addEventListener('DOMContentLoaded', function() {
+      var nombre = getNombreParam();
       if (nombre) {
-        nombre = decodeURIComponent(nombre);
         document.getElementById('bienvenida-nombre').textContent = nombre;
         var overlay = document.getElementById('bienvenida');
         overlay.style.display = 'flex';
         document.body.style.overflow = 'hidden';
       }
-    })();
+    });
     function cerrarBienvenida() {
       var overlay = document.getElementById('bienvenida');
       overlay.classList.add('oculto');
