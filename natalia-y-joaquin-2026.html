@@ -323,7 +323,7 @@
       <span class="bienvenida-eyebrow">Natalia & Joaquín · 28 noviembre 2026</span>
       <h1 class="bienvenida-saludo">Hola, <span class="bienvenida-nombre" id="bienvenida-nombre"></span></h1>
       <p class="bienvenida-texto">Te queremos invitar a celebrar<br>el día más importante de nuestras vidas.</p>
-      <button class="bienvenida-btn" onclick="cerrarBienvenida()">Ver invitación</button>
+      <button class="bienvenida-btn" onclick="cerrarBienvenida(); iniciarMusica()">Ver invitación</button>
     </div>
   </div>
 
@@ -553,7 +553,7 @@
           <span class="faq-q-text">¿Dónde es la fiesta?</span>
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer"><p>La celebración es en Chacras El Aduar, un hermoso espacio en Zárate rodeado de naturaleza. ¡Los esperamos ahí para bailar y festejar toda la noche!</p></div>
+        <div class="faq-answer"><p>La celebración es en Chacras El Aduar, un hermoso espacio en Zárate rodeado de naturaleza. ¡Los esperamos para festejar juntos!</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
@@ -727,6 +727,12 @@
         events: { 'onReady': function(e) { e.target.setVolume(40); } }
       });
     };
+    function iniciarMusica() {
+      if (!ytPlayer || musicPlaying) return;
+      ytPlayer.playVideo();
+      document.getElementById('music-icon').textContent = '⏸';
+      musicPlaying = true;
+    }
     function toggleMusic() {
       if (!ytPlayer) return;
       if (musicPlaying) {
@@ -734,9 +740,7 @@
         document.getElementById('music-icon').textContent = '♪';
         musicPlaying = false;
       } else {
-        ytPlayer.playVideo();
-        document.getElementById('music-icon').textContent = '⏸';
-        musicPlaying = true;
+        iniciarMusica();
       }
     }
     var tag = document.createElement('script');
