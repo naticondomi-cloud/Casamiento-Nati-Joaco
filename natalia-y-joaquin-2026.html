@@ -162,32 +162,20 @@
     .regalos-intro { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--text-mid); line-height: 1.95; max-width: 500px; margin: 0 auto 52px; text-align: center; }
     .regalos-deco { display: block; margin: -16px auto 40px; opacity: 0.4; }
     .cuentas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .cuenta-card { background: var(--cream-dark); padding: 40px 36px 36px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.35s ease; }
+    .cuenta-card { background: #ECE6DA; padding: 40px 36px 36px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.35s ease; }
     .cuenta-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.05); }
     .cuenta-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-    .cuenta-icon { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid rgba(46,74,53,0.3); display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-size: 11px; color: var(--verde); flex-shrink: 0; font-weight: 500; }
-    .cuenta-moneda { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-mid); font-weight: 400; }
-    .cuenta-nombre { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--text); margin-bottom: 20px; font-weight: 400; line-height: 1.2; }
-    .cuenta-sep { width: 100%; height: 0.5px; background: rgba(255,255,255,0.18); margin-bottom: 16px; }
-    .cuenta-fila { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid rgba(255,255,255,0.1); }
+    .cuenta-icon { width: 28px; height: 28px; border-radius: 50%; border: 1px solid rgba(117,129,59,0.4); display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-size: 11px; color: #75813B; flex-shrink: 0; font-weight: 500; }
+    .cuenta-moneda { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: #75813B; font-weight: 500; }
+    .cuenta-nombre { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: #2F3528; margin-bottom: 20px; font-weight: 400; line-height: 1.2; }
+    .cuenta-sep { width: 100%; height: 0.5px; background: rgba(47,53,40,0.1); margin-bottom: 16px; }
+    .cuenta-fila { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 0.5px solid rgba(47,53,40,0.07); }
     .cuenta-fila:last-child { border-bottom: none; }
-    .cuenta-campo { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
-    .cuenta-valor { font-size: 13px; color: var(--text); font-weight: 300; }
-    .btn-copiar { background: transparent; border: 0.5px solid rgba(45,52,39,0.25); border-radius: 999px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mid); padding: 5px 12px; transition: border-color 0.25s, color 0.25s; white-space: nowrap; }
-    .btn-copiar:hover { border-color: var(--verde); color: var(--verde); }
-    .btn-copiar.copiado { border-color: var(--verde); color: var(--verde); }
-    .cuenta-card-ars { background: #A4B07A; }
-    .cuenta-card-usd { background: #7A8643; }
-    .cuenta-card-ars .cuenta-nombre, .cuenta-card-usd .cuenta-nombre { color: var(--cream); }
-    .cuenta-card-ars .cuenta-campo, .cuenta-card-usd .cuenta-campo { color: rgba(248,244,237,0.5); }
-    .cuenta-card-ars .cuenta-valor, .cuenta-card-usd .cuenta-valor { color: rgba(248,244,237,0.88); }
-    .cuenta-card-ars .cuenta-moneda, .cuenta-card-usd .cuenta-moneda { color: rgba(248,244,237,0.7); }
-    .cuenta-card-ars .cuenta-icon, .cuenta-card-usd .cuenta-icon { color: var(--cream); border-color: rgba(248,244,237,0.45); }
-    .cuenta-card-ars .cuenta-sep, .cuenta-card-usd .cuenta-sep { background: rgba(248,244,237,0.2); }
-    .cuenta-card-ars .cuenta-fila, .cuenta-card-usd .cuenta-fila { border-bottom-color: rgba(248,244,237,0.1); }
-    .cuenta-card-ars .btn-copiar, .cuenta-card-usd .btn-copiar { border-color: rgba(248,244,237,0.35); color: rgba(248,244,237,0.6); }
-    .cuenta-card-ars .btn-copiar:hover, .cuenta-card-usd .btn-copiar:hover,
-    .cuenta-card-ars .btn-copiar.copiado, .cuenta-card-usd .btn-copiar.copiado { border-color: var(--cream); color: var(--cream); }
+    .cuenta-campo { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #7A8368; }
+    .cuenta-valor { font-size: 13px; color: #2F3528; font-weight: 300; }
+    .btn-copiar { background: transparent; border: 1px solid rgba(47,53,40,0.12); border-radius: 999px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #7A8368; padding: 5px 12px; transition: all 0.25s ease; white-space: nowrap; }
+    .btn-copiar:hover { border-color: #75813B; color: #75813B; }
+    .btn-copiar.copiado { border-color: #75813B; color: #75813B; }
 
     /* ── FAQ ── */
     .faq-list { display: flex; flex-direction: column; gap: 0; border: 0.5px solid var(--cream-dark); }
@@ -524,7 +512,7 @@
     <p class="regalos-intro reveal reveal-delay-2">Su presencia es el mejor regalo.<br>Si aun así quieren hacernos llegar algo, pueden hacerlo a través de una transferencia.</p>
     <div class="cuentas-grid reveal reveal-delay-3">
 
-      <div class="cuenta-card cuenta-card-ars">
+      <div class="cuenta-card">
         <div class="cuenta-header">
           <div class="cuenta-icon">$</div>
           <span class="cuenta-moneda">Pesos argentinos</span>
@@ -553,7 +541,7 @@
         </div>
       </div>
 
-      <div class="cuenta-card cuenta-card-usd">
+      <div class="cuenta-card">
         <div class="cuenta-header">
           <div class="cuenta-icon">$</div>
           <span class="cuenta-moneda">USD Dólares</span>
