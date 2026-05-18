@@ -19,13 +19,13 @@
       --burg-pale: #C4909A;
       --sand: #C8AE88;
       --sand-light: #DDD0B8;
-      --text: #2E3528;
-      --text-mid: #6B7361;
-      --text-light: #9AA08F;
+      --text: #222B1E;
+      --text-mid: #4A5442;
+      --text-light: #6B7361;
       --border: rgba(46,53,40,0.10);
     }
 
-    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Inter', sans-serif; font-size: 15px; background: var(--cream); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
     /* ── SCROLL ANIMATIONS ── */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
@@ -120,7 +120,7 @@
     .historia-item:nth-child(3), .historia-item:nth-child(4) { border-bottom: none; }
     .historia-year { font-family: 'Cormorant Garamond', serif; font-size: 38px; color: var(--verde-wash); position: absolute; top: 16px; right: 20px; line-height: 1; }
     .historia-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--verde-mid); margin-bottom: 10px; font-weight: 400; }
-    .historia-text { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--text-mid); line-height: 1.65; }
+    .historia-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--text-mid); line-height: 1.7; }
     .historia-quote { font-style: italic; color: var(--burg); font-size: 16px; border-left: 2px solid var(--burg-pale); padding-left: 14px; margin-top: 12px; font-family: 'Cormorant Garamond', serif; line-height: 1.6; }
 
     /* ── FECHAS ── */
@@ -160,7 +160,7 @@
     .dress-note { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: var(--text-mid); line-height: 1.7; border-left: 2px solid var(--verde-pale); padding-left: 20px; }
 
     /* ── REGALOS ── */
-    .regalos-intro { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--text-mid); line-height: 1.95; max-width: 500px; margin: 0 auto 52px; text-align: center; }
+    .regalos-intro { font-family: 'Cormorant Garamond', serif; font-size: 21px; color: var(--text-mid); line-height: 1.95; max-width: 500px; margin: 0 auto 52px; text-align: center; }
     .regalos-deco { display: block; margin: -16px auto 40px; opacity: 0.4; }
     .cuentas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .cuenta-card { background: #ECE6DA; padding: 40px 36px 36px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.35s ease; }
@@ -173,7 +173,7 @@
     .cuenta-fila { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 0.5px solid rgba(47,53,40,0.07); }
     .cuenta-fila:last-child { border-bottom: none; }
     .cuenta-campo { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #7A8368; }
-    .cuenta-valor { font-size: 13px; color: #2F3528; font-weight: 300; }
+    .cuenta-valor { font-size: 14px; color: #2F3528; font-weight: 400; }
     .btn-copiar { background: transparent; border: 1px solid rgba(47,53,40,0.12); border-radius: 999px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #7A8368; padding: 5px 12px; transition: all 0.25s ease; white-space: nowrap; }
     .btn-copiar:hover { border-color: #75813B; color: #75813B; }
     .btn-copiar.copiado { border-color: #75813B; color: #75813B; }
@@ -184,12 +184,12 @@
     .faq-item:last-child { border-bottom: none; }
     .faq-question { width: 100%; background: none; border: none; cursor: pointer; padding: 22px 28px; display: flex; justify-content: space-between; align-items: center; text-align: left; transition: background 0.2s; }
     .faq-question:hover { background: rgba(46,74,53,0.04); }
-    .faq-q-text { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--text); font-weight: 400; }
+    .faq-q-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--text); font-weight: 400; }
     .faq-icon { font-size: 20px; color: var(--verde-mid); font-weight: 300; transition: transform 0.3s; flex-shrink: 0; margin-left: 16px; font-family: 'Inter', sans-serif; }
     .faq-item.open .faq-icon { transform: rotate(45deg); }
     .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 28px; }
     .faq-item.open .faq-answer { max-height: 300px; padding: 0 28px 22px; }
-    .faq-answer p { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--text-mid); line-height: 1.75; font-style: italic; }
+    .faq-answer p { font-family: 'Cormorant Garamond', serif; font-size: 21px; color: var(--text-mid); line-height: 1.8; font-style: italic; }
 
     /* ── PLAYLIST ── */
     .playlist-wrap { background: var(--verde); border-radius: 2px; padding: 44px 48px; text-align: center; }
@@ -224,8 +224,8 @@
     .form-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-mid); font-weight: 400; }
     .form-field input, .form-field textarea {
       background: rgba(122,134,67,0.07); border: 1px solid rgba(46,53,40,0.08);
-      border-radius: 6px; padding: 13px 14px; font-family: 'Inter', sans-serif; font-size: 13px;
-      color: var(--text); font-weight: 300; outline: none; transition: border-color 0.3s ease; width: 100%;
+      border-radius: 6px; padding: 13px 14px; font-family: 'Inter', sans-serif; font-size: 14px;
+      color: var(--text); font-weight: 400; outline: none; transition: border-color 0.3s ease; width: 100%;
     }
     .form-field input::placeholder, .form-field textarea::placeholder { color: var(--text-light); }
     .form-field input:focus, .form-field textarea:focus { border-color: rgba(46,53,40,0.25); background: rgba(122,134,67,0.05); }
