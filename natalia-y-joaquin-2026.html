@@ -248,6 +248,8 @@
     .music-btn:hover { background: var(--verde); border-color: var(--verde); }
     .music-btn:hover .music-icon { color: var(--cream); }
     .music-icon { font-size: 14px; color: var(--text-mid); line-height: 1; transition: color 0.3s ease; }
+    .regalo-btn { position: fixed; bottom: 28px; left: 28px; z-index: 500; width: 44px; height: 44px; border-radius: 50%; background: var(--cream); border: 1px solid rgba(46,53,40,0.15); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.08); font-size: 18px; }
+    .regalo-btn:hover { background: var(--verde); border-color: var(--verde); transform: scale(1.08); }
     #yt-player { position: absolute; width: 1px; height: 1px; top: -9999px; left: -9999px; opacity: 0; pointer-events: none; }
 
     /* ── FOOTER ── */
@@ -691,6 +693,8 @@
   <button class="music-btn" id="music-btn" onclick="toggleMusic()" title="Música">
     <span class="music-icon" id="music-icon">♪</span>
   </button>
+
+  <a href="#regalos" class="regalo-btn" title="Regalos">🎁</a>
 
   <script>
     // Bienvenida personalizada
