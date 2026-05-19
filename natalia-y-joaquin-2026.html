@@ -64,155 +64,165 @@
     /* HERO */
     .hero {
       position: relative;
-      height: 100svh; min-height: 580px;
+      height: 100svh; min-height: 600px;
       overflow: hidden;
       background: var(--dark);
     }
     .hero-img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
-      object-fit: cover; object-position: 66% center;
-      filter: saturate(.68) contrast(1.07) brightness(.84);
+      object-fit: cover; object-position: 61% 14%;
+      filter: saturate(.62) contrast(1.1) brightness(.82);
       transform: scale(1.04);
-      transition: transform 9s ease;
+      transition: transform 10s ease;
     }
     .hero-img.loaded { transform: scale(1); }
     .hero-veil {
       position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(110deg, rgba(14,12,10,.56) 0%, rgba(14,12,10,.18) 54%, transparent 100%);
+      background: linear-gradient(108deg, rgba(12,10,8,.62) 0%, rgba(12,10,8,.2) 52%, rgba(12,10,8,.04) 100%);
     }
     .hero-grain {
       position: absolute; inset: 0; z-index: 2; pointer-events: none;
-      opacity: .038;
+      opacity: .042;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");
     }
     .hero-body {
       position: absolute; z-index: 3;
-      left: 7vw; bottom: 9vh;
+      left: 7vw; bottom: 8vh;
     }
     .hero-names {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 300; line-height: .86;
-      color: #F5F1EB; letter-spacing: .07em;
+      font-weight: 300; line-height: .83;
+      color: #F5F1EB; letter-spacing: .08em;
     }
-    .hero-n  { display: block; font-size: clamp(72px, 12.5vw, 196px); }
-    .hero-amp{ display: block; font-size: clamp(44px, 7.5vw, 116px); color: rgba(245,241,235,.3); font-style: italic; line-height: 1.05; margin: .06em 0; }
-    .hero-j  { display: block; font-size: clamp(72px, 12.5vw, 196px); }
+    .hero-n   { display: block; font-size: clamp(76px, 13.5vw, 212px); }
+    .hero-amp {
+      display: block;
+      font-size: clamp(38px, 5.5vw, 84px);
+      color: rgba(245,241,235,.22);
+      font-style: italic; line-height: 1.1;
+      margin: .08em 0;
+      padding-left: .18em;
+    }
+    .hero-j   { display: block; font-size: clamp(76px, 13.5vw, 212px); }
     .hero-info {
-      margin-top: 40px;
-      font-size: 9px; font-weight: 400; letter-spacing: .32em;
-      text-transform: uppercase; color: rgba(245,241,235,.38);
+      margin-top: 52px;
+      font-size: 8px; font-weight: 400; letter-spacing: .38em;
+      text-transform: uppercase; color: rgba(245,241,235,.32);
     }
 
     /* INTERLUDE */
     .interlude {
-      padding: 160px 10vw;
-      display: flex; align-items: flex-start; gap: 12vw;
-    }
-    .interlude-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(80px, 11vw, 160px); font-weight: 300;
-      color: var(--sand); line-height: 1; flex-shrink: 0;
-      user-select: none;
+      padding: 180px 10vw;
     }
     .interlude-text {
-      padding-top: .5em;
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(22px, 2.6vw, 36px);
+      font-size: clamp(26px, 3.4vw, 52px);
       font-weight: 300; font-style: italic;
-      color: var(--muted); line-height: 1.6;
+      color: var(--text); line-height: 1.48;
+      max-width: 760px;
     }
-    .interlude-text em { font-style: normal; color: var(--text); }
+    .interlude-text em { font-style: normal; color: var(--muted); }
 
-    /* PHOTO BREAK */
+    /* PHOTO BREAK — portrait, aggressive top crop */
     .photo-break {
-      position: relative; overflow: hidden;
-      height: 80vh; min-height: 400px;
+      overflow: hidden;
+      height: 94vh; min-height: 500px;
     }
     .photo-break img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center 25%;
-      filter: saturate(.62) contrast(1.1) brightness(.88);
+      object-fit: cover; object-position: 50% 6%;
+      filter: saturate(0) contrast(1.12) brightness(.86);
+    }
+
+    /* STRIP PHOTO — cinematic horizontal */
+    .strip-photo {
+      overflow: hidden;
+      height: 46vh; min-height: 280px;
+    }
+    .strip-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 50% 38%;
+      filter: saturate(.55) contrast(1.1) brightness(.9);
     }
 
     /* DATES */
-    .dates { padding: 160px 10vw; }
+    .dates { padding: 180px 10vw; }
     .dates-row {
       display: grid; grid-template-columns: 1fr 1fr;
       border-top: 1px solid var(--line);
     }
     .date-col {
-      padding: 64px 0;
+      padding: 80px 0;
       border-right: 1px solid var(--line);
     }
     .date-col:last-child { border-right: none; padding-left: 8vw; }
     .date-col:first-child { padding-right: 8vw; }
     .date-type {
-      font-size: 8px; font-weight: 400; letter-spacing: .36em;
+      font-size: 8px; font-weight: 400; letter-spacing: .42em;
       text-transform: uppercase; color: var(--muted);
-      display: block; margin-bottom: 28px;
+      display: block; margin-bottom: 32px;
     }
     .date-time {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(72px, 10vw, 148px);
+      font-size: clamp(80px, 12vw, 168px);
       font-weight: 300; color: var(--dark);
-      display: block; line-height: 1; letter-spacing: .04em;
-      margin-bottom: 36px;
+      display: block; line-height: .94; letter-spacing: .02em;
+      margin-bottom: 44px;
     }
     .date-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(17px, 1.8vw, 24px);
-      font-weight: 300; color: var(--text);
-      display: block; margin-bottom: 6px; line-height: 1.2;
+      font-size: clamp(17px, 1.7vw, 23px);
+      font-weight: 300; font-style: italic; color: var(--text);
+      display: block; margin-bottom: 8px; line-height: 1.25;
     }
     .date-place {
-      font-size: 9px; font-weight: 400; letter-spacing: .2em;
+      font-size: 8px; font-weight: 400; letter-spacing: .26em;
       text-transform: uppercase; color: var(--muted);
-      display: block; margin-bottom: 28px;
+      display: block; margin-bottom: 32px;
     }
     .date-map {
-      font-size: 9px; font-weight: 400; letter-spacing: .2em;
+      font-size: 8px; font-weight: 400; letter-spacing: .22em;
       text-transform: uppercase; color: var(--muted);
       border-bottom: 1px solid var(--line); padding-bottom: 2px;
       transition: color .2s, border-color .2s; display: inline-block;
     }
-    .date-map:hover { color: var(--text); border-color: rgba(0,0,0,.25); }
+    .date-map:hover { color: var(--text); border-color: rgba(0,0,0,.3); }
     .dates-notes {
       display: grid; grid-template-columns: 1fr 1fr;
       border-top: 1px solid var(--line);
-      margin-top: 0;
     }
     .dates-note {
-      padding: 48px 0;
+      padding: 56px 0;
       border-right: 1px solid var(--line);
     }
     .dates-note:last-child { border-right: none; padding-left: 8vw; }
     .dates-note:first-child { padding-right: 8vw; }
     .dates-note-label {
-      font-size: 8px; font-weight: 400; letter-spacing: .36em;
+      font-size: 8px; font-weight: 400; letter-spacing: .42em;
       text-transform: uppercase; color: var(--muted);
-      display: block; margin-bottom: 14px;
+      display: block; margin-bottom: 16px;
     }
     .dates-note-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(16px, 1.6vw, 20px);
+      font-size: clamp(16px, 1.7vw, 22px);
       font-weight: 300; font-style: italic;
-      color: var(--muted); line-height: 1.7;
+      color: var(--muted); line-height: 1.72;
     }
 
     /* RSVP */
-    .rsvp { padding: 180px 10vw 120px; }
+    .rsvp { padding: 200px 10vw 140px; }
     .rsvp-h {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(80px, 13vw, 200px);
+      font-size: clamp(88px, 14.5vw, 228px);
       font-weight: 300; color: var(--dark);
-      line-height: .88; letter-spacing: .04em;
-      margin-bottom: 52px;
+      line-height: .84; letter-spacing: .04em;
+      margin-bottom: 60px;
     }
     .rsvp-note {
-      font-size: 9px; font-weight: 400; letter-spacing: .3em;
+      font-size: 8px; font-weight: 400; letter-spacing: .36em;
       text-transform: uppercase; color: var(--muted);
-      display: block; margin-bottom: 52px;
+      display: block; margin-bottom: 56px;
     }
     .btn {
       display: inline-block;
@@ -414,17 +424,23 @@
       .dates-note:not(:last-child) { border-bottom: 1px solid var(--line); }
       .info-col { border-right: none; border-bottom: 1px solid var(--line); }
       .info-col:last-child { border-bottom: none; }
-      .interlude { flex-direction: column; gap: 20px; padding: 100px 8vw; }
-      .interlude-num { font-size: clamp(64px, 18vw, 120px); }
+      .interlude { padding: 120px 8vw; }
       footer { flex-direction: column; gap: 20px; align-items: flex-start; }
+      .strip-photo { height: 36vh; }
+      .photo-break { height: 75vh; }
     }
     @media (max-width: 600px) {
       .nav-link { display: none; }
       .hero-body { left: 6vw; bottom: 7vh; }
       .dates, .rsvp, .form-wrap { padding-left: 6vw; padding-right: 6vw; }
+      .dates { padding-top: 120px; padding-bottom: 120px; }
+      .rsvp { padding-top: 140px; padding-bottom: 100px; }
+      .interlude { padding: 100px 6vw; }
       .info-col { padding: 80px 6vw; }
       footer { padding: 60px 6vw; }
       .form-row { grid-template-columns: 1fr; }
+      .photo-break { height: 65vh; }
+      .strip-photo { height: 30vh; }
     }
   </style>
 </head>
@@ -463,11 +479,10 @@
 
   <!-- INTERLUDE -->
   <div class="interlude">
-    <span class="interlude-num fade">28</span>
-    <p class="interlude-text fade d1">
+    <p class="interlude-text fade">
       Ella nunca fue buena conociendo gente nueva.<br>
       Él reservó antes de que ella dijera que sí.<br>
-      <em>Y de alguna manera, terminaron construyendo una vida juntos.</em>
+      <em>Y de alguna manera,<br>terminaron construyendo una vida juntos.</em>
     </p>
   </div>
 
@@ -505,6 +520,11 @@
       </div>
     </div>
   </section>
+
+  <!-- STRIP PHOTO -->
+  <div class="strip-photo fade">
+    <img src="civil32.jpg" alt="">
+  </div>
 
   <!-- RSVP -->
   <section class="rsvp fade" id="rsvp">
