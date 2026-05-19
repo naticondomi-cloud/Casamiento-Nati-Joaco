@@ -719,13 +719,20 @@
     document.querySelectorAll('.fade').forEach(function(el){ io.observe(el); });
 
     // música
-    var yt=null, on=false;
+    var yt=null, on=false, pendingPlay=false;
     window.onYouTubeIframeAPIReady = function(){
-      yt = new YT.Player('yt',{events:{onReady:function(e){e.target.setVolume(36);}}});
+      yt = new YT.Player('yt',{events:{onReady:function(e){
+        e.target.setVolume(36);
+        if(pendingPlay){ e.target.playVideo(); document.getElementById('mic').textContent='⏸'; on=true; pendingPlay=false; }
+      }}});
     };
-    function startMusic(){ if(!yt||on)return; yt.playVideo(); document.getElementById('mic').textContent='⏸'; on=true; }
+    function startMusic(){
+      if(on) return;
+      if(!yt){ pendingPlay=true; return; }
+      yt.playVideo(); document.getElementById('mic').textContent='⏸'; on=true;
+    }
     function toggleMusic(){
-      if(!yt)return;
+      if(!yt){ pendingPlay=!pendingPlay; return; }
       if(on){ yt.pauseVideo(); document.getElementById('mic').textContent='♪'; on=false; }
       else startMusic();
     }
