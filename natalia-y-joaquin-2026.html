@@ -12,10 +12,10 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg:   #F0EDE5;
+      --bg:   #F5F1EB;
       --sand: #E4DDD0;
-      --text: #1E1A16;
-      --muted:#8A8178;
+      --text: #1E1E1E;
+      --muted:#8B8175;
       --dark: #1B1714;
       --line: rgba(0,0,0,0.07);
     }
@@ -53,7 +53,7 @@
     /* ── HERO ── */
     .hero {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 42% 58%;
       height: 100svh; min-height: 600px;
       position: relative;
     }
@@ -77,25 +77,28 @@
     .hero-left {
       background: var(--bg);
       display: flex; flex-direction: column; justify-content: center;
-      padding: 100px 7vw 80px;
+      padding: 8vw;
+      z-index: 2;
     }
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 300; line-height: .88;
-      color: var(--dark); letter-spacing: .07em;
+      font-size: clamp(80px, 10vw, 170px);
+      line-height: .88; font-weight: 300;
+      letter-spacing: .04em;
+      color: var(--dark);
       margin-bottom: 36px;
     }
-    .hero-name { display: block; font-size: clamp(56px, 8.5vw, 136px); }
+    .hero-name { display: block; }
     .hero-amp  {
       display: block;
-      font-size: clamp(44px, 6.5vw, 104px);
       color: var(--muted);
       line-height: 1.05; margin: .04em 0;
     }
     .hero-date {
-      font-size: 9px; font-weight: 400; letter-spacing: .3em;
-      text-transform: uppercase; color: var(--muted);
-      line-height: 2; margin-bottom: 44px;
+      margin-top: 32px;
+      font-size: 12px; font-weight: 400;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 44px;
     }
     .hero-cta {
       display: inline-flex; align-items: center; gap: 14px;
@@ -112,7 +115,7 @@
     }
     .hero-right img {
       height: 100%; object-fit: cover; object-position: 52% 18%;
-      filter: saturate(.72) sepia(.12) contrast(1.08) brightness(.9);
+      filter: saturate(.88) contrast(.96) brightness(.96);
     }
 
     /* ── STORY SPLIT ── */
@@ -512,11 +515,8 @@
         <span class="hero-amp">&</span>
         <span class="hero-name">JOAQUÍN</span>
       </h1>
-      <p class="hero-date">
-        28 de noviembre de 2026<br>
-        Zárate, Argentina
-      </p>
-      <button class="hero-cta" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
+      <p class="hero-date">28 NOVIEMBRE 2026 — ZÁRATE</p>
+      <button class="hero-cta" onclick="document.getElementById('fechas').scrollIntoView({behavior:'smooth'})">
         Entrar
       </button>
     </div>
