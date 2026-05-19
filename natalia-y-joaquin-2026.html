@@ -145,6 +145,17 @@
       filter: saturate(0) contrast(1.1) brightness(.9);
     }
 
+    /* ── PHOTO BREAK ── */
+    .photo-break {
+      overflow: hidden;
+      height: 85vh; min-height: 400px;
+    }
+    .photo-break img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 50% 28%;
+      filter: saturate(0) contrast(1.1) brightness(.9);
+    }
+
     /* ── DATES ── */
     .dates {
       padding: 100px 7vw;
@@ -512,6 +523,11 @@
     </div>
   </header>
 
+
+  <!-- FOTO -->
+  <div class="photo-break fade">
+    <img src="civil52.jpg" loading="lazy" alt="">
+  </div>
 
   <!-- EL GRAN DÍA -->
   <section class="dates fade" id="fechas">
