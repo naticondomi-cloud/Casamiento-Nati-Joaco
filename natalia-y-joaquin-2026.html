@@ -82,14 +82,23 @@
     }
     .hero-right img.loaded { transform: scale(1); }
 
-    /* ── FOTO FULL ── */
-    .photo-full {
-      height: 100vh; overflow: hidden;
+    /* ── FOTO CUADRADA + ESPACIO ── */
+    .photo-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
     }
-    .photo-full img {
+    .photo-split-img {
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+    .photo-split-img img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: 50% 8%;
+      object-fit: cover; object-position: 50% 22%;
       filter: saturate(0) contrast(1.08) brightness(.9);
+    }
+    .photo-split-space {
+      background: var(--bg);
     }
 
     /* ── DATES ── */
@@ -360,7 +369,8 @@
       .acct-col { padding: 80px 6vw; }
       footer { padding: 52px 6vw; }
       .form-row { grid-template-columns: 1fr; }
-      .photo-full { height: 70vh; }
+      .photo-split { grid-template-columns: 1fr; }
+      .photo-split-space { display: none; }
     }
   </style>
 </head>
@@ -394,9 +404,12 @@
     </div>
   </section>
 
-  <!-- FOTO FULL -->
-  <div class="photo-full fade">
-    <img src="civil52.jpg" loading="lazy" alt="">
+  <!-- FOTO CUADRADA -->
+  <div class="photo-split">
+    <div class="photo-split-img fade">
+      <img src="civil52.jpg" loading="lazy" alt="">
+    </div>
+    <div class="photo-split-space"></div>
   </div>
 
   <!-- FECHAS -->
