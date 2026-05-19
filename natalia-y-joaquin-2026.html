@@ -41,7 +41,7 @@
     .hero {
       display: grid;
       grid-template-columns: 38% 62%;
-      height: 100svh; min-height: 600px;
+      height: auto; min-height: 100svh;
     }
     .hero-left {
       display: flex; flex-direction: column;
@@ -75,9 +75,9 @@
     }
     .hero-right img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: 60% 18%;
+      object-fit: cover; object-position: center bottom;
       filter: saturate(.84) contrast(.97) brightness(.95);
-      transform: scale(1.03);
+      transform: scale(1);
       transition: transform 9s ease;
     }
     .hero-right img.loaded { transform: scale(1); }
@@ -94,7 +94,7 @@
     }
     .photo-split-img img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: 50% 22%;
+      object-fit: cover; object-position: 50% 55%;
       filter: saturate(0) contrast(1.08) brightness(.9);
     }
     .photo-split-space {
@@ -120,7 +120,7 @@
       margin-bottom: 24px; flex-shrink: 0;
     }
     .date-label {
-      font-size: 8px; font-weight: 400; letter-spacing: .44em;
+      font-size: 11px; font-weight: 400; letter-spacing: .44em;
       text-transform: uppercase; color: rgba(245,241,235,.35);
       display: block; margin-bottom: 20px;
     }
@@ -133,22 +133,22 @@
     }
     .date-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(13px, 1.3vw, 17px);
+      font-size: clamp(16px, 1.6vw, 22px);
       font-weight: 300; font-style: italic;
       color: rgba(245,241,235,.6); display: block;
       line-height: 1.45; margin-bottom: 6px;
     }
     .date-sub {
-      font-size: 8px; font-weight: 400; letter-spacing: .18em;
+      font-size: 10px; font-weight: 400; letter-spacing: .18em;
       text-transform: uppercase; color: rgba(245,241,235,.28);
       display: block; margin-bottom: 20px;
     }
     .date-body {
-      font-size: 13px; font-weight: 300;
+      font-size: 16px; font-weight: 300;
       color: rgba(245,241,235,.45); line-height: 1.8; text-align: center;
     }
     .date-link {
-      font-size: 8px; letter-spacing: .2em;
+      font-size: 10px; letter-spacing: .2em;
       text-transform: uppercase; color: rgba(245,241,235,.32);
       border-bottom: 1px solid rgba(245,241,235,.14);
       padding-bottom: 1px; display: inline-block;
@@ -453,12 +453,15 @@
     </div>
 
     <div class="date-col fade d1">
-      <svg class="date-icon" viewBox="0 0 46 56" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M19,3 Q23,5 27,3"/><path d="M19,3 L17,13"/><path d="M27,3 L29,13"/>
-        <path d="M17,13 Q14,17 15,23 L17,27"/><path d="M29,13 Q32,17 31,23 L29,27"/>
-        <path d="M17,27 Q23,29 29,27"/>
-        <path d="M17,27 Q7,40 5,54"/><path d="M29,27 Q39,40 41,54"/>
-        <path d="M5,54 Q23,57 41,54"/>
+      <svg class="date-icon" viewBox="0 0 48 56" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- percha -->
+        <path d="M24,4 L24,10"/>
+        <path d="M10,22 L24,10 L38,22"/>
+        <line x1="10" y1="22" x2="38" y2="22"/>
+        <!-- vestido cuerpo -->
+        <path d="M14,22 L12,28 L16,30 L14,48 Q24,52 34,48 L32,30 L36,28 L34,22"/>
+        <!-- cinturón -->
+        <line x1="16" y1="30" x2="32" y2="30"/>
       </svg>
       <span class="date-label">Dress Code</span>
       <span class="date-body">Elegante<br>pero cómodo</span>
@@ -474,7 +477,7 @@
         <line x1="4" y1="20" x2="56" y2="20"/>
       </svg>
       <span class="date-label">Transporte</span>
-      <span class="date-body">1.30 hs de Capital<br>Panamericana</span>
+      <span class="date-body">1.30 hs de Capital<br>Panamericana ramal Zárate<br>Desvío por Atucha<br><br><span style="font-size:12px;color:rgba(245,241,235,.3)">Ruta 9 → salida Lima / Zárate</span></span>
     </div>
 
   </section>
