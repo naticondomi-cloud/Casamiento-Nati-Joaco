@@ -1,327 +1,622 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Natalia & Joaquín · 2026</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Natalia y Joaquín · 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --verde: #2E4A35;
-      --olive-light: #A2AE74;
-      --olive-deep: #75813B;
-      --cream: #F6F3EE;
-      --cream-dark: #EFE9DE;
-      --text: #2E3528;
-      --text-mid: #70776A;
-      --text-light: #9AA08F;
-      --border: rgba(46,53,40,0.08);
+      --background: #F5F1EB;
+      --sand: #E7DED2;
+      --text: #2A2A2A;
+      --muted: #8E857B;
+      --dark: #161616;
+      --line: rgba(0,0,0,0.08);
     }
 
-    body { font-family: 'Inter', sans-serif; font-size: 15px; background: var(--cream); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      background: var(--background);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    /* ── SCROLL ANIMATIONS ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
 
     /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: var(--cream); border-bottom: 0.5px solid var(--cream-dark);
-      padding: 14px 40px; display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;
+      background: var(--background);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 8vw;
+      display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
     }
-    nav a { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--verde); text-decoration: none; transition: color 0.2s; }
-    nav a:hover { color: var(--olive-deep); }
+    nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text); }
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh; background: var(--verde);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      position: relative; overflow: hidden; padding: 80px 40px; text-align: center;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--background);
     }
-    .hero-slides { position: absolute; inset: 0; z-index: 0; }
-    .hero-slide {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      opacity: 0; transition: opacity 1.6s ease;
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8vw;
+      padding-bottom: 9vw;
     }
-    .hero-slide.active { opacity: 1; }
-    .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(30,40,32,0.55) 0%, rgba(30,40,32,0.72) 60%, rgba(30,40,32,0.82) 100%); }
-
-    .hero-content { position: relative; z-index: 2; animation: fadeInUp 1.4s ease both; }
-
-    .monogram-wrap { display: flex; justify-content: center; margin-bottom: 28px; }
-    .monogram-letters { font-family: 'Cormorant Garamond', serif; font-weight: 700; color: var(--olive-light); line-height: 1; display: flex; align-items: flex-start; letter-spacing: -2px; }
-    .monogram-n { font-size: 72px; }
-    .monogram-j { font-size: 72px; margin-top: 22px; }
-
-    .hero-eyebrow { font-size: 9px; font-weight: 300; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(200,174,136,0.75); margin-bottom: 20px; }
-    .hero-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 9vw, 80px); font-weight: 400; color: var(--cream); line-height: 1; }
-    .hero-amp { font-family: 'Cormorant Garamond', serif; font-size: clamp(56px, 11vw, 96px); font-weight: 400; color: var(--olive-light); display: block; line-height: 0.85; margin: 10px 0; }
-    .hero-divider { width: 52px; height: 0.5px; background: var(--olive-light); margin: 22px auto; opacity: 0.5; }
-    .hero-date { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 3.5vw, 30px); font-weight: 300; letter-spacing: 0.1em; color: rgba(242,238,230,0.95); margin-top: 8px; }
-    .hero-location { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: rgba(248,244,237,0.4); margin-top: 10px; }
+    .hero-eyebrow {
+      font-size: 10px; font-weight: 400;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 40px;
+      display: block;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(72px, 10vw, 160px);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      line-height: 0.9;
+      color: var(--dark);
+      display: block;
+    }
+    .hero-y {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 6vw, 96px);
+      font-weight: 300;
+      color: var(--muted);
+      display: block;
+      line-height: 1.1;
+      margin: 0.15em 0;
+      font-style: italic;
+    }
+    .hero-meta {
+      margin-top: 52px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .hero-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--text);
+    }
+    .hero-location {
+      font-size: 10px; font-weight: 300;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: saturate(0.85) contrast(1.04) brightness(0.93);
+    }
+    .hero-grain {
+      position: absolute; inset: 0; pointer-events: none; z-index: 1;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
 
     /* ── COUNTDOWN ── */
     .countdown-strip {
-      background: var(--cream-dark); padding: 24px 40px;
-      display: flex; justify-content: center; gap: 48px; align-items: center;
-      border-bottom: 0.5px solid #DDD5C4;
+      background: var(--sand);
+      padding: 28px 8vw;
+      display: flex; justify-content: center; gap: 56px; align-items: center;
+      border-bottom: 1px solid var(--line);
     }
     .count-item { text-align: center; }
-    .count-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--verde); line-height: 1; display: block; }
-    .count-label { font-size: 9px; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-light); margin-top: 4px; display: block; }
-    .count-sep { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: rgba(162,174,116,0.4); opacity: 0.6; align-self: flex-start; margin-top: 6px; }
-
-    /* ── SECCIONES ── */
-    section { padding: 80px 40px; max-width: 860px; margin: 0 auto; }
-    .section-tag { font-size: 9px; font-weight: 400; letter-spacing: 0.28em; text-transform: uppercase; color: var(--olive-deep); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
-    .section-tag::after { content: ''; flex: 1; max-width: 40px; height: 0.5px; background: var(--olive-deep); opacity: 0.5; }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 7vw, 68px); font-weight: 400; font-style: italic; color: var(--text); line-height: 1.1; margin-bottom: 32px; }
-    .section-intro { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: var(--text-mid); line-height: 1.75; max-width: 540px; margin: -16px auto 32px; text-align: center; }
-    .olive-divider { text-align: center; padding: 6px 0; font-size: 16px; opacity: 0.15; color: var(--verde); }
-
-    /* ── STORY BAND ── */
-    .story-band { padding: 52px 40px; text-align: center; border-bottom: 0.5px solid var(--cream-dark); background: var(--cream); }
-    .story-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; color: var(--text-mid); line-height: 1.85; max-width: 580px; margin: 0 auto; }
-    .story-text em { color: var(--olive-deep); font-style: normal; }
-
-    /* ── CTA BAND ── */
-    .cta-band { background: #31593D; padding: 64px 40px; text-align: center; }
-    .cta-band-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 26px; color: var(--cream); line-height: 1.5; margin-bottom: 12px; display: block; }
-    .cta-band-sub { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(246,243,238,0.45); font-weight: 300; display: block; margin-bottom: 36px; }
-    .cta-band-btn { display: inline-block; padding: 12px 40px; border: 1px solid rgba(246,243,238,0.35); border-radius: 999px; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); text-decoration: none; transition: all 0.35s ease; cursor: pointer; background: transparent; }
-    .cta-band-btn:hover { background: rgba(246,243,238,0.08); border-color: rgba(246,243,238,0.7); transform: translateY(-1px); }
-
-    /* ── HISTORIA ── */
-    .historia-intro {
-      font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 18px; color: var(--text-mid); line-height: 1.9;
-      text-align: center; max-width: 620px; margin: 0 auto;
-      padding: 28px 24px;
-      border-top: 0.5px solid var(--cream-dark);
-      border-bottom: 0.5px solid var(--cream-dark);
+    .count-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px; color: var(--dark); line-height: 1; display: block;
+      font-weight: 300;
     }
-    .historia-intro em { color: var(--olive-deep); }
-    .historia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; }
-    .historia-item { padding: 0; position: relative; border-bottom: 0.5px solid var(--cream-dark); padding-bottom: 32px; }
-    .historia-item:nth-child(even) { border-right: none; }
-    .historia-item:nth-child(3), .historia-item:nth-child(4) { border-bottom: none; }
-    .historia-year { font-family: 'Cormorant Garamond', serif; font-size: 38px; color: #E8ECDA; position: absolute; top: 16px; right: 20px; line-height: 1; }
-    .historia-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--olive-deep); margin-bottom: 10px; font-weight: 400; }
-    .historia-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--text-mid); line-height: 1.7; }
-    .historia-quote { font-style: italic; color: var(--olive-deep); font-size: 16px; border-left: 2px solid rgba(117,129,59,0.25); padding-left: 14px; margin-top: 12px; font-family: 'Cormorant Garamond', serif; line-height: 1.6; }
+    .count-label {
+      font-size: 8px; font-weight: 400;
+      letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--muted); margin-top: 5px; display: block;
+    }
+    .count-sep {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; color: var(--line); align-self: flex-start; margin-top: 8px;
+    }
+
+    /* ── SECCIONES BASE ── */
+    section { padding: 140px 8vw; }
+    .section-label {
+      font-size: 9px; font-weight: 400;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px; display: block;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 6vw, 80px);
+      font-weight: 300; color: var(--dark);
+      line-height: 1.05; margin-bottom: 40px;
+    }
+    .section-divider {
+      width: 100%; height: 1px;
+      background: var(--line); border: none; margin: 0;
+    }
+
+    /* ── HISTORIA EDITORIAL ── */
+    .historia {
+      padding: 140px 8vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8vw;
+      align-items: center;
+    }
+    .historia-text-col {}
+    .historia-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 300; font-style: italic;
+      color: var(--dark);
+      line-height: 1.45;
+    }
+    .historia-quote em {
+      font-style: normal;
+      color: var(--muted);
+    }
+    .historia-quote p { margin-bottom: 1.2em; }
+    .historia-quote p:last-child { margin-bottom: 0; }
+    .historia-photo {
+      position: relative; overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+    .historia-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(0) contrast(1.08) brightness(0.94);
+      display: block;
+    }
 
     /* ── FECHAS ── */
-    .fechas-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .fecha-card { background: var(--verde); border-radius: 2px; padding: 36px 32px; position: relative; overflow: hidden; }
-    .fecha-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--olive-light); }
-    .fecha-tipo { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(200,174,136,0.8); margin-bottom: 16px; font-weight: 400; display: block; }
-    .fecha-dia { font-family: 'Cormorant Garamond', serif; font-size: 56px; color: var(--cream); line-height: 1; margin-bottom: 4px; display: block; }
-    .fecha-mes { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--olive-light); margin-bottom: 20px; display: block; }
-    .fecha-info { font-size: 13px; font-weight: 300; color: rgba(248,244,237,0.45); line-height: 1.9; letter-spacing: 0.03em; }
+    .fechas-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8vw;
+    }
+    .fecha-item {}
+    .fecha-ilustracion {
+      width: 100%; max-height: 300px;
+      object-fit: contain; display: block;
+      mix-blend-mode: multiply;
+      margin-bottom: 28px;
+    }
+    .fecha-label {
+      font-size: 9px; font-weight: 400;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px; display: block;
+    }
+    .fecha-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 300; color: var(--dark);
+      margin-bottom: 6px; display: block;
+      line-height: 1.1;
+    }
+    .fecha-lugar {
+      font-size: 10px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--muted);
+      display: block; margin-bottom: 16px;
+      font-weight: 300;
+    }
+    .fecha-hora {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 300;
+      color: var(--dark); display: block;
+      line-height: 1; margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+    .fecha-mapa {
+      font-size: 9px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 3px;
+      transition: color 0.2s, border-color 0.2s;
+      display: inline-block;
+    }
+    .fecha-mapa:hover { color: var(--dark); border-color: var(--text); }
 
-/* ── ILUSTRACIONES ── */
-    .ilustraciones-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 88px; }
-    .ilustracion-item { text-align: center; }
-    .ilustracion-foto { width: 100%; height: 360px; object-fit: contain; display: block; mix-blend-mode: multiply; }
-    .ilustracion-body { padding: 32px 16px 0; }
-    .ilustracion-tag { font-size: 8px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--text-light); display: block; margin-bottom: 14px; }
-    .ilustracion-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--text); display: block; margin-bottom: 6px; font-weight: 400; letter-spacing: -0.01em; font-style: normal; }
-    .ilustracion-date { font-size: 10px; letter-spacing: 0.14em; color: var(--text-light); display: block; font-weight: 300; margin-bottom: 14px; }
-    .ilustracion-hora { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--olive-deep); display: block; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 16px; margin-top: 4px; }
-    .ilustracion-mapa { font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-light); display: inline-block; text-decoration: none; border-bottom: 0.5px solid currentColor; padding-bottom: 2px; transition: color 0.3s ease; }
-    .ilustracion-mapa:hover { color: var(--verde); }
+    /* ── RSVP CTA ── */
+    .rsvp-cta {
+      background: var(--dark);
+      padding: 140px 8vw;
+      text-align: center;
+    }
+    .rsvp-cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 7vw, 100px);
+      font-weight: 300; color: #F5F1EB;
+      line-height: 1; margin-bottom: 16px;
+      letter-spacing: 0.04em;
+    }
+    .rsvp-cta-sub {
+      font-size: 10px; letter-spacing: 0.24em;
+      text-transform: uppercase; color: rgba(245,241,235,0.35);
+      font-weight: 300; margin-bottom: 56px; display: block;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: #F5F1EB; color: var(--dark);
+      padding: 18px 52px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+    .btn-primary:hover { background: var(--sand); }
+    .btn-dark {
+      display: inline-block;
+      background: #111; color: white;
+      padding: 18px 40px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 400;
+      letter-spacing: .12em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.25s;
+    }
+    .btn-dark:hover { background: #2A2A2A; }
 
-    /* ── EL LUGAR ── */
-    .lugar-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-    .lugar-ilustracion { background: var(--cream-dark); border-radius: 2px; overflow: hidden; padding: 20px; }
-    .lugar-ilustracion img { width: 100%; display: block; }
-    .lugar-info-sub { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--olive-deep); margin-bottom: 16px; font-weight: 400; }
-    .lugar-info-text { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: var(--text-mid); line-height: 1.75; margin-bottom: 24px; }
-    .lugar-map-btn { display: inline-block; background: transparent; color: var(--cream); padding: 12px 32px; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; border-radius: 999px; border: 1px solid rgba(248,244,237,0.3); transition: all 0.35s ease; }
-    .lugar-map-btn:hover { background: rgba(248,244,237,0.08); border-color: rgba(248,244,237,0.6); transform: translateY(-1px); }
-
-    /* ── DRESS CODE ── */
-    .dress-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
-    .color-chip { aspect-ratio: 1; border-radius: 2px; display: flex; align-items: flex-end; padding: 10px; }
-    .color-chip-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; }
-    .dress-note { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: var(--text-mid); line-height: 1.7; padding-left: 0; }
-
-    /* ── REGALOS ── */
-    .regalos-intro { font-family: 'Cormorant Garamond', serif; font-size: 21px; color: var(--text-mid); line-height: 1.95; max-width: 500px; margin: 0 auto 52px; text-align: center; }
-    .regalos-deco { display: block; margin: -16px auto 40px; opacity: 0.4; }
-    .cuentas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .cuenta-card { background: #ECE6DA; padding: 40px 36px 36px; border-radius: 6px; box-shadow: none; transition: all 0.35s ease; }
-    .cuenta-card:hover { transform: translateY(-3px); box-shadow: none; }
-    .cuenta-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-    .cuenta-icon { width: 28px; height: 28px; border-radius: 50%; border: 1px solid rgba(117,129,59,0.4); display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-size: 11px; color: var(--olive-deep); flex-shrink: 0; font-weight: 500; }
-    .cuenta-moneda { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--olive-deep); font-weight: 500; }
-    .cuenta-nombre { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: #2F3528; margin-bottom: 20px; font-weight: 400; line-height: 1.2; }
-    .cuenta-sep { width: 100%; height: 0.5px; background: rgba(47,53,40,0.1); margin-bottom: 16px; }
-    .cuenta-fila { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 0.5px solid rgba(47,53,40,0.07); }
-    .cuenta-fila:last-child { border-bottom: none; }
-    .cuenta-campo { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #7A8368; }
-    .cuenta-valor { font-size: 14px; color: #2F3528; font-weight: 400; }
-    .btn-copiar { background: transparent; border: 1px solid rgba(47,53,40,0.12); border-radius: 999px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #7A8368; padding: 5px 12px; transition: all 0.25s ease; white-space: nowrap; }
-    .btn-copiar:hover { border-color: var(--olive-deep); color: var(--olive-deep); }
-    .btn-copiar.copiado { border-color: var(--olive-deep); color: var(--olive-deep); }
-
-    /* ── FAQ ── */
-    .faq-list { display: flex; flex-direction: column; gap: 0; border-top: 0.5px solid var(--cream-dark); }
-    .faq-item { border-bottom: 0.5px solid var(--cream-dark); overflow: hidden; }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-question { width: 100%; background: none; border: none; cursor: pointer; padding: 22px 28px; display: flex; justify-content: space-between; align-items: center; text-align: left; transition: background 0.2s; }
-    .faq-question:hover { background: rgba(46,74,53,0.04); }
-    .faq-q-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--text); font-weight: 400; }
-    .faq-icon { font-size: 20px; color: var(--olive-deep); font-weight: 300; transition: transform 0.3s; flex-shrink: 0; margin-left: 16px; font-family: 'Inter', sans-serif; }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 28px; }
-    .faq-item.open .faq-answer { max-height: 300px; padding: 0 28px 22px; }
-    .faq-answer p { font-family: 'Cormorant Garamond', serif; font-size: 21px; color: var(--text-mid); line-height: 1.8; font-style: italic; }
-
-    /* ── PLAYLIST ── */
-    .playlist-wrap { background: var(--verde); border-radius: 2px; padding: 44px 48px; text-align: center; }
-    .playlist-wrap .section-title { color: var(--cream); margin-bottom: 8px; }
-    .playlist-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(248,244,237,0.45); margin-bottom: 32px; }
-    .playlist-embed { border-radius: 2px; overflow: hidden; }
-
-    /* ── GALERÍA ── */
-    .galeria-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .galeria-item { aspect-ratio: 1; background: var(--cream-dark); border-radius: 1px; overflow: hidden; cursor: pointer; }
-    .galeria-item:first-child { grid-column: span 2; grid-row: span 2; }
-    .galeria-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
-    .galeria-item:hover img { transform: scale(1.04); }
-
-    /* Lightbox */
-    .lightbox { display: none; position: fixed; inset: 0; background: rgba(30,40,32,0.96); z-index: 1000; align-items: center; justify-content: center; }
-    .lightbox.open { display: flex; }
-    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 2px; }
-    .lightbox-close { position: fixed; top: 20px; right: 28px; font-size: 28px; color: var(--cream); cursor: pointer; opacity: 0.6; font-family: 'Inter', sans-serif; font-weight: 300; }
-    .lightbox-prev, .lightbox-next { position: fixed; top: 50%; transform: translateY(-50%); font-size: 32px; color: var(--cream); cursor: pointer; opacity: 0.5; font-family: 'Inter', sans-serif; font-weight: 300; user-select: none; }
-    .lightbox-prev { left: 20px; }
-    .lightbox-next { right: 20px; }
-
-    /* ── CONFIRMACIÓN ── */
-    .form-wrap { background: var(--cream-dark); padding: 52px 48px; border-radius: 2px; max-width: 560px; margin: 0 auto; }
-    .form-wrap .section-tag { color: var(--text-mid); }
-    .form-wrap .section-tag::after { background: var(--text-mid); }
-    .form-wrap .section-title { color: var(--text); margin-bottom: 32px; }
+    /* ── FORMULARIO ── */
+    .form-section { background: var(--sand); }
+    .form-inner { max-width: 600px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
     .form-field { display: flex; flex-direction: column; gap: 7px; }
     .form-field.full { grid-column: 1 / -1; }
-    .form-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-mid); font-weight: 400; }
-    .form-field input, .form-field textarea {
-      background: rgba(122,134,67,0.07); border: 1px solid rgba(46,53,40,0.08);
-      border-radius: 6px; padding: 13px 14px; font-family: 'Inter', sans-serif; font-size: 14px;
-      color: var(--text); font-weight: 400; outline: none; transition: border-color 0.3s ease; width: 100%;
+    .form-label {
+      font-size: 9px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--muted); font-weight: 400;
     }
-    .form-field input::placeholder, .form-field textarea::placeholder { color: var(--text-light); }
-    .form-field input:focus, .form-field textarea:focus { border-color: rgba(46,53,40,0.25); background: rgba(122,134,67,0.05); }
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      background: var(--background);
+      border: 1px solid var(--line);
+      padding: 14px 16px;
+      font-family: 'Inter', sans-serif; font-size: 14px;
+      color: var(--text); font-weight: 300;
+      outline: none; width: 100%;
+      transition: border-color 0.2s;
+      appearance: none; -webkit-appearance: none;
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: var(--muted); opacity: 0.6; }
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus { border-color: rgba(0,0,0,0.2); }
     .form-field .select-wrap { position: relative; }
-    .form-field .select-wrap::after { content: '↓'; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--text-mid); pointer-events: none; }
-    .form-field select { appearance: none; -webkit-appearance: none; background: rgba(122,134,67,0.07); border: 1px solid rgba(46,53,40,0.08); border-radius: 6px; padding: 13px 36px 13px 14px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); font-weight: 300; outline: none; transition: border-color 0.3s ease; width: 100%; cursor: pointer; }
-    .form-field select:focus { border-color: rgba(46,53,40,0.25); }
-    .form-field select option { background: var(--cream); color: var(--text); }
+    .form-field .select-wrap::after {
+      content: '↓'; position: absolute;
+      right: 16px; top: 50%; transform: translateY(-50%);
+      font-size: 11px; color: var(--muted); pointer-events: none;
+    }
     .form-field textarea { resize: none; min-height: 80px; }
-    .btn-send { margin-top: 36px; width: 100%; padding: 15px 48px; background: #31593D; border: none; border-radius: 999px; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); cursor: pointer; transition: all 0.35s ease; }
-    .btn-send:hover { background: #3d6e4c; transform: translateY(-1px); box-shadow: none; }
-    .btn-send:active { transform: translateY(0); }
-    .form-success { text-align: center; padding: 48px 24px; animation: fadeInUp 0.6s ease both; }
-    .form-success-icon { font-size: 28px; margin-bottom: 20px; display: block; color: var(--verde); }
-    .form-success-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-style: italic; color: var(--text); margin-bottom: 10px; }
-    .form-success-sub { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-mid); font-weight: 300; }
+    .btn-send {
+      margin-top: 32px;
+      padding: 18px 48px;
+      background: #111; border: none;
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: white; cursor: pointer;
+      transition: background 0.25s;
+    }
+    .btn-send:hover { background: #2A2A2A; }
+    .form-success {
+      padding: 64px 0;
+      animation: fadeUp 0.6s ease both;
+    }
+    .form-success-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-style: italic; color: var(--dark);
+      margin-bottom: 12px; font-weight: 300;
+    }
+    .form-success-sub {
+      font-size: 10px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--muted); font-weight: 300;
+    }
 
-    /* ── MÚSICA ── */
-    .music-btn { position: fixed; bottom: 28px; right: 28px; z-index: 500; width: 44px; height: 44px; border-radius: 50%; background: var(--cream); border: 1px solid rgba(46,53,40,0.15); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
-    .music-btn:hover { background: var(--verde); border-color: var(--verde); }
-    .music-btn:hover .music-icon { color: var(--cream); }
-    .music-icon { font-size: 14px; color: var(--text-mid); line-height: 1; transition: color 0.3s ease; }
-    .regalo-btn { position: fixed; bottom: 28px; left: 28px; z-index: 500; width: 44px; height: 44px; border-radius: 50%; background: var(--cream); border: 1px solid rgba(46,53,40,0.15); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 2px 12px rgba(0,0,0,0.04); font-size: 18px; }
-    .regalo-btn:hover { background: var(--verde); border-color: var(--verde); transform: scale(1.08); }
-    #yt-player { position: absolute; width: 1px; height: 1px; top: -9999px; left: -9999px; opacity: 0; pointer-events: none; }
+    /* ── DRESS CODE ── */
+    .dress-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 300; font-style: italic;
+      color: var(--text); line-height: 1.7;
+      max-width: 560px; margin-bottom: 48px;
+    }
+    .dress-img {
+      max-width: 100%; display: block;
+    }
 
-    /* ── FOOTER ── */
-    footer { background: var(--verde); text-align: center; padding: 56px 40px; }
-    .footer-monogram { display: flex; justify-content: center; margin-bottom: 16px; }
-    .footer-nj { font-family: 'Cormorant Garamond', serif; font-weight: 700; color: var(--olive-light); line-height: 1; display: flex; align-items: flex-start; letter-spacing: -1px; }
-    .footer-nj .fn { font-size: 36px; }
-    .footer-nj .fj { font-size: 36px; margin-top: 11px; }
-    .footer-names { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-style: italic; color: var(--cream); margin-bottom: 10px; }
-    .footer-amp { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
-    .footer-sub { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(248,244,237,0.25); font-weight: 300; }
+    /* ── REGALOS ── */
+    .regalos-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 300; font-style: italic;
+      color: var(--muted); line-height: 1.7;
+      max-width: 520px; margin-bottom: 64px;
+    }
+    .cuentas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .cuenta-card {
+      background: var(--sand);
+      padding: 40px 36px;
+      border-top: 1px solid var(--text);
+    }
+    .cuenta-moneda {
+      font-size: 9px; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--muted);
+      display: block; margin-bottom: 28px; font-weight: 400;
+    }
+    .cuenta-sep { width: 100%; height: 1px; background: var(--line); margin-bottom: 20px; }
+    .cuenta-fila {
+      display: grid; grid-template-columns: 72px 1fr auto;
+      align-items: center; gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .cuenta-fila:last-child { border-bottom: none; }
+    .cuenta-campo {
+      font-size: 9px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted); font-weight: 400;
+    }
+    .cuenta-valor { font-size: 13px; color: var(--text); font-weight: 300; }
+    .btn-copiar {
+      background: transparent;
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: 9px;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); padding: 5px 12px;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-copiar:hover { border-color: var(--text); color: var(--text); }
+    .btn-copiar.copiado { border-color: var(--text); color: var(--text); }
 
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    /* ── FAQ ── */
+    .faq-list {
+      border-top: 1px solid var(--line);
+      max-width: 720px;
+    }
+    .faq-item { border-bottom: 1px solid var(--line); overflow: hidden; }
+    .faq-question {
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 26px 0;
+      display: flex; justify-content: space-between; align-items: center;
+      text-align: left;
+    }
+    .faq-q-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2vw, 22px);
+      color: var(--text); font-weight: 300;
+    }
+    .faq-icon {
+      font-size: 18px; color: var(--muted); font-weight: 300;
+      transition: transform 0.3s; flex-shrink: 0; margin-left: 24px;
+      font-family: 'Inter', sans-serif;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 28px; }
+    .faq-answer p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; color: var(--muted);
+      line-height: 1.8; font-style: italic;
+    }
+
+    /* ── PLAYLIST ── */
+    .playlist-inner {
+      background: var(--dark);
+      padding: 80px 8vw;
+    }
+    .playlist-inner .section-title { color: #F5F1EB; margin-bottom: 8px; }
+    .playlist-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 18px;
+      color: rgba(245,241,235,0.35); margin-bottom: 40px;
+      font-weight: 300;
+    }
+    .playlist-embed { overflow: hidden; }
 
     /* ── FOTO STRIP ── */
-    .foto-strip { overflow: hidden; width: 100%; background: var(--cream-dark); padding: 32px 0; border-top: 0.5px solid #DDD5C4; }
-    .foto-strip-track { display: flex; animation: scroll-strip 90s linear infinite; width: max-content; }
+    .foto-strip {
+      overflow: hidden; width: 100%;
+      background: var(--sand);
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .foto-strip-track {
+      display: flex;
+      animation: scroll-strip 100s linear infinite;
+      width: max-content;
+    }
     .foto-strip-track:hover { animation-play-state: paused; }
     .foto-strip-set { display: flex; gap: 6px; padding-right: 6px; }
     .foto-strip-item { flex-shrink: 0; height: 220px; }
-    .foto-strip-item img { height: 100%; width: auto; display: block; object-fit: cover; border-radius: 1px; }
+    .foto-strip-item img {
+      height: 100%; width: auto; display: block;
+      object-fit: cover;
+      filter: saturate(0.8);
+    }
     @keyframes scroll-strip { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    @media (min-width: 641px) {
-      .hero-slides .hero-slide { background-attachment: fixed; }
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      text-align: center;
+      padding: 80px 8vw;
+    }
+    .footer-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 300; font-style: italic;
+      color: #F5F1EB; margin-bottom: 16px;
+      letter-spacing: 0.06em;
+    }
+    .footer-sub {
+      font-size: 9px; letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(245,241,235,0.22);
+      font-weight: 300;
     }
 
-    @media (max-width: 640px) {
-      nav { gap: 12px; padding: 12px 16px; }
-      .historia-grid, .fechas-wrap, .form-row, .dress-grid, .lugar-wrap { grid-template-columns: 1fr; }
-      .galeria-grid { grid-template-columns: 1fr 1fr; }
-      .galeria-item:first-child { grid-column: span 2; grid-row: span 1; }
-      section { padding: 44px 20px; }
-      .section-title { font-size: clamp(28px, 8vw, 40px); }
-      .form-wrap, .playlist-wrap { padding: 32px 20px; }
-      .cuentas-grid { grid-template-columns: 1fr; gap: 16px; }
-      .cuenta-card { padding: 32px 28px; }
-      .cuenta-nombre { font-size: 22px; }
-      .regalos-intro { font-size: 18px; margin-bottom: 36px; }
-      .countdown-strip { gap: 20px; padding: 20px; }
-      .foto-strip-item { height: 140px; }
-      .story-band { padding: 36px 20px; }
-      .story-text { font-size: 17px; }
-      .cta-band { padding: 44px 20px; }
-      .cta-band-text { font-size: 18px; }
-      .cta-band-btn { padding: 16px 36px; }
-      .historia-intro { font-size: 16px; padding: 20px 16px; }
-      .olive-divider { padding: 2px 0; }
+    /* ── MÚSICA ── */
+    .music-btn {
+      position: fixed; bottom: 32px; right: 32px; z-index: 500;
+      width: 44px; height: 44px;
+      background: var(--background);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.25s, border-color 0.25s;
     }
-    @media (max-width: 400px) {
-      section { padding: 36px 16px; }
-    }
+    .music-btn:hover { background: var(--sand); }
+    .music-icon { font-size: 14px; color: var(--muted); line-height: 1; }
+    #yt-player { position: absolute; width: 1px; height: 1px; top: -9999px; left: -9999px; opacity: 0; pointer-events: none; }
+
     /* ── BIENVENIDA ── */
-    .bienvenida-overlay { position: fixed; inset: 0; z-index: 2000; background: var(--cream); display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px; opacity: 1; transition: opacity 0.8s ease; }
+    .bienvenida-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: var(--background);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 40px;
+      opacity: 1; transition: opacity 0.8s ease;
+    }
     .bienvenida-overlay.oculto { opacity: 0; pointer-events: none; }
-    .bienvenida-inner { max-width: 480px; animation: fadeInUp 1s ease both; }
-    .bienvenida-eyebrow { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-light); margin-bottom: 28px; display: block; }
-    .bienvenida-saludo { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 7vw, 56px); font-weight: 400; color: var(--text); line-height: 1.2; margin-bottom: 20px; }
-    .bienvenida-nombre { color: var(--verde); font-style: italic; }
-    .bienvenida-texto { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: var(--text-mid); line-height: 1.8; margin-bottom: 40px; }
-    .bienvenida-btn { display: inline-block; padding: 14px 44px; border: 1px solid rgba(46,53,40,0.2); border-radius: 999px; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); text-decoration: none; background: transparent; cursor: pointer; transition: all 0.35s ease; }
-    .bienvenida-btn:hover { background: var(--verde); color: var(--cream); border-color: var(--verde); }
-    .bienvenida-deco { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--text-light); opacity: 0.3; margin-bottom: 24px; display: block; }
+    .bienvenida-inner { max-width: 480px; animation: fadeUp 1s ease both; }
+    .bienvenida-eyebrow {
+      font-size: 9px; letter-spacing: 0.32em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 32px; display: block; font-weight: 400;
+    }
+    .bienvenida-saludo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 300; color: var(--dark);
+      line-height: 1.2; margin-bottom: 20px;
+    }
+    .bienvenida-nombre { font-style: italic; color: var(--muted); }
+    .bienvenida-texto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-style: italic;
+      color: var(--muted); line-height: 1.8; margin-bottom: 48px;
+      font-weight: 300;
+    }
+    .bienvenida-btn {
+      display: inline-block;
+      background: #111; color: white;
+      padding: 18px 44px;
+      font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400;
+      letter-spacing: .16em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.25s;
+    }
+    .bienvenida-btn:hover { background: #2A2A2A; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: 60vh auto;
+        min-height: 100svh;
+      }
+      .hero-left {
+        order: 2;
+        padding: 48px 24px 64px;
+        justify-content: flex-start;
+      }
+      .hero-right {
+        order: 1;
+        height: 60vh;
+      }
+      .hero-eyebrow { margin-bottom: 24px; }
+      .hero-meta { margin-top: 32px; }
+
+      .historia {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 80px 24px;
+      }
+      .historia-photo { aspect-ratio: 4/3; }
+
+      section { padding: 80px 24px; }
+
+      .fechas-wrap { grid-template-columns: 1fr; gap: 56px; }
+
+      .cuentas-grid { grid-template-columns: 1fr; gap: 16px; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .countdown-strip { gap: 24px; padding: 24px; }
+
+      .foto-strip-item { height: 150px; }
+
+      .rsvp-cta { padding: 100px 24px; }
+
+      nav { gap: 14px; padding: 14px 16px; }
+
+      .playlist-inner { padding: 60px 24px; }
+
+      .cuenta-card { padding: 32px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 64px 20px; }
+      .historia { padding: 64px 20px; }
+      .rsvp-cta { padding: 80px 20px; }
+    }
   </style>
 </head>
 <body>
 
+  <!-- BIENVENIDA PERSONALIZADA -->
   <div class="bienvenida-overlay" id="bienvenida" style="display:none;">
     <div class="bienvenida-inner">
-      <span class="bienvenida-deco">✦</span>
-      <span class="bienvenida-eyebrow">Natalia & Joaquín · 28 noviembre 2026</span>
+      <span class="bienvenida-eyebrow">Natalia y Joaquín · 28 noviembre 2026</span>
       <h1 class="bienvenida-saludo">Hola, <span class="bienvenida-nombre" id="bienvenida-nombre"></span></h1>
       <p class="bienvenida-texto">Te queremos invitar a celebrar<br>el día más importante de nuestras vidas.</p>
       <button class="bienvenida-btn" onclick="cerrarBienvenida(); iniciarMusica()">Ver invitación</button>
     </div>
   </div>
 
+  <!-- NAV -->
   <nav>
     <a href="#fechas">El gran día</a>
     <a href="#confirm">Confirmación</a>
@@ -331,28 +626,25 @@
     <a href="#playlist">Música</a>
   </nav>
 
+  <!-- HERO -->
   <div class="hero">
-    <div class="hero-slides">
-      <div class="hero-slide active" style="background-image:url('chacra1.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('chacra4.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('chacra6.jpg')"></div>
-    </div>
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-      <div class="monogram-wrap">
-        <div class="monogram-letters"><span class="monogram-n">N</span><span class="monogram-j">J</span></div>
+    <div class="hero-left">
+      <span class="hero-eyebrow">28 Noviembre · 2026 · Zárate, Argentina</span>
+      <span class="hero-name">NATALIA</span>
+      <span class="hero-y">y</span>
+      <span class="hero-name">JOAQUÍN</span>
+      <div class="hero-meta">
+        <span class="hero-date">28 Noviembre 2026</span>
+        <span class="hero-location">Zárate · Buenos Aires</span>
       </div>
-      <p class="hero-eyebrow">Nos casamos</p>
-      <div class="hero-names">Natalia</div>
-      <span class="hero-amp">&</span>
-      <div class="hero-names">Joaquín</div>
-      <div class="hero-divider"></div>
-      <p class="hero-date">28 de noviembre &nbsp;·&nbsp; 2026</p>
-      <p class="hero-location">Buenos Aires, Argentina</p>
+    </div>
+    <div class="hero-right">
+      <img src="civil5.jpg" alt="Natalia y Joaquín">
+      <div class="hero-grain"></div>
     </div>
   </div>
 
+  <!-- COUNTDOWN -->
   <div class="countdown-strip">
     <div class="count-item"><span class="count-num" id="cd-dias">—</span><span class="count-label">días</span></div>
     <span class="count-sep">·</span>
@@ -363,104 +655,128 @@
     <div class="count-item"><span class="count-num" id="cd-seg">—</span><span class="count-label">segundos</span></div>
   </div>
 
-  <div class="story-band reveal">
-    <p class="story-text">Estamos felices de celebrar este día con ustedes.</p>
+  <!-- HISTORIA EDITORIAL -->
+  <hr class="section-divider">
+  <div class="historia reveal">
+    <div class="historia-text-col">
+      <div class="historia-quote">
+        <p>Ella nunca fue buena<br>conociendo gente nueva.</p>
+        <p>Él reservó antes de que<br>ella dijera que sí.</p>
+        <p><em>Y de alguna manera,<br>terminaron construyendo<br>una vida juntos.</em></p>
+      </div>
+    </div>
+    <div class="historia-photo">
+      <img src="civil52.jpg" alt="Natalia y Joaquín">
+    </div>
   </div>
+  <hr class="section-divider">
 
+  <!-- EL GRAN DÍA -->
   <section id="fechas">
-    <p class="section-tag reveal" style="font-size:11px; letter-spacing:0.22em; color:var(--olive-deep); font-weight:500;">28 de noviembre · 2026</p>
+    <span class="section-label reveal">28 de noviembre · 2026</span>
     <h2 class="section-title reveal reveal-delay-1">El gran día</h2>
-    <div class="ilustraciones-wrap reveal reveal-delay-2">
+    <div class="fechas-wrap reveal reveal-delay-2">
 
-      <!-- IGLESIA DE LIMA -->
-      <div class="ilustracion-item reveal">
-        <img src="Iglesia.png" alt="Iglesia de Lima" class="ilustracion-foto">
-        <span class="ilustracion-tag">Ceremonia religiosa</span>
-        <span class="ilustracion-name">Parroquia San Isidro Labrador</span>
-        <span class="ilustracion-date">Lima · Zárate · Buenos Aires</span>
-        <span class="ilustracion-hora">16:00 h</span>
-        <a class="ilustracion-mapa" href="https://maps.app.goo.gl/AFt39m4bcoL6gsdo9" target="_blank">Ver en Google Maps →</a>
+      <div class="fecha-item">
+        <img src="Iglesia.png" alt="Iglesia de Lima" class="fecha-ilustracion">
+        <span class="fecha-label">Ceremonia religiosa</span>
+        <span class="fecha-nombre">Parroquia San Isidro Labrador</span>
+        <span class="fecha-lugar">Lima · Zárate · Buenos Aires</span>
+        <span class="fecha-hora">16:00</span>
+        <a class="fecha-mapa" href="https://maps.app.goo.gl/AFt39m4bcoL6gsdo9" target="_blank">Ver en Google Maps →</a>
       </div>
 
-      <!-- CHACRAS EL ADUAR -->
-      <div class="ilustracion-item reveal reveal-delay-2">
-        <img src="salon.png" alt="Chacras El Aduar" class="ilustracion-foto">
-        <span class="ilustracion-tag">La fiesta</span>
-        <span class="ilustracion-name">Chacras El Aduar</span>
-        <span class="ilustracion-date">Zárate · Buenos Aires</span>
-        <span class="ilustracion-hora">18:00 h</span>
-        <a class="ilustracion-mapa" href="https://maps.app.goo.gl/NCFduDQNpT9jeaGE6" target="_blank">Ver en Google Maps →</a>
+      <div class="fecha-item">
+        <img src="salon.png" alt="Chacras El Aduar" class="fecha-ilustracion">
+        <span class="fecha-label">La fiesta</span>
+        <span class="fecha-nombre">Chacras El Aduar</span>
+        <span class="fecha-lugar">Zárate · Buenos Aires</span>
+        <span class="fecha-hora">18:00</span>
+        <a class="fecha-mapa" href="https://maps.app.goo.gl/NCFduDQNpT9jeaGE6" target="_blank">Ver en Google Maps →</a>
       </div>
 
     </div>
   </section>
 
-  <div class="olive-divider">✦</div>
-
-  <div class="cta-band">
-    <span class="cta-band-sub">Confirmá tu lugar antes del 15 de octubre</span>
-    <a href="#confirm-form" class="cta-band-btn">Confirmar asistencia</a>
+  <!-- RSVP CTA -->
+  <div class="rsvp-cta">
+    <p class="rsvp-cta-title reveal">¿Venís?</p>
+    <span class="rsvp-cta-sub reveal reveal-delay-1">Confirmá antes del 15 de octubre</span>
+    <a href="#confirm-form" class="btn-primary reveal reveal-delay-2">Confirmar asistencia</a>
   </div>
 
-  <section id="confirm" style="max-width:860px; padding: 40px 20px;">
-    <form id="confirm-form" class="form-wrap reveal" action="https://formspree.io/f/mpqnzwno" method="POST">
-      <input type="hidden" name="_language" value="es">
-      <input type="hidden" name="_subject" value="Nueva confirmación — Nati & Joaco 2026">
-      <p class="section-tag" style="color:rgba(200,174,136,0.7);">Confirmanos tu asistencia</p>
-      <h2 class="section-title">¿Venís?</h2>
-      <div class="form-row">
-        <div class="form-field"><label class="form-label">Nombre completo</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
-        <div class="form-field"><label class="form-label">Teléfono</label><input type="tel" name="telefono" placeholder="11 XXXX-XXXX"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label class="form-label">¿Confirmás asistencia?</label>
-          <div class="select-wrap">
-            <select name="asistencia" required>
-              <option value="">Seleccioná</option>
-              <option>Sí, confirmo</option>
-              <option>No puedo ir</option>
-            </select>
-          </div>
+  <!-- FORMULARIO -->
+  <section id="confirm" class="form-section">
+    <div class="form-inner">
+      <span class="section-label reveal">Confirmá tu lugar</span>
+      <h2 class="section-title reveal reveal-delay-1">Confirmación</h2>
+      <form id="confirm-form" action="https://formspree.io/f/mpqnzwno" method="POST">
+        <input type="hidden" name="_language" value="es">
+        <input type="hidden" name="_subject" value="Nueva confirmación — Nati & Joaco 2026">
+        <div class="form-row">
+          <div class="form-field"><label class="form-label">Nombre completo</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+          <div class="form-field"><label class="form-label">Teléfono</label><input type="tel" name="telefono" placeholder="11 XXXX-XXXX"></div>
         </div>
-        <div class="form-field"><label class="form-label">Personas que confirman</label><input type="number" name="personas" min="1" max="10" placeholder="1"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field full"><label class="form-label">Restricciones alimentarias o alergias</label><input type="text" name="restricciones" placeholder="Ninguna / vegetariano / celiaco..."></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field full"><label class="form-label">¿Alguna canción que no pueda faltar?</label><input type="text" name="cancion" placeholder="Artista o canción..."></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field full"><label class="form-label">¿Algo más que quieras contarnos?</label><textarea name="mensaje" placeholder="Mensaje opcional..."></textarea></div>
-      </div>
-      <button type="submit" class="btn-send">Confirmar asistencia</button>
-    </form>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">¿Confirmás asistencia?</label>
+            <div class="select-wrap">
+              <select name="asistencia" required>
+                <option value="">Seleccioná</option>
+                <option>Sí, confirmo</option>
+                <option>No puedo ir</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field"><label class="form-label">Personas que confirman</label><input type="number" name="personas" min="1" max="10" placeholder="1"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field full"><label class="form-label">Restricciones alimentarias o alergias</label><input type="text" name="restricciones" placeholder="Ninguna / vegetariano / celiaco..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field full"><label class="form-label">¿Alguna canción que no pueda faltar?</label><input type="text" name="cancion" placeholder="Artista o canción..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field full"><label class="form-label">¿Algo más que quieras contarnos?</label><textarea name="mensaje" placeholder="Mensaje opcional..."></textarea></div>
+        </div>
+        <button type="submit" class="btn-send">Confirmar asistencia</button>
+      </form>
+    </div>
   </section>
 
-  <div class="olive-divider">✦</div>
+  <hr class="section-divider">
 
+  <!-- DRESS CODE -->
+  <section id="dress">
+    <span class="section-label reveal">Vestimenta</span>
+    <h2 class="section-title reveal reveal-delay-1">Elegante</h2>
+    <p class="dress-note reveal reveal-delay-2">Que estés cómodo/a y te permita pasarla bien, sin dejar de estar elegante.</p>
+    <div class="reveal reveal-delay-3">
+      <img src="VESTIMENTA.jpg" alt="Vestimenta" loading="lazy" class="dress-img">
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- REGALOS -->
   <section id="regalos">
-    <p class="section-tag reveal">Lista de bodas</p>
+    <span class="section-label reveal">Lista de bodas</span>
     <h2 class="section-title reveal reveal-delay-1">Regalos</h2>
-    <p class="regalos-intro reveal reveal-delay-2">Su presencia es el mejor regalo.<br>Si aun así quieren hacernos llegar algo, pueden hacerlo a través de una transferencia.</p>
+    <p class="regalos-intro reveal reveal-delay-2">Su presencia es el mejor regalo. Si aun así quieren hacernos llegar algo, pueden hacerlo a través de una transferencia.</p>
     <div class="cuentas-grid reveal reveal-delay-3">
 
       <div class="cuenta-card">
-        <div class="cuenta-header">
-          <div class="cuenta-icon">$</div>
-          <span class="cuenta-moneda">Pesos argentinos</span>
-        </div>
+        <span class="cuenta-moneda">Pesos argentinos</span>
         <div class="cuenta-sep"></div>
         <div class="cuenta-fila">
           <span class="cuenta-campo">Alias</span>
           <span class="cuenta-valor">boda.nati.joaco</span>
-          <button class="btn-copiar" onclick="copiarTexto(this,'boda.nati.joaco')">Copiar □</button>
+          <button class="btn-copiar" onclick="copiarTexto(this,'boda.nati.joaco')">Copiar</button>
         </div>
         <div class="cuenta-fila">
           <span class="cuenta-campo">CBU</span>
           <span class="cuenta-valor">0070133030004026589658</span>
-          <button class="btn-copiar" onclick="copiarTexto(this,'0070133030004026589658')">Copiar □</button>
+          <button class="btn-copiar" onclick="copiarTexto(this,'0070133030004026589658')">Copiar</button>
         </div>
         <div class="cuenta-fila">
           <span class="cuenta-campo">Cuenta</span>
@@ -475,20 +791,17 @@
       </div>
 
       <div class="cuenta-card">
-        <div class="cuenta-header">
-          <div class="cuenta-icon">$</div>
-          <span class="cuenta-moneda">USD Dólares</span>
-        </div>
+        <span class="cuenta-moneda">USD Dólares</span>
         <div class="cuenta-sep"></div>
         <div class="cuenta-fila">
           <span class="cuenta-campo">Alias</span>
           <span class="cuenta-valor">boda.nati.joaco.usd</span>
-          <button class="btn-copiar" onclick="copiarTexto(this,'boda.nati.joaco.usd')">Copiar □</button>
+          <button class="btn-copiar" onclick="copiarTexto(this,'boda.nati.joaco.usd')">Copiar</button>
         </div>
         <div class="cuenta-fila">
           <span class="cuenta-campo">CBU</span>
           <span class="cuenta-valor">0070133031004024937887</span>
-          <button class="btn-copiar" onclick="copiarTexto(this,'0070133031004024937887')">Copiar □</button>
+          <button class="btn-copiar" onclick="copiarTexto(this,'0070133031004024937887')">Copiar</button>
         </div>
         <div class="cuenta-fila">
           <span class="cuenta-campo">Cuenta</span>
@@ -505,23 +818,14 @@
     </div>
   </section>
 
-  <div class="olive-divider">✦</div>
+  <hr class="section-divider">
 
-  <section id="dress">
-    <p class="section-tag reveal">Vestimenta</p>
-    <h2 class="section-title reveal reveal-delay-1">Elegante</h2>
-    <p class="dress-note reveal reveal-delay-2" style="margin-bottom:40px;">La idea es que estés cómodo/a y te permita pasarla bien, ¡pero sin dejar de estar elegante!</p>
-    <div class="reveal reveal-delay-3" style="text-align:center;">
-      <img src="VESTIMENTA.jpg" alt="Vestimenta" loading="lazy" style="max-width:100%; border-radius:2px; display:inline-block;">
-    </div>
-  </section>
-
-  <div class="olive-divider">✦</div>
-
+  <!-- FAQ -->
   <section id="faq">
-    <p class="section-tag reveal">Preguntas frecuentes</p>
+    <span class="section-label reveal">Preguntas frecuentes</span>
     <h2 class="section-title reveal reveal-delay-1">¿Dudas?</h2>
     <div class="faq-list reveal reveal-delay-2">
+
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
           <span class="faq-q-text">¿A qué distancia queda Zárate de Buenos Aires?</span>
@@ -529,6 +833,7 @@
         </button>
         <div class="faq-answer"><p>Zárate queda a aproximadamente 90 km de la Ciudad de Buenos Aires, unos 60–70 minutos por la Autopista Panamericana (Ruta 9).</p></div>
       </div>
+
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
           <span class="faq-q-text">¿Cómo llego?</span>
@@ -536,15 +841,15 @@
         </button>
         <div class="faq-answer"><p>Por la Autopista Panamericana hasta la bifurcación Ruta 8 y Ruta 9. Tomar Ruta 9 hasta el km 11, salida Atucha. Seguir por el camino de Atucha hasta el primer puente, doblar a la derecha, y tomar la salida posterior al puente volviendo a doblar a la derecha hasta llegar al Aduar.</p></div>
       </div>
+
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
           <span class="faq-q-text">¿Algo importante para el camino?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer"><p>El último tramo hasta la chacra es un camino de tierra y sin iluminación. Les recomendamos ir despacio y con cuidado, especialmente al regreso. Si pueden, coordinen con otros invitados para ir en grupo.</p></div>
       </div>
+
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
           <span class="faq-q-text">¿Dónde es la ceremonia religiosa?</span>
@@ -552,13 +857,15 @@
         </button>
         <div class="faq-answer"><p>La ceremonia religiosa es en la Iglesia de Lima, en Lima, Buenos Aires. Está a pocos minutos de Zárate, y desde allí nos trasladamos juntos a Chacras El Aduar para la celebración.</p></div>
       </div>
+
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
           <span class="faq-q-text">¿Dónde es la fiesta?</span>
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer"><p>La celebración es en Chacras El Aduar, un hermoso espacio en Zárate rodeado de naturaleza. ¡Los esperamos para festejar juntos!</p></div>
+        <div class="faq-answer"><p>La celebración es en Chacras El Aduar, un espacio en Zárate rodeado de naturaleza. ¡Los esperamos para festejar juntos!</p></div>
       </div>
+
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
           <span class="faq-q-text">¿Hay alojamiento cerca?</span>
@@ -566,18 +873,20 @@
         </button>
         <div class="faq-answer"><p>Sí, en Zárate y alrededores hay casas de alquiler para quienes quieran hospedarse y volver al otro día. Próximamente compartiremos recomendaciones.</p></div>
       </div>
+
     </div>
   </section>
 
-  <div class="olive-divider">✦</div>
+  <hr class="section-divider">
 
-  <section id="playlist" style="max-width:860px;">
-    <div class="playlist-wrap reveal">
-      <p class="section-tag" style="color:rgba(200,174,136,0.7); justify-content:center;">Música</p>
-      <h2 class="section-title">Las canciones de nuestra historia</h2>
+  <!-- PLAYLIST -->
+  <section id="playlist" style="padding:0;">
+    <div class="playlist-inner reveal">
+      <span class="section-label" style="color:rgba(245,241,235,0.3);">Música</span>
+      <h2 class="section-title">Las canciones<br>de nuestra historia</h2>
       <p class="playlist-sub">La música que nos acompañó y nos va a acompañar siempre.</p>
       <div class="playlist-embed">
-        <iframe style="border-radius:2px"
+        <iframe style="border-radius:0"
           src="https://www.youtube.com/embed/videoseries?list=PLuThai0-OON5MpVQKAP96qm7-gf4Uktfq"
           width="100%" height="352" frameBorder="0" allowfullscreen=""
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -586,6 +895,7 @@
     </div>
   </section>
 
+  <!-- FOTO STRIP -->
   <div class="foto-strip">
     <div class="foto-strip-track">
       <div class="foto-strip-set">
@@ -634,7 +944,7 @@
         <div class="foto-strip-item"><img src="civil85.jpg" loading="lazy" alt=""></div>
         <div class="foto-strip-item"><img src="civil87.jpg" loading="lazy" alt=""></div>
       </div>
-      <div class="foto-strip-set">
+      <div class="foto-strip-set" aria-hidden="true">
         <div class="foto-strip-item"><img src="civil1.jpg" loading="lazy" alt=""></div>
         <div class="foto-strip-item"><img src="civil3.jpg" loading="lazy" alt=""></div>
         <div class="foto-strip-item"><img src="civil5.jpg" loading="lazy" alt=""></div>
@@ -683,27 +993,22 @@
     </div>
   </div>
 
-
+  <!-- FOOTER -->
   <footer>
-    <div class="footer-monogram">
-      <div class="footer-nj"><span class="fn">N</span><span class="fj">J</span></div>
-    </div>
-    <div class="footer-names">Natalia & Joaquín</div>
-    <p class="footer-sub">28 noviembre 2026 &nbsp;·&nbsp; Buenos Aires</p>
+    <p class="footer-names">Natalia y Joaquín</p>
+    <p class="footer-sub">28 noviembre 2026 &nbsp;·&nbsp; Zárate, Buenos Aires</p>
   </footer>
 
+  <!-- MÚSICA -->
   <iframe id="yt-player" src="https://www.youtube.com/embed/oP242q6EbFY?enablejsapi=1&controls=0&loop=1&playlist=oP242q6EbFY" allow="autoplay"></iframe>
-
   <button class="music-btn" id="music-btn" onclick="toggleMusic()" title="Música">
     <span class="music-icon" id="music-icon">♪</span>
   </button>
 
-  <a href="#regalos" class="regalo-btn" title="Regalos">🎁</a>
-
   <script>
     // Bienvenida personalizada
     function getNombreParam() {
-      var search = window.location.search || window.location.href.split('?')[1] || '';
+      var search = window.location.search || '';
       var match = search.match(/[?&]nombre=([^&]*)/);
       return match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : null;
     }
@@ -723,7 +1028,7 @@
       setTimeout(function() { overlay.style.display = 'none'; }, 800);
     }
 
-    // Música — YouTube IFrame API
+    // Música
     var ytPlayer = null;
     var musicPlaying = false;
     window.onYouTubeIframeAPIReady = function() {
@@ -743,28 +1048,23 @@
         ytPlayer.pauseVideo();
         document.getElementById('music-icon').textContent = '♪';
         musicPlaying = false;
-      } else {
-        iniciarMusica();
-      }
+      } else { iniciarMusica(); }
     }
     var tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     document.head.appendChild(tag);
 
-    // Copiar al portapapeles
+    // Copiar
     function copiarTexto(btn, texto) {
       navigator.clipboard.writeText(texto).then(function() {
         var orig = btn.textContent;
-        btn.textContent = '✓ Copiado';
+        btn.textContent = '✓';
         btn.classList.add('copiado');
-        setTimeout(function() {
-          btn.textContent = orig;
-          btn.classList.remove('copiado');
-        }, 2000);
+        setTimeout(function() { btn.textContent = orig; btn.classList.remove('copiado'); }, 2000);
       });
     }
 
-    // Formulario — envío async con mensaje de éxito
+    // Formulario async
     var form = document.getElementById('confirm-form');
     if (form) {
       form.addEventListener('submit', function(e) {
@@ -779,7 +1079,6 @@
         }).then(function(r) {
           if (r.ok) {
             form.innerHTML = '<div class="form-success">'
-              + '<span class="form-success-icon">✦</span>'
               + '<p class="form-success-title">¡Gracias por confirmar!</p>'
               + '<p class="form-success-sub">Los esperamos el 28 de noviembre</p>'
               + '</div>';
@@ -795,17 +1094,6 @@
         });
       });
     }
-
-    // Slideshow hero
-    (function() {
-      var slides = document.querySelectorAll('.hero-slide');
-      var current = 0;
-      setInterval(function() {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-      }, 4000);
-    })();
 
     // Cuenta regresiva
     function updateCountdown() {
@@ -825,37 +1113,13 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // Animaciones scroll
+    // Reveal on scroll
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
-
-    // Lightbox
-    var fotos = [];
-    for (var i = 1; i <= 69; i++) { fotos.push('civil' + i + '.jpg'); }
-    var currentFoto = 0;
-    function openLightbox(idx) {
-      currentFoto = idx;
-      document.getElementById('lightbox-img').src = fotos[idx];
-      document.getElementById('lightbox').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    function changeFoto(dir) {
-      currentFoto = (currentFoto + dir + fotos.length) % fotos.length;
-      document.getElementById('lightbox-img').src = fotos[currentFoto];
-    }
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') changeFoto(1);
-      if (e.key === 'ArrowLeft') changeFoto(-1);
-    });
 
     // FAQ
     function toggleFaq(btn) {
@@ -868,19 +1132,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
