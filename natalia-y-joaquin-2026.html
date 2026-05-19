@@ -27,253 +27,247 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-    img { display: block; max-width: 100%; }
+    img { display: block; width: 100%; }
     a   { color: inherit; text-decoration: none; }
 
     /* FADE */
-    .fade { opacity: 0; transform: translateY(16px); transition: opacity 1s ease, transform 1s ease; }
+    .fade { opacity: 0; transform: translateY(14px); transition: opacity .9s ease, transform .9s ease; }
     .fade.in { opacity: 1; transform: none; }
-    .d1 { transition-delay: .12s; }
-    .d2 { transition-delay: .24s; }
-    .d3 { transition-delay: .36s; }
+    .d1 { transition-delay: .14s; }
+    .d2 { transition-delay: .28s; }
 
-    /* NAV */
-    .nav {
-      position: fixed; inset: 0 0 auto;
-      z-index: 100;
-      padding: 24px 6vw;
-      display: flex; justify-content: space-between; align-items: center;
-      transition: background .4s, border-color .4s;
-    }
-    .nav.solid { background: var(--bg); border-bottom: 1px solid var(--line); }
-    .nav-brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px; font-weight: 300; letter-spacing: .18em;
-      color: rgba(245,241,235,.7); transition: color .4s;
-    }
-    .nav.solid .nav-brand { color: var(--text); }
-    .nav-link {
-      font-size: 9px; font-weight: 400; letter-spacing: .22em;
-      text-transform: uppercase;
-      color: rgba(245,241,235,.5); transition: color .3s;
-    }
-    .nav.solid .nav-link { color: var(--muted); }
-    .nav-link:hover { color: rgba(245,241,235,.9); }
-    .nav.solid .nav-link:hover { color: var(--text); }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      height: 100svh; min-height: 600px;
-      overflow: hidden;
-      background: var(--dark);
-    }
-    .hero-img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: 72% 22%;
-      filter: saturate(.58) contrast(1.12) brightness(.8);
-      transform: scale(1.04);
-      transition: transform 10s ease;
-    }
-    .hero-img.loaded { transform: scale(1); }
-    .hero-veil {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(100deg, rgba(12,10,8,.68) 0%, rgba(12,10,8,.28) 46%, rgba(12,10,8,.0) 72%);
-    }
-    .hero-grain {
-      position: absolute; inset: 0; z-index: 2; pointer-events: none;
-      opacity: .042;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");
-    }
-    .hero-body {
-      position: absolute; z-index: 3;
-      left: 7vw; bottom: 8vh;
-    }
-    .hero-names {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300; line-height: .83;
-      color: #F5F1EB; letter-spacing: .08em;
-    }
-    .hero-n   { display: block; font-size: clamp(76px, 13.5vw, 212px); }
-    .hero-amp {
-      display: block;
-      font-size: clamp(38px, 5.5vw, 84px);
-      color: rgba(245,241,235,.22);
-      font-style: italic; line-height: 1.1;
-      margin: .08em 0;
-      padding-left: .18em;
-    }
-    .hero-j   { display: block; font-size: clamp(76px, 13.5vw, 212px); }
-    .hero-info {
-      margin-top: 52px;
+    /* SECTION NUMBER */
+    .sec-num {
+      display: flex; align-items: center; gap: 14px;
       font-size: 8px; font-weight: 400; letter-spacing: .38em;
-      text-transform: uppercase; color: rgba(245,241,235,.32);
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 36px;
+    }
+    .sec-num::after {
+      content: ''; width: 36px; height: 1px;
+      background: var(--muted); opacity: .4; flex-shrink: 0;
     }
 
-    /* INTERLUDE */
-    .interlude {
-      padding: 180px 10vw;
-    }
-    .interlude-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(26px, 3.4vw, 52px);
-      font-weight: 300; font-style: italic;
-      color: var(--text); line-height: 1.48;
-      max-width: 760px;
-    }
-    .interlude-text em { font-style: normal; color: var(--muted); }
-
-    /* PHOTO BREAK — extreme intimacy crop: just upper faces */
-    .photo-break {
-      overflow: hidden;
-      height: 92vh; min-height: 480px;
-    }
-    .photo-break img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: 44% 3%;
-      filter: saturate(0) contrast(1.14) brightness(.84);
-    }
-
-    /* TWO-UP — asymmetric split, two different crop types */
-    .two-up {
+    /* ── HERO ── */
+    .hero {
       display: grid;
-      grid-template-columns: 3fr 5fr;
-      gap: 2px;
-      height: 72vh; min-height: 400px;
+      grid-template-columns: 1fr 1fr;
+      height: 100svh; min-height: 600px;
+      position: relative;
     }
-    .two-up-a,
-    .two-up-b { overflow: hidden; position: relative; }
-    .two-up-a img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: 50% 12%;
-      filter: saturate(0) contrast(1.1) brightness(.88);
+    .hero-nav {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 10;
+      padding: 26px 6vw;
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .two-up-b img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: 35% 72%;
-      filter: saturate(.6) contrast(1.1) brightness(.86);
+    .hero-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; font-weight: 300; letter-spacing: .16em;
+      color: var(--text);
+    }
+    .hero-nav-link {
+      font-size: 8px; font-weight: 400; letter-spacing: .28em;
+      text-transform: uppercase; color: var(--muted);
+      transition: color .2s;
+    }
+    .hero-nav-link:hover { color: var(--text); }
+
+    .hero-left {
+      background: var(--bg);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 100px 7vw 80px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; line-height: .88;
+      color: var(--dark); letter-spacing: .07em;
+      margin-bottom: 36px;
+    }
+    .hero-name { display: block; font-size: clamp(56px, 8.5vw, 136px); }
+    .hero-amp  {
+      display: block;
+      font-size: clamp(44px, 6.5vw, 104px);
+      font-style: italic; color: var(--muted);
+      line-height: 1.05; margin: .04em 0;
+    }
+    .hero-date {
+      font-size: 9px; font-weight: 400; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--muted);
+      line-height: 2; margin-bottom: 44px;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 14px;
+      font-size: 9px; font-weight: 400; letter-spacing: .28em;
+      text-transform: uppercase; color: var(--text);
+      cursor: pointer; background: none; border: none;
+      transition: color .2s;
+    }
+    .hero-cta::before { content: ''; width: 1px; height: 28px; background: currentColor; flex-shrink: 0; }
+    .hero-cta:hover { color: var(--muted); }
+
+    .hero-right {
+      position: relative; overflow: hidden;
+    }
+    .hero-right img {
+      height: 100%; object-fit: cover; object-position: 52% 18%;
+      filter: saturate(.82) contrast(1.05) brightness(.94);
     }
 
-    /* STRIP PHOTO — movement: lower body / feet / ground */
-    .strip-photo {
-      overflow: hidden;
-      height: 38vh; min-height: 220px;
-    }
-    .strip-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: 50% 78%;
-      filter: saturate(.52) contrast(1.12) brightness(.88);
-    }
-
-    /* DATES */
-    .dates { padding: 180px 10vw; }
-    .dates-row {
-      display: grid; grid-template-columns: 1fr 1fr;
+    /* ── STORY SPLIT ── */
+    .story {
+      display: grid;
+      grid-template-columns: 38fr 62fr;
+      min-height: 72vh;
       border-top: 1px solid var(--line);
     }
-    .date-col {
-      padding: 80px 0;
+    .story-left {
+      background: var(--bg);
+      padding: 100px 7vw;
+      display: flex; flex-direction: column; justify-content: center;
       border-right: 1px solid var(--line);
     }
-    .date-col:last-child { border-right: none; padding-left: 8vw; }
-    .date-col:first-child { padding-right: 8vw; }
-    .date-type {
+    .story-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 3.5vw, 52px);
+      font-weight: 300; color: var(--dark);
+      line-height: 1.05; margin-bottom: 28px;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .story-body {
+      font-size: 13px; font-weight: 300; color: var(--muted);
+      line-height: 1.9; max-width: 320px;
+    }
+    .story-right {
+      overflow: hidden; position: relative;
+    }
+    .story-right img {
+      height: 100%; object-fit: cover; object-position: 50% 28%;
+      filter: saturate(0) contrast(1.12) brightness(.88);
+    }
+
+    /* ── DATES ── */
+    .dates {
+      padding: 120px 7vw;
+      border-top: 1px solid var(--line);
+    }
+    .dates-inner {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      margin-top: 52px;
+    }
+    .date-item {
+      padding: 56px 40px 56px 0;
+      border-right: 1px solid var(--line);
+    }
+    .date-item:last-child { border-right: none; padding-right: 0; }
+    .date-item:not(:first-child) { padding-left: 40px; }
+    .date-tag {
       font-size: 8px; font-weight: 400; letter-spacing: .42em;
       text-transform: uppercase; color: var(--muted);
-      display: block; margin-bottom: 32px;
+      display: block; margin-bottom: 24px;
     }
     .date-time {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(80px, 12vw, 168px);
+      font-size: clamp(36px, 4.5vw, 68px);
       font-weight: 300; color: var(--dark);
-      display: block; line-height: .94; letter-spacing: .02em;
-      margin-bottom: 44px;
+      display: block; line-height: 1; letter-spacing: .04em;
+      margin-bottom: 20px;
     }
-    .date-name {
+    .date-venue {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(17px, 1.7vw, 23px);
-      font-weight: 300; font-style: italic; color: var(--text);
-      display: block; margin-bottom: 8px; line-height: 1.25;
+      font-size: clamp(14px, 1.4vw, 18px);
+      font-weight: 300; font-style: italic;
+      color: var(--text); display: block; margin-bottom: 6px; line-height: 1.3;
     }
-    .date-place {
-      font-size: 8px; font-weight: 400; letter-spacing: .26em;
+    .date-loc {
+      font-size: 8px; font-weight: 400; letter-spacing: .2em;
       text-transform: uppercase; color: var(--muted);
-      display: block; margin-bottom: 32px;
+      display: block; margin-bottom: 20px;
+    }
+    .date-note {
+      font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.7;
     }
     .date-map {
-      font-size: 8px; font-weight: 400; letter-spacing: .22em;
+      font-size: 8px; font-weight: 400; letter-spacing: .2em;
       text-transform: uppercase; color: var(--muted);
       border-bottom: 1px solid var(--line); padding-bottom: 2px;
       transition: color .2s, border-color .2s; display: inline-block;
     }
     .date-map:hover { color: var(--text); border-color: rgba(0,0,0,.3); }
-    .dates-notes {
-      display: grid; grid-template-columns: 1fr 1fr;
+
+    /* ── RSVP SPLIT ── */
+    .rsvp-split {
+      display: grid;
+      grid-template-columns: 38fr 62fr;
+      min-height: 72vh;
       border-top: 1px solid var(--line);
     }
-    .dates-note {
-      padding: 56px 0;
+    .rsvp-left {
+      background: var(--bg);
+      padding: 100px 7vw;
+      display: flex; flex-direction: column; justify-content: center;
       border-right: 1px solid var(--line);
     }
-    .dates-note:last-child { border-right: none; padding-left: 8vw; }
-    .dates-note:first-child { padding-right: 8vw; }
-    .dates-note-label {
-      font-size: 8px; font-weight: 400; letter-spacing: .42em;
-      text-transform: uppercase; color: var(--muted);
-      display: block; margin-bottom: 16px;
-    }
-    .dates-note-text {
+    .rsvp-heading {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(16px, 1.7vw, 22px);
-      font-weight: 300; font-style: italic;
-      color: var(--muted); line-height: 1.72;
-    }
-
-    /* RSVP */
-    .rsvp { padding: 200px 10vw 140px; }
-    .rsvp-h {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(88px, 14.5vw, 228px);
+      font-size: clamp(36px, 4.5vw, 68px);
       font-weight: 300; color: var(--dark);
-      line-height: .84; letter-spacing: .04em;
-      margin-bottom: 60px;
+      line-height: 1.02; letter-spacing: .06em;
+      text-transform: uppercase; margin-bottom: 28px;
     }
     .rsvp-note {
-      font-size: 8px; font-weight: 400; letter-spacing: .36em;
+      font-size: 9px; font-weight: 400; letter-spacing: .3em;
       text-transform: uppercase; color: var(--muted);
-      display: block; margin-bottom: 56px;
+      display: block; margin-bottom: 44px;
     }
     .btn {
-      display: inline-block;
-      background: var(--dark); color: #F5F1EB;
-      padding: 17px 44px;
-      font-family: 'Inter', sans-serif; font-size: 10px;
-      font-weight: 400; letter-spacing: .16em; text-transform: uppercase;
-      border: none; cursor: pointer; transition: background .2s;
+      display: inline-flex; align-items: center; gap: 14px;
+      font-size: 9px; font-weight: 400; letter-spacing: .28em;
+      text-transform: uppercase; color: var(--text);
+      background: none; border: none; cursor: pointer; transition: color .2s;
     }
-    .btn:hover { background: #2a2a2a; }
+    .btn::before { content: ''; width: 1px; height: 28px; background: currentColor; flex-shrink: 0; }
+    .btn:hover { color: var(--muted); }
+    .rsvp-right {
+      overflow: hidden; position: relative;
+    }
+    .rsvp-right img {
+      height: 100%; object-fit: cover; object-position: 50% 22%;
+      filter: saturate(.78) contrast(1.06) brightness(.92);
+    }
 
-    /* FORM */
-    .form-wrap { padding: 0 10vw 160px; max-width: calc(560px + 20vw); }
+    /* ── FORM ── */
+    .form-section {
+      background: var(--sand);
+      padding: 100px 7vw;
+      border-top: 1px solid var(--line);
+    }
+    .form-inner { max-width: 520px; }
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 300; color: var(--dark);
+      margin-bottom: 48px; line-height: 1;
+    }
     .form-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
     .form-field { display: flex; flex-direction: column; gap: 8px; }
     .form-field.full { grid-column: 1/-1; }
     .form-lbl {
-      font-size: 8px; font-weight: 400; letter-spacing: .24em;
+      font-size: 8px; font-weight: 400; letter-spacing: .26em;
       text-transform: uppercase; color: var(--muted);
     }
     .form-field input,
     .form-field textarea,
     .form-field select {
-      background: var(--sand); border: none; border-bottom: 1px solid var(--line);
+      background: transparent; border: none; border-bottom: 1px solid rgba(0,0,0,.12);
       padding: 12px 0; font-family: 'Inter', sans-serif;
       font-size: 14px; font-weight: 300; color: var(--text);
       outline: none; width: 100%; appearance: none;
       transition: border-color .2s;
     }
     .form-field input::placeholder,
-    .form-field textarea::placeholder { color: var(--muted); opacity: .5; }
+    .form-field textarea::placeholder { color: var(--muted); opacity: .45; }
     .form-field input:focus,
     .form-field textarea:focus,
     .form-field select:focus { border-color: rgba(0,0,0,.3); }
@@ -284,53 +278,49 @@
     }
     .form-field textarea { resize: none; min-height: 72px; }
     .form-submit {
-      margin-top: 40px; padding: 17px 44px;
+      margin-top: 40px; padding: 16px 44px;
       background: var(--dark); border: none; font-family: 'Inter', sans-serif;
-      font-size: 10px; font-weight: 400; letter-spacing: .16em;
+      font-size: 9px; font-weight: 400; letter-spacing: .2em;
       text-transform: uppercase; color: white; cursor: pointer;
       transition: background .2s;
     }
     .form-submit:hover { background: #2a2a2a; }
-    .form-ok {
-      padding: 64px 0;
-    }
+    .form-ok { padding: 56px 0; }
     .form-ok-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 40px; font-style: italic; font-weight: 300;
+      font-size: 38px; font-style: italic; font-weight: 300;
       color: var(--dark); margin-bottom: 10px;
     }
     .form-ok-sub {
-      font-size: 9px; letter-spacing: .26em;
+      font-size: 8px; letter-spacing: .28em;
       text-transform: uppercase; color: var(--muted); font-weight: 400;
     }
 
-    /* INFO */
+    /* ── INFO ── */
     .info {
       display: grid; grid-template-columns: 1fr 1fr;
       border-top: 1px solid var(--line);
     }
     .info-col {
-      padding: 120px 10vw;
+      padding: 100px 7vw;
       border-right: 1px solid var(--line);
     }
     .info-col:last-child { border-right: none; }
     .info-h {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 3vw, 44px);
+      font-size: clamp(26px, 2.8vw, 40px);
       font-weight: 300; color: var(--dark);
-      margin-bottom: 52px; line-height: 1;
+      margin-bottom: 44px; line-height: 1;
     }
     .info-note {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px; font-style: italic; font-weight: 300;
-      color: var(--muted); line-height: 1.75; margin-bottom: 44px;
+      font-size: 13px; font-weight: 300; font-style: italic;
+      color: var(--muted); line-height: 1.8; margin-bottom: 40px;
     }
 
     /* accounts */
-    .acct { margin-bottom: 32px; }
-    .acct:last-child { margin-bottom: 0; }
+    .acct { margin-bottom: 28px; }
     .acct-tag {
-      font-size: 8px; font-weight: 400; letter-spacing: .32em;
+      font-size: 8px; font-weight: 400; letter-spacing: .34em;
       text-transform: uppercase; color: var(--muted);
       display: block; margin-bottom: 10px; padding-top: 20px;
       border-top: 1px solid var(--line);
@@ -359,40 +349,41 @@
     .faq-item { border-bottom: 1px solid var(--line); overflow: hidden; }
     .faq-q {
       width: 100%; background: none; border: none;
-      padding: 22px 0; display: flex; justify-content: space-between;
-      align-items: center; cursor: pointer; text-align: left;
-      gap: 16px;
+      padding: 20px 0; display: flex; justify-content: space-between;
+      align-items: center; cursor: pointer; text-align: left; gap: 16px;
     }
     .faq-qt {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(16px, 1.6vw, 19px); font-weight: 300; color: var(--text);
+      font-size: clamp(15px, 1.5vw, 18px); font-weight: 300; color: var(--text);
     }
     .faq-ic {
-      font-size: 16px; color: var(--muted); transition: transform .3s;
-      flex-shrink: 0; font-family: 'Inter', sans-serif; font-weight: 300;
+      font-size: 15px; color: var(--muted); transition: transform .3s;
+      flex-shrink: 0; font-weight: 300;
     }
     .faq-item.open .faq-ic { transform: rotate(45deg); }
     .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s; }
-    .faq-item.open .faq-a { max-height: 240px; padding-bottom: 20px; }
+    .faq-item.open .faq-a { max-height: 240px; padding-bottom: 18px; }
     .faq-a p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px; color: var(--muted); line-height: 1.8; font-style: italic; font-weight: 300;
+      font-size: 13px; color: var(--muted); line-height: 1.85;
+      font-style: italic; font-weight: 300;
     }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
-      background: var(--dark); padding: 80px 10vw;
-      display: flex; justify-content: space-between; align-items: flex-end;
+      background: var(--dark); padding: 64px 7vw;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,.04);
     }
     .footer-n {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(22px, 3vw, 38px);
+      font-size: clamp(18px, 2.5vw, 30px);
       font-weight: 300; font-style: italic;
-      color: rgba(245,241,235,.7); letter-spacing: .06em;
+      color: rgba(245,241,235,.65); letter-spacing: .06em;
     }
-    .footer-d {
+    .footer-tagline {
       font-size: 8px; font-weight: 400; letter-spacing: .3em;
       text-transform: uppercase; color: rgba(245,241,235,.2);
+      text-align: right;
     }
 
     /* MUSIC */
@@ -431,40 +422,49 @@
       font-size: 18px; font-style: italic; font-weight: 300;
       color: var(--muted); line-height: 1.8; margin-bottom: 52px;
     }
+    .bv-btn {
+      display: inline-flex; align-items: center; gap: 14px;
+      font-size: 9px; font-weight: 400; letter-spacing: .28em;
+      text-transform: uppercase; color: var(--text);
+      background: none; border: none; cursor: pointer; transition: color .2s;
+    }
+    .bv-btn::before { content: ''; width: 1px; height: 28px; background: currentColor; flex-shrink: 0; }
     @keyframes up { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
 
-    /* RESPONSIVE */
-    @media (max-width: 860px) {
-      .dates-row,
-      .dates-notes,
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; height: auto; min-height: 100svh; }
+      .hero-left { padding: 110px 7vw 60px; order: 2; min-height: auto; }
+      .hero-right { height: 55vw; min-height: 300px; order: 1; }
+      .hero-right img { height: 100%; }
+      .story, .rsvp-split { grid-template-columns: 1fr; }
+      .story-right { height: 60vw; min-height: 320px; }
+      .story-right img { height: 100%; }
+      .story-left { border-right: none; border-bottom: 1px solid var(--line); }
+      .rsvp-left { border-right: none; border-bottom: 1px solid var(--line); }
+      .rsvp-right { height: 60vw; min-height: 320px; }
+      .rsvp-right img { height: 100%; }
+      .dates-inner { grid-template-columns: 1fr 1fr; }
+      .date-item:nth-child(2) { border-right: none; }
+      .date-item:nth-child(3) { padding-left: 0; border-right: 1px solid var(--line); }
+      .date-item:nth-child(4) { border-right: none; }
       .info { grid-template-columns: 1fr; }
-      .date-col,
-      .dates-note { border-right: none; padding-left: 0 !important; padding-right: 0 !important; }
-      .date-col:not(:last-child),
-      .dates-note:not(:last-child) { border-bottom: 1px solid var(--line); }
       .info-col { border-right: none; border-bottom: 1px solid var(--line); }
       .info-col:last-child { border-bottom: none; }
-      .interlude { padding: 120px 8vw; }
-      footer { flex-direction: column; gap: 20px; align-items: flex-start; }
-      .strip-photo { height: 28vh; }
-      .photo-break { height: 72vh; }
-      .two-up { grid-template-columns: 1fr 1fr; height: 50vh; }
+      footer { flex-direction: column; gap: 16px; align-items: flex-start; }
+      .footer-tagline { text-align: left; }
     }
     @media (max-width: 600px) {
-      .nav-link { display: none; }
-      .hero-body { left: 6vw; bottom: 7vh; }
-      .dates, .rsvp, .form-wrap { padding-left: 6vw; padding-right: 6vw; }
-      .dates { padding-top: 120px; padding-bottom: 120px; }
-      .rsvp { padding-top: 140px; padding-bottom: 100px; }
-      .interlude { padding: 100px 6vw; }
+      .hero-left { padding: 90px 6vw 56px; }
+      .dates { padding: 80px 6vw; }
+      .dates-inner { grid-template-columns: 1fr; }
+      .date-item { border-right: none; padding: 40px 0; border-bottom: 1px solid var(--line); padding-left: 0 !important; padding-right: 0 !important; }
+      .date-item:last-child { border-bottom: none; }
+      .story-left, .rsvp-left { padding: 72px 6vw; }
+      .form-section { padding: 80px 6vw; }
       .info-col { padding: 80px 6vw; }
-      footer { padding: 60px 6vw; }
+      footer { padding: 56px 6vw; }
       .form-row { grid-template-columns: 1fr; }
-      .photo-break { height: 60vh; }
-      .strip-photo { height: 24vh; }
-      .two-up { grid-template-columns: 1fr; height: auto; }
-      .two-up-a { height: 50vh; }
-      .two-up-b { height: 42vh; }
     }
   </style>
 </head>
@@ -476,219 +476,166 @@
       <span class="bv-label">Natalia y Joaquín · 28 noviembre 2026</span>
       <h1 class="bv-h">Hola, <span class="bv-name" id="bv-name"></span></h1>
       <p class="bv-p">Te queremos invitar a celebrar<br>el día más importante de nuestras vidas.</p>
-      <button class="btn" onclick="closeBv(); startMusic()">Ver invitación</button>
+      <button class="bv-btn" onclick="closeBv(); startMusic()">Ver invitación</button>
     </div>
   </div>
-
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <span class="nav-brand">N — J</span>
-    <a class="nav-link" href="#rsvp">Confirmar</a>
-  </nav>
 
   <!-- HERO -->
-  <section class="hero">
-    <img class="hero-img" id="hi" src="civil5.jpg" alt="">
-    <div class="hero-veil"></div>
-    <div class="hero-grain"></div>
-    <div class="hero-body">
-      <div class="hero-names">
-        <span class="hero-n">NATALIA</span>
+  <header class="hero">
+    <nav class="hero-nav">
+      <span class="hero-brand">N & J</span>
+      <a class="hero-nav-link" href="#rsvp">Confirmar</a>
+    </nav>
+    <div class="hero-left">
+      <h1 class="hero-title">
+        <span class="hero-name">NATALIA</span>
         <span class="hero-amp">&</span>
-        <span class="hero-j">JOAQUÍN</span>
-      </div>
-      <p class="hero-info">28 Noviembre 2026 &nbsp;·&nbsp; Zárate, Argentina</p>
+        <span class="hero-name">JOAQUÍN</span>
+      </h1>
+      <p class="hero-date">
+        28 de noviembre de 2026<br>
+        Zárate, Argentina
+      </p>
+      <button class="hero-cta" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
+        Entrar
+      </button>
+    </div>
+    <div class="hero-right">
+      <img id="hi" src="civil5.jpg" alt="Natalia y Joaquín">
+    </div>
+  </header>
+
+  <!-- HISTORIA -->
+  <section class="story fade" id="story">
+    <div class="story-left">
+      <div class="sec-num">01</div>
+      <h2 class="story-heading">Nuestra<br>historia</h2>
+      <p class="story-body">
+        Algunas historias no se buscan,<br>
+        simplemente pasan.<br>
+        Y de repente, ya son tu hogar.
+      </p>
+    </div>
+    <div class="story-right">
+      <img src="civil52.jpg" loading="lazy" alt="">
     </div>
   </section>
 
-  <!-- INTERLUDE -->
-  <div class="interlude">
-    <p class="interlude-text fade">
-      Ella nunca fue buena conociendo gente nueva.<br>
-      Él reservó antes de que ella dijera que sí.<br>
-      <em>Y de alguna manera,<br>terminaron construyendo una vida juntos.</em>
-    </p>
-  </div>
+  <!-- EL GRAN DÍA -->
+  <section class="dates fade" id="fechas">
+    <div class="sec-num">02</div>
+    <div class="dates-inner">
 
-  <!-- PHOTO BREAK -->
-  <div class="photo-break fade">
-    <img src="civil52.jpg" alt="">
-  </div>
-
-  <!-- DATES -->
-  <section class="dates" id="fechas">
-    <div class="dates-row">
-      <div class="date-col fade">
-        <span class="date-type">Ceremonia</span>
+      <div class="date-item fade">
+        <span class="date-tag">Ceremonia</span>
         <span class="date-time">16:00</span>
-        <span class="date-name">Parroquia San Isidro Labrador</span>
-        <span class="date-place">Lima · Zárate · Buenos Aires</span>
+        <span class="date-venue">Parroquia San Isidro Labrador</span>
+        <span class="date-loc">Lima · Zárate · Buenos Aires</span>
         <a class="date-map" href="https://maps.app.goo.gl/AFt39m4bcoL6gsdo9" target="_blank">Ver en mapa →</a>
       </div>
-      <div class="date-col fade d1">
-        <span class="date-type">Celebración</span>
+
+      <div class="date-item fade d1">
+        <span class="date-tag">Celebración</span>
         <span class="date-time">18:00</span>
-        <span class="date-name">Chacras El Aduar</span>
-        <span class="date-place">Zárate · Buenos Aires</span>
+        <span class="date-venue">Chacras El Aduar</span>
+        <span class="date-loc">Zárate · Buenos Aires</span>
         <a class="date-map" href="https://maps.app.goo.gl/NCFduDQNpT9jeaGE6" target="_blank">Ver en mapa →</a>
       </div>
-    </div>
-    <div class="dates-notes">
-      <div class="dates-note fade">
-        <span class="dates-note-label">Vestimenta</span>
-        <p class="dates-note-text">Elegante. Cómodo/a para bailar toda la noche.</p>
+
+      <div class="date-item fade d1">
+        <span class="date-tag">Vestimenta</span>
+        <span class="date-note">Elegante.<br>Cómodo/a para<br>bailar toda la noche.</span>
       </div>
-      <div class="dates-note fade d1">
-        <span class="dates-note-label">Cómo llegar</span>
-        <p class="dates-note-text">Ruta 9, km 11, salida Atucha. El último tramo es camino de tierra sin iluminación.</p>
+
+      <div class="date-item fade d2">
+        <span class="date-tag">Cómo llegar</span>
+        <span class="date-note">Ruta 9, km 11,<br>salida Atucha.<br>Último tramo de tierra,<br>sin iluminación.</span>
       </div>
+
     </div>
   </section>
 
-  <!-- TWO-UP: architecture top / movement bottom -->
-  <div class="two-up">
-    <div class="two-up-a fade"><img src="civil7.jpg"  loading="lazy" alt=""></div>
-    <div class="two-up-b fade d1"><img src="civil23.jpg" loading="lazy" alt=""></div>
-  </div>
-
-  <!-- STRIP PHOTO — movement crop -->
-  <div class="strip-photo fade">
-    <img src="civil32.jpg" alt="">
-  </div>
-
   <!-- RSVP -->
-  <section class="rsvp fade" id="rsvp">
-    <h2 class="rsvp-h">¿Venís?</h2>
-    <span class="rsvp-note">Confirmá tu lugar antes del 15 de octubre</span>
-    <button class="btn" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">Confirmar asistencia</button>
+  <section class="rsvp-split fade" id="rsvp">
+    <div class="rsvp-left">
+      <div class="sec-num">03</div>
+      <h2 class="rsvp-heading">Confirmar<br>asistencia</h2>
+      <span class="rsvp-note">Antes del 15 de octubre</span>
+      <button class="btn" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">
+        Hacé click aquí
+      </button>
+    </div>
+    <div class="rsvp-right">
+      <img src="civil1.jpg" loading="lazy" alt="">
+    </div>
   </section>
 
   <!-- FORM -->
-  <div class="form-wrap fade" id="form">
-    <form id="cf" action="https://formspree.io/f/mpqnzwno" method="POST">
-      <input type="hidden" name="_language" value="es">
-      <input type="hidden" name="_subject" value="Nueva confirmación — Nati & Joaco 2026">
-      <div class="form-row">
-        <div class="form-field"><label class="form-lbl">Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
-        <div class="form-field"><label class="form-lbl">Teléfono</label><input type="tel" name="telefono" placeholder="11 XXXX-XXXX"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label class="form-lbl">Asistencia</label>
-          <div class="sel-wrap"><select name="asistencia" required><option value="">Seleccioná</option><option>Sí, confirmo</option><option>No puedo ir</option></select></div>
+  <div class="form-section fade" id="form">
+    <div class="form-inner">
+      <h3 class="form-title">Confirmación</h3>
+      <form id="cf" action="https://formspree.io/f/mpqnzwno" method="POST">
+        <input type="hidden" name="_language" value="es">
+        <input type="hidden" name="_subject" value="Nueva confirmación — Nati & Joaco 2026">
+        <div class="form-row">
+          <div class="form-field"><label class="form-lbl">Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+          <div class="form-field"><label class="form-lbl">Teléfono</label><input type="tel" name="telefono" placeholder="11 XXXX-XXXX"></div>
         </div>
-        <div class="form-field"><label class="form-lbl">Personas</label><input type="number" name="personas" min="1" max="10" placeholder="1"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field full"><label class="form-lbl">Restricciones alimentarias</label><input type="text" name="restricciones" placeholder="Ninguna / vegetariano / celiaco..."></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field full"><label class="form-lbl">Canción que no puede faltar</label><input type="text" name="cancion" placeholder="Artista o canción..."></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field full"><label class="form-lbl">Mensaje</label><textarea name="mensaje" placeholder="Lo que quieras..."></textarea></div>
-      </div>
-      <button type="submit" class="form-submit">Confirmar asistencia</button>
-    </form>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-lbl">Asistencia</label>
+            <div class="sel-wrap"><select name="asistencia" required><option value="">Seleccioná</option><option>Sí, confirmo</option><option>No puedo ir</option></select></div>
+          </div>
+          <div class="form-field"><label class="form-lbl">Personas</label><input type="number" name="personas" min="1" max="10" placeholder="1"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field full"><label class="form-lbl">Restricciones alimentarias</label><input type="text" name="restricciones" placeholder="Ninguna / vegetariano / celiaco..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field full"><label class="form-lbl">Canción que no puede faltar</label><input type="text" name="cancion" placeholder="Artista o canción..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field full"><label class="form-lbl">Mensaje</label><textarea name="mensaje" placeholder="Lo que quieras..."></textarea></div>
+        </div>
+        <button type="submit" class="form-submit">Confirmar asistencia</button>
+      </form>
+    </div>
   </div>
 
   <!-- INFO -->
   <div class="info" id="regalos">
-
     <div class="info-col fade">
       <h3 class="info-h">Regalos</h3>
       <p class="info-note">Su presencia es el mejor regalo. Si aun así quieren hacernos llegar algo:</p>
-
       <div class="acct">
         <span class="acct-tag">Pesos argentinos</span>
-        <div class="acct-row">
-          <span class="acct-k">Alias</span>
-          <span class="acct-v">boda.nati.joaco</span>
-          <button class="acct-copy" onclick="cp(this,'boda.nati.joaco')">Copiar</button>
-        </div>
-        <div class="acct-row">
-          <span class="acct-k">CBU</span>
-          <span class="acct-v">0070133030004026589658</span>
-          <button class="acct-copy" onclick="cp(this,'0070133030004026589658')">Copiar</button>
-        </div>
-        <div class="acct-row">
-          <span class="acct-k">Banco</span>
-          <span class="acct-v">Galicia · 4026589-6 133-5</span>
-        </div>
+        <div class="acct-row"><span class="acct-k">Alias</span><span class="acct-v">boda.nati.joaco</span><button class="acct-copy" onclick="cp(this,'boda.nati.joaco')">Copiar</button></div>
+        <div class="acct-row"><span class="acct-k">CBU</span><span class="acct-v">0070133030004026589658</span><button class="acct-copy" onclick="cp(this,'0070133030004026589658')">Copiar</button></div>
+        <div class="acct-row"><span class="acct-k">Banco</span><span class="acct-v">Galicia · 4026589-6 133-5</span></div>
       </div>
-
       <div class="acct">
         <span class="acct-tag">USD Dólares</span>
-        <div class="acct-row">
-          <span class="acct-k">Alias</span>
-          <span class="acct-v">boda.nati.joaco.usd</span>
-          <button class="acct-copy" onclick="cp(this,'boda.nati.joaco.usd')">Copiar</button>
-        </div>
-        <div class="acct-row">
-          <span class="acct-k">CBU</span>
-          <span class="acct-v">0070133031004024937887</span>
-          <button class="acct-copy" onclick="cp(this,'0070133031004024937887')">Copiar</button>
-        </div>
-        <div class="acct-row">
-          <span class="acct-k">Banco</span>
-          <span class="acct-v">Galicia · 4024937-8 133-8</span>
-        </div>
+        <div class="acct-row"><span class="acct-k">Alias</span><span class="acct-v">boda.nati.joaco.usd</span><button class="acct-copy" onclick="cp(this,'boda.nati.joaco.usd')">Copiar</button></div>
+        <div class="acct-row"><span class="acct-k">CBU</span><span class="acct-v">0070133031004024937887</span><button class="acct-copy" onclick="cp(this,'0070133031004024937887')">Copiar</button></div>
+        <div class="acct-row"><span class="acct-k">Banco</span><span class="acct-v">Galicia · 4024937-8 133-8</span></div>
       </div>
     </div>
-
     <div class="info-col fade" id="faq">
       <h3 class="info-h">Preguntas</h3>
       <div class="faq">
-
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span class="faq-qt">¿A qué distancia queda Zárate?</span>
-            <span class="faq-ic">+</span>
-          </button>
-          <div class="faq-a"><p>Zárate queda a unos 90 km de la Ciudad de Buenos Aires, 60–70 minutos por la Autopista Panamericana (Ruta 9).</p></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span class="faq-qt">¿Cómo llego a la chacra?</span>
-            <span class="faq-ic">+</span>
-          </button>
-          <div class="faq-a"><p>Por la Panamericana, Ruta 9, km 11, salida Atucha. Seguir hasta el primer puente, doblar a la derecha, y nuevamente a la derecha hasta llegar al Aduar.</p></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span class="faq-qt">¿Algo importante para el camino?</span>
-            <span class="faq-ic">+</span>
-          </button>
-          <div class="faq-a"><p>El último tramo es de tierra y sin iluminación. Ir despacio, especialmente al regreso. Si pueden, vayan en grupo.</p></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span class="faq-qt">¿Dónde es la ceremonia?</span>
-            <span class="faq-ic">+</span>
-          </button>
-          <div class="faq-a"><p>En la Parroquia San Isidro Labrador, Lima, Buenos Aires. A pocos minutos de Zárate; desde allí nos trasladamos juntos a la chacra.</p></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span class="faq-qt">¿Hay alojamiento cerca?</span>
-            <span class="faq-ic">+</span>
-          </button>
-          <div class="faq-a"><p>Sí, hay casas de alquiler en Zárate y alrededores. Próximamente compartimos recomendaciones.</p></div>
-        </div>
-
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">¿A qué distancia queda Zárate?</span><span class="faq-ic">+</span></button><div class="faq-a"><p>Zárate queda a unos 90 km de Buenos Aires, 60–70 minutos por la Autopista Panamericana (Ruta 9).</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">¿Cómo llego a la chacra?</span><span class="faq-ic">+</span></button><div class="faq-a"><p>Por la Panamericana, Ruta 9, km 11, salida Atucha. Seguir hasta el primer puente, doblar a la derecha, y nuevamente a la derecha hasta llegar al Aduar.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">¿Algo importante para el camino?</span><span class="faq-ic">+</span></button><div class="faq-a"><p>El último tramo es de tierra y sin iluminación. Ir despacio, especialmente al regreso. Si pueden, vayan en grupo.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">¿Dónde es la ceremonia?</span><span class="faq-ic">+</span></button><div class="faq-a"><p>En la Parroquia San Isidro Labrador, Lima, Buenos Aires. A pocos minutos de Zárate; desde allí nos trasladamos juntos a la chacra.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">¿Hay alojamiento cerca?</span><span class="faq-ic">+</span></button><div class="faq-a"><p>Sí, hay casas de alquiler en Zárate y alrededores. Próximamente compartimos recomendaciones.</p></div></div>
       </div>
     </div>
-
   </div>
 
   <!-- FOOTER -->
   <footer>
     <span class="footer-n">Natalia y Joaquín</span>
-    <span class="footer-d">28 · 11 · 2026 · Zárate</span>
+    <p class="footer-tagline">Con amor, para siempre.<br>28 · 11 · 2026</p>
   </footer>
 
   <!-- MÚSICA -->
@@ -712,28 +659,15 @@
       setTimeout(function(){ el.style.display='none'; }, 700);
     }
 
-    // nav
-    window.addEventListener('scroll', function(){
-      document.getElementById('nav').classList.toggle('solid', scrollY > 50);
-    }, {passive:true});
-
     // hero image
     var hi = document.getElementById('hi');
     if(hi.complete) hi.classList.add('loaded');
     else hi.addEventListener('load', function(){ hi.classList.add('loaded'); });
 
-    // fade observer
-    new IntersectionObserver(function(es){
-      es.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('in'); });
-    },{threshold:.08}).observe.bind(
-      new IntersectionObserver(function(es){
-        es.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('in'); });
-      },{threshold:.08})
-    );
-    // — corrected fade init
+    // fade
     var io = new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('in'); });
-    },{threshold:.08});
+    },{threshold:.07});
     document.querySelectorAll('.fade').forEach(function(el){ io.observe(el); });
 
     // música
@@ -743,7 +677,7 @@
     };
     function startMusic(){ if(!yt||on)return; yt.playVideo(); document.getElementById('mic').textContent='⏸'; on=true; }
     function toggleMusic(){
-      if(!yt) return;
+      if(!yt)return;
       if(on){ yt.pauseVideo(); document.getElementById('mic').textContent='♪'; on=false; }
       else startMusic();
     }
