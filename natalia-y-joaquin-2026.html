@@ -229,6 +229,11 @@
       line-height: 1; letter-spacing: .04em;
       margin-bottom: 24px;
     }
+    .rsvp-p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(16px, 1.6vw, 20px); font-weight: 300; font-style: italic;
+      color: var(--dark); line-height: 1.7; margin-bottom: 28px; opacity: 0.85;
+    }
     .rsvp-note {
       font-size: 12px; font-weight: 400; letter-spacing: .2em;
       text-transform: uppercase; color: var(--text);
@@ -615,9 +620,10 @@
   <section class="rsvp fade" id="rsvp">
     <div class="rsvp-left">
       <span class="section-marker">03 &mdash;&mdash;&mdash;&mdash;</span>
-      <h2 class="rsvp-title">CONFIRMAR<br>ASISTENCIA</h2>
-      <span class="rsvp-note">Antes del 15 de octubre</span>
-      <button class="btn" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">Hacé click aquí</button>
+      <h2 class="rsvp-title">¿NOS<br>ACOMPAÑÁS?</h2>
+      <p class="rsvp-p">Nos encantaría compartir este momento juntos, y celebrar nuestro amor!</p>
+      <span class="rsvp-note">Confirmá antes del 15 de octubre</span>
+      <button class="btn" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">Confirmar asistencia ↓</button>
     </div>
     <div class="rsvp-right">
       <img src="civil1.jpg" loading="lazy" alt="">
