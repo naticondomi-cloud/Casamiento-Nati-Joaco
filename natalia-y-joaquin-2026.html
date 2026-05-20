@@ -432,40 +432,6 @@
       color: rgba(245,241,235,.18);
     }
 
-    /* ── MENU OVERLAY ── */
-    .menu-overlay {
-      position: fixed; inset: 0; z-index: 1500;
-      background: var(--dark);
-      display: flex; align-items: center; padding: 0 10vw;
-      opacity: 0; pointer-events: none;
-      transition: opacity .45s ease;
-    }
-    .menu-overlay.open { opacity: 1; pointer-events: all; }
-    .menu-close {
-      position: absolute; top: 40px; right: 7vw;
-      background: none; border: none; cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      font-size: 10px; letter-spacing: .3em;
-      text-transform: uppercase; color: rgba(245,241,235,.5);
-      transition: color .3s;
-    }
-    .menu-close:hover { color: rgba(245,241,235,1); }
-    .menu-links { display: flex; flex-direction: column; gap: 4px; }
-    .menu-num {
-      font-size: 9px; letter-spacing: .3em;
-      text-transform: uppercase; color: var(--muted);
-      display: block; margin-bottom: 2px;
-    }
-    .menu-link {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(38px, 6vw, 76px);
-      font-weight: 300; color: var(--bg);
-      letter-spacing: .04em; line-height: 1.25;
-      text-decoration: none; display: block;
-      opacity: 0.75; transition: opacity .3s;
-    }
-    .menu-link:hover { opacity: 1; }
-
     /* ── BIENVENIDA ── */
     .bv {
       position: fixed; inset: 0; z-index: 2000;
@@ -537,25 +503,6 @@
 </head>
 <body>
 
-  <!-- MENU -->
-  <div class="menu-overlay" id="menu-overlay">
-    <button class="menu-close" onclick="closeMenu()">Cerrar ✕</button>
-    <nav class="menu-links">
-      <a class="menu-link" href="#historia" onclick="closeMenu()">
-        <span class="menu-num">01</span>Nuestra Historia
-      </a>
-      <a class="menu-link" href="#fechas" onclick="closeMenu()">
-        <span class="menu-num">02</span>El Gran Día
-      </a>
-      <a class="menu-link" href="#rsvp" onclick="closeMenu()">
-        <span class="menu-num">03</span>Confirmar Asistencia
-      </a>
-      <a class="menu-link" href="#regalos" onclick="closeMenu()">
-        <span class="menu-num">04</span>Regalos
-      </a>
-    </nav>
-  </div>
-
   <!-- BIENVENIDA -->
   <div class="bv" id="bv" style="display:none">
     <div class="bv-inner">
@@ -570,7 +517,7 @@
   <section class="hero">
     <header class="hero-nav">
       <span class="nav-brand">N & J</span>
-      <span class="nav-menu" onclick="openMenu()" style="cursor:pointer">MENU</span>
+      <span class="nav-menu">MENU</span>
     </header>
     <div class="hero-left">
       <h1 class="hero-title">
@@ -769,10 +716,6 @@
   <iframe id="yt" src="https://www.youtube.com/embed/oP242q6EbFY?enablejsapi=1&controls=0&loop=1&playlist=oP242q6EbFY" allow="autoplay; encrypted-media" style="position:fixed;left:-9999px;top:0;width:1px;height:1px;opacity:0;pointer-events:none;"></iframe>
 
   <script>
-    // menú
-    function openMenu(){ document.getElementById('menu-overlay').classList.add('open'); document.body.style.overflow='hidden'; }
-    function closeMenu(){ document.getElementById('menu-overlay').classList.remove('open'); document.body.style.overflow=''; }
-
     // bienvenida
     (function(){
       var m = location.search.match(/[?&]nombre=([^&]*)/);
