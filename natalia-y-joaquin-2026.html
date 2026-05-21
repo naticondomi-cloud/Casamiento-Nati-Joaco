@@ -802,7 +802,7 @@
   </div>
 
   <!-- MÚSICA -->
-  <iframe id="yt" src="https://www.youtube.com/embed/oP242q6EbFY?enablejsapi=1&controls=0&loop=1&playlist=oP242q6EbFY" allow="autoplay; encrypted-media" style="position:fixed;left:-9999px;top:0;width:1px;height:1px;opacity:0;pointer-events:none;"></iframe>
+  <audio id="audio" src="musica.mp3" loop preload="none"></audio>
 
   <script>
     // bienvenida
@@ -833,34 +833,17 @@
     document.querySelectorAll('.fade').forEach(function(el){ io.observe(el); });
 
     // música
-    var yt=null, on=false, pending=false, unlocked=false;
-    window.onYouTubeIframeAPIReady = function(){
-      yt = new YT.Player('yt',{events:{onReady:function(e){
-        e.target.setVolume(36);
-        if(pending){ try{ e.target.playVideo(); }catch(err){} document.getElementById('mic').textContent='⏸ Música'; on=true; pending=false; }
-      }}});
-    };
-    // desbloqueo iOS: primer toque activa el contexto de audio
-    function unlockAudio(){
-      if(unlocked || !yt) return;
-      try{ yt.playVideo(); setTimeout(function(){ if(!on){ yt.pauseVideo(); yt.seekTo(0); } },200); }catch(e){}
-      unlocked=true;
-    }
-    document.addEventListener('touchstart', unlockAudio, {once:true});
-    document.addEventListener('click', unlockAudio, {once:true});
+    var audio = document.getElementById('audio');
+    audio.volume = 0.4;
+    var on = false;
     function startMusic(){
       if(on) return;
-      unlocked=true;
-      if(!yt){ pending=true; return; }
-      try{ yt.playVideo(); on=true; document.getElementById('mic').textContent='⏸ Música'; }catch(e){ pending=true; }
+      audio.play().then(function(){ on=true; document.getElementById('mic').textContent='⏸ Música'; }).catch(function(){});
     }
     function toggleMusic(){
-      unlocked=true;
-      if(!yt){ pending=true; return; }
-      if(on){ try{yt.pauseVideo();}catch(e){} on=false; document.getElementById('mic').textContent='♪ Música'; }
-      else   { try{yt.playVideo(); }catch(e){} on=true;  document.getElementById('mic').textContent='⏸ Música'; }
+      if(on){ audio.pause(); on=false; document.getElementById('mic').textContent='♪ Música'; }
+      else  { audio.play().then(function(){ on=true; document.getElementById('mic').textContent='⏸ Música'; }).catch(function(){}); }
     }
-    var sc=document.createElement('script'); sc.src='https://www.youtube.com/iframe_api'; document.head.appendChild(sc);
 
     // faq
     function toggleFaq(btn){
