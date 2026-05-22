@@ -261,11 +261,20 @@
     /* ── FORM ── */
     .form-section {
       background: var(--bg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
     .form-wrap {
       padding: 60px 8vw 120px;
       border-top: none;
-      max-width: 720px; margin: 0;
+    }
+    .form-photo {
+      overflow: hidden;
+    }
+    .form-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 50% 50%;
+      filter: sepia(.18) contrast(.9) brightness(.97) saturate(.78);
     }
     .form-title {
       font-family: 'Cormorant Garamond', serif;
@@ -525,6 +534,8 @@
       .date-col:nth-child(3) { border-top: none; border-right: none; }
       .date-col:nth-child(4) { border-top: none; border-right: none; }
       .rsvp { grid-template-columns: 1fr; padding: 16vw 0; }
+      .form-section { grid-template-columns: 1fr; }
+      .form-photo { display: none; }
       .rsvp-left { border-right: none; border-bottom: none; min-height: auto; padding-bottom: 12vw; }
       .rsvp-right { height: 110vw; min-height: 380px; }
       .rsvp-right img { height: 100%; }
@@ -713,6 +724,9 @@
       </div>
       <button type="submit" class="form-submit">Confirmar asistencia</button>
     </form>
+  </div>
+  <div class="form-photo">
+    <img src="chacra4.jpg" loading="lazy" alt="">
   </div>
   </div>
 
