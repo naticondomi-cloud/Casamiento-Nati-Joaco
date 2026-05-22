@@ -154,10 +154,11 @@
       padding-top: 120px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      background: var(--bg-alt);
+      background: var(--dark);
     }
     .dates > .section-marker {
       position: absolute; top: 120px; left: 8vw;
+      color: var(--accent-light); opacity: .5;
     }
     .date-col {
       padding: 140px 32px;
@@ -168,18 +169,18 @@
     .date-col:last-child { border-right: none; }
     .date-icon {
       width: 36px; height: 36px;
-      color: var(--text); opacity: 0.5;
+      color: var(--accent-light); opacity: 0.7;
       margin-bottom: 28px; flex-shrink: 0;
     }
     .date-label {
       font-size: 9px; font-weight: 400; letter-spacing: .38em;
-      text-transform: uppercase; color: var(--muted);
+      text-transform: uppercase; color: var(--accent-light); opacity: 0.6;
       display: block; margin-bottom: 20px;
     }
     .date-time {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(28px, 3vw, 46px);
-      font-weight: 300; color: var(--text);
+      font-weight: 300; color: var(--bg);
       display: block; line-height: 1; letter-spacing: .04em;
       margin-bottom: 16px;
     }
@@ -187,22 +188,22 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(15px, 1.5vw, 20px);
       font-weight: 300; font-style: italic;
-      color: var(--text); display: block;
+      color: var(--bg-alt); display: block;
       line-height: 1.5; margin-bottom: 6px;
     }
     .date-sub {
       font-size: 9px; font-weight: 400; letter-spacing: .18em;
-      text-transform: uppercase; color: var(--muted);
+      text-transform: uppercase; color: var(--accent-light); opacity: .5;
       display: block; margin-bottom: 20px;
     }
     .date-body {
       font-size: 15px; font-weight: 300;
-      color: var(--muted); line-height: 1.9; text-align: center;
+      color: var(--bg-alt); line-height: 1.9; text-align: center;
     }
     .date-link {
       font-size: 9px; letter-spacing: .24em;
-      text-transform: uppercase; color: var(--muted);
-      border-bottom: 1px solid rgba(111,117,104,.4);
+      text-transform: uppercase; color: var(--accent-light);
+      border-bottom: 1px solid rgba(162,174,116,.4);
       padding-bottom: 2px; display: inline-block;
       transition: opacity .3s;
     }
@@ -417,7 +418,7 @@
     }
 
     /* ── PHOTO STRIP ── */
-    .strip { overflow: hidden; line-height: 0; }
+    .strip { overflow: hidden; line-height: 0; background: var(--dark); }
     .strip-track {
       display: flex;
       width: max-content;
