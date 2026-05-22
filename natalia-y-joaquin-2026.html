@@ -209,23 +209,21 @@
     }
     .date-link:hover { opacity: .5; }
 
-    /* ── RSVP + FORM ── */
-    .rsvp-block {
+    /* ── RSVP ── */
+    .rsvp {
       display: grid;
       grid-template-columns: 50% 50%;
       background: var(--bg);
     }
-    .rsvp-block-left { display: flex; flex-direction: column; }
-    .rsvp-block-right { overflow: hidden; position: sticky; top: 0; height: 100svh; }
-    .rsvp-block-right img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: 50% 40%;
-      filter: sepia(.18) contrast(.9) brightness(.97) saturate(.78);
-    }
     .rsvp-left {
       padding: 8vw;
       display: flex; flex-direction: column; justify-content: center;
-      border-right: none;
+    }
+    .rsvp-right { overflow: hidden; }
+    .rsvp-right img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 50% 0%;
+      filter: sepia(.18) contrast(.9) brightness(.97) saturate(.78);
     }
     .rsvp-title {
       font-family: 'Cormorant Garamond', serif;
@@ -256,10 +254,19 @@
     }
     .btn:hover { opacity: .5; }
     /* ── FORM ── */
-    .form-section { background: var(--bg); }
+    .form-section {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      background: var(--bg);
+    }
     .form-wrap {
       padding: 60px 8vw 120px;
-      border-top: none;
+    }
+    .form-photo { overflow: hidden; }
+    .form-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 50% 50%;
+      filter: sepia(.18) contrast(.9) brightness(.97) saturate(.78);
     }
     .form-title {
       font-family: 'Cormorant Garamond', serif;
@@ -518,9 +525,12 @@
       .date-col:nth-child(2) { border-right: none; }
       .date-col:nth-child(3) { border-top: none; border-right: none; }
       .date-col:nth-child(4) { border-top: none; border-right: none; }
-      .rsvp-block { grid-template-columns: 1fr; }
-      .rsvp-block-right { display: none; }
-      .rsvp-left { padding: 12vw 8vw 6vw; }
+      .rsvp { grid-template-columns: 1fr; }
+      .rsvp-right { height: 70vw; min-height: 300px; }
+      .rsvp-right img { height: 100%; }
+      .form-section { grid-template-columns: 1fr; }
+      .form-photo { display: none; }
+      .rsvp-left { padding: 10vw 8vw 6vw; }
       .accounts { grid-template-columns: 1fr; }
       .acct-col { border-right: none; border-bottom: none; padding-bottom: 0; }
       .acct-col:last-child { border-bottom: none; }
@@ -664,46 +674,49 @@
 
   </section>
 
-  <!-- RSVP + FORM -->
-  <div class="rsvp-block" id="rsvp">
-    <div class="rsvp-block-left">
-      <div class="rsvp-left fade">
-        <span class="section-marker">03 &mdash;&mdash;&mdash;&mdash;</span>
-        <p class="rsvp-p">Nos encantaría compartir este momento juntos para celebrar nuestro amor!</p>
-      </div>
-      <div class="form-section">
-      <div class="form-wrap fade" id="form">
-        <h2 class="rsvp-title" style="margin-bottom:16px;">CONFIRMAR<br>ASISTENCIA</h2>
-        <span class="rsvp-note" style="display:block;margin-bottom:40px;">Antes del 15 de octubre</span>
-        <form id="cf" action="https://formspree.io/f/mpqnzwno" method="POST">
-          <input type="hidden" name="_language" value="es">
-          <input type="hidden" name="_subject" value="Nueva confirmación — Nati & Joaco 2026">
-          <div class="form-row">
-            <div class="form-field"><label class="form-lbl">Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
-            <div class="form-field"><label class="form-lbl">Teléfono</label><input type="tel" name="telefono" placeholder="11 XXXX-XXXX"></div>
-          </div>
-          <div class="form-row">
-            <div class="form-field">
-              <label class="form-lbl">Asistencia</label>
-              <div class="sel-wrap"><select name="asistencia" required><option value="">Seleccioná</option><option>Sí, confirmo</option><option>No puedo ir</option></select></div>
-            </div>
-            <div class="form-field"><label class="form-lbl">Personas</label><input type="number" name="personas" min="1" max="10" placeholder="1"></div>
-          </div>
-          <div class="form-row">
-            <div class="form-field full"><label class="form-lbl">Restricciones alimentarias</label><input type="text" name="restricciones" placeholder="Ninguna / vegetariano / celiaco..."></div>
-          </div>
-          <div class="form-row">
-            <div class="form-field full"><label class="form-lbl">Canción que no puede faltar</label><input type="text" name="cancion" placeholder="Artista o canción..."></div>
-          </div>
-          <div class="form-row">
-            <div class="form-field full"><label class="form-lbl">Mensaje</label><textarea name="mensaje" placeholder="Opcional..."></textarea></div>
-          </div>
-          <button type="submit" class="form-submit">Confirmar asistencia</button>
-        </form>
-      </div>
-      </div>
+  <!-- RSVP -->
+  <section class="rsvp fade" id="rsvp">
+    <div class="rsvp-left">
+      <span class="section-marker">03 &mdash;&mdash;&mdash;&mdash;</span>
+      <p class="rsvp-p">Nos encantaría compartir este momento juntos para celebrar nuestro amor!</p>
     </div>
-    <div class="rsvp-block-right">
+    <div class="rsvp-right">
+      <img src="beso1.jpg" loading="lazy" alt="">
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <div class="form-section">
+    <div class="form-wrap fade" id="form">
+      <h2 class="rsvp-title" style="margin-bottom:16px;">CONFIRMAR<br>ASISTENCIA</h2>
+      <span class="rsvp-note" style="display:block;margin-bottom:40px;">Antes del 15 de octubre</span>
+      <form id="cf" action="https://formspree.io/f/mpqnzwno" method="POST">
+        <input type="hidden" name="_language" value="es">
+        <input type="hidden" name="_subject" value="Nueva confirmación — Nati & Joaco 2026">
+        <div class="form-row">
+          <div class="form-field"><label class="form-lbl">Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+          <div class="form-field"><label class="form-lbl">Teléfono</label><input type="tel" name="telefono" placeholder="11 XXXX-XXXX"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-lbl">Asistencia</label>
+            <div class="sel-wrap"><select name="asistencia" required><option value="">Seleccioná</option><option>Sí, confirmo</option><option>No puedo ir</option></select></div>
+          </div>
+          <div class="form-field"><label class="form-lbl">Personas</label><input type="number" name="personas" min="1" max="10" placeholder="1"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field full"><label class="form-lbl">Restricciones alimentarias</label><input type="text" name="restricciones" placeholder="Ninguna / vegetariano / celiaco..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field full"><label class="form-lbl">Canción que no puede faltar</label><input type="text" name="cancion" placeholder="Artista o canción..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field full"><label class="form-lbl">Mensaje</label><textarea name="mensaje" placeholder="Opcional..."></textarea></div>
+        </div>
+        <button type="submit" class="form-submit">Confirmar asistencia</button>
+      </form>
+    </div>
+    <div class="form-photo">
       <img src="chacra4.jpg" loading="lazy" alt="">
     </div>
   </div>
