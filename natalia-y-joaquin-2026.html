@@ -632,7 +632,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .hero-right { flex-basis: 62svh; }
+      .hero-right { flex-basis: auto; }
       .story { grid-template-columns: 1fr; }
       .story-left { padding: 64px 8vw; }
       .story-right { height: 70vw; min-height: 280px; }
@@ -642,9 +642,9 @@
       .date-col:nth-child(2) { border-right: none; }
       .date-col:nth-child(3) { border-top: none; border-right: none; }
       .date-col:nth-child(4) { border-top: none; border-right: none; }
-      .rsvp { grid-template-columns: 1fr; padding: 72px 0; }
-      .rsvp-left { border-right: none; border-bottom: none; min-height: auto; padding-bottom: 48px; }
-      .rsvp-right img { height: auto; object-fit: unset; }
+      .rsvp { display: block; padding: 0; }
+      .rsvp-left { padding: 72px 8vw 48px; }
+      .rsvp-right img { height: auto !important; object-fit: unset !important; }
       .form-section { grid-template-columns: 1fr; }
       .form-photo { display: none; }
       .rsvp-left { padding: 10vw 8vw 6vw; }
