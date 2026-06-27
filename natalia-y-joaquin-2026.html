@@ -610,40 +610,43 @@
 
     /* ── FLOATING NAV ── */
     .fnav-btn {
-      position: fixed; bottom: 32px; left: 32px; z-index: 900;
-      width: 44px; height: 44px; border-radius: 50%;
+      position: fixed; bottom: 28px; left: 28px; z-index: 900;
+      width: 50px; height: 50px; border-radius: 50%;
       background: var(--dark); border: none; cursor: pointer;
       display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
-      transition: opacity .3s; box-shadow: 0 4px 16px rgba(46,53,40,.3);
+      box-shadow: 0 4px 20px rgba(46,53,40,.45);
+      transition: transform .2s;
     }
-    .fnav-btn:hover { opacity: .85; }
+    .fnav-btn:hover { transform: scale(1.07); }
     .fnav-btn span {
-      display: block; width: 18px; height: 1px;
-      background: var(--bg); transition: transform .3s, opacity .3s;
+      display: block; width: 20px; height: 1.5px;
+      background: var(--bg); transition: transform .28s, opacity .28s;
     }
-    .fnav-btn.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .fnav-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .fnav-btn.open span:nth-child(2) { opacity: 0; }
-    .fnav-btn.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .fnav-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
     .fnav-menu {
-      position: fixed; bottom: 88px; left: 32px; z-index: 899;
+      position: fixed; bottom: 90px; left: 28px; z-index: 899;
       background: var(--dark);
-      padding: 8px 0;
-      min-width: 180px;
-      box-shadow: 0 8px 32px rgba(46,53,40,.35);
+      padding: 6px 0;
+      min-width: 200px;
+      box-shadow: 0 8px 32px rgba(46,53,40,.45);
       opacity: 0; pointer-events: none;
-      transform: translateY(8px);
-      transition: opacity .25s, transform .25s;
+      transform: translateY(10px) scale(.97);
+      transform-origin: bottom left;
+      transition: opacity .22s, transform .22s;
     }
     .fnav-menu.open { opacity: 1; pointer-events: all; transform: none; }
     .fnav-menu a {
-      display: block; padding: 12px 24px;
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 22px;
       font-family: 'Inter', sans-serif;
       font-size: 10px; font-weight: 400; letter-spacing: .22em;
       text-transform: uppercase; color: var(--bg);
-      text-decoration: none; transition: opacity .2s;
+      text-decoration: none; transition: background .15s;
     }
-    .fnav-menu a:hover { opacity: .6; }
-    .fnav-menu a + a { border-top: 1px solid rgba(162,174,116,.12); }
+    .fnav-menu a:hover { background: rgba(162,174,116,.1); }
+    .fnav-menu a + a { border-top: 1px solid rgba(162,174,116,.1); }
 
     /* ── BIENVENIDA ── */
     .bv {
@@ -895,7 +898,7 @@
   <div class="form-wrap fade" id="form">
     <div class="form-card">
       <div class="form-tag">Confirmanos tu asistencia</div>
-      <h2 class="form-title">¿Venís?</h2>
+      <h2 class="form-title">¡Te<br>esperamos!</h2>
       <p style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;">Antes del 1° de octubre</p>
       <form id="cf" action="https://formspree.io/f/mpqnzwno" method="POST">
         <input type="hidden" name="_language" value="es">
