@@ -221,13 +221,16 @@
     }
     .date-cal-btn {
       font-family: 'Inter', sans-serif;
-      font-size: 8px; letter-spacing: .26em;
+      font-size: 9px; letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--accent-light); opacity: .5;
-      border-bottom: 1px solid rgba(162,174,116,.25);
-      padding-bottom: 2px;
+      color: var(--dark);
+      background: var(--accent-light);
+      border: none;
+      border-radius: 100px;
+      padding: 9px 18px;
       display: inline-block;
       transition: opacity .3s;
+      text-decoration: none;
     }
     .date-cal-btn:hover { opacity: .8; }
 
@@ -1130,7 +1133,7 @@
       fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
         .then(function(r){
           if(r.ok){
-            form.parentElement.innerHTML='<div class="form-ok"><p class="form-ok-title">¡Gracias por confirmar!</p><p class="form-ok-sub">Los esperamos el 27 de noviembre</p></div>';
+            form.parentElement.innerHTML='<div class="form-ok"><p class="form-ok-title">¡Gracias por tu respuesta!</p><p class="form-ok-sub" style="margin-bottom:20px">Los esperamos el 27 de noviembre</p><p class="form-ok-sub" style="line-height:1.8;opacity:.8;font-size:11px">📍 Recordá que el evento es un viernes — es probable que haya tráfico saliendo de Capital. Te recomendamos salir con tiempo para llegar tranquilo a la ceremonia a las 18:00 hs.</p></div>';
           } else { btn.textContent='Confirmar asistencia'; btn.disabled=false; }
         }).catch(function(){ btn.textContent='Confirmar asistencia'; btn.disabled=false; });
     });
