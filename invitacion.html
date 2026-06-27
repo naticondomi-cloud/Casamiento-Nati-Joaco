@@ -6,290 +6,519 @@
   <title>Nati & Joaco · 27.11.2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --green:  #2E3528;
-      --green-mid: #3D4A32;
+      --green:  #3A4A30;
+      --green2: #4A5C3A;
       --olive:  #A2AE74;
-      --cream:  #F6F3EE;
+      --cream:  #F8F5F0;
       --cream2: #EFE9DE;
+      --text:   #2A2A2A;
+      --muted:  #7A7A6A;
     }
 
-    html, body {
-      min-height: 100%;
+    html { scroll-behavior: smooth; }
+    body {
       background: var(--cream2);
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
+      max-width: 430px;
+      margin: 0 auto;
     }
 
-    /* ── CARD ── */
-    .card {
-      max-width: 420px;
-      margin: 0 auto;
+    img { display: block; width: 100%; }
+
+    /* ══════════════════════════════
+       1. PORTADA — monograma
+    ══════════════════════════════ */
+    .cover {
       background: var(--green);
       min-height: 100svh;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
       position: relative;
       overflow: hidden;
+      padding: 60px 40px;
     }
-
-    /* ── TOP SECTION ── */
-    .card-top {
-      padding: 52px 32px 0;
-      text-align: center;
-      position: relative;
-      z-index: 2;
+    /* patrón de hojas en fondo */
+    .cover::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 20% 20%, rgba(162,174,116,.08) 0%, transparent 60%),
+                        radial-gradient(circle at 80% 80%, rgba(162,174,116,.06) 0%, transparent 60%);
+      pointer-events: none;
     }
-
-    .card-intro {
-      font-size: 9px;
-      letter-spacing: .28em;
-      text-transform: uppercase;
-      color: var(--olive);
-      opacity: .75;
-      line-height: 1.9;
-      margin-bottom: 28px;
-    }
-
-    .card-names {
+    .monogram {
       font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(120px, 35vw, 160px);
       font-weight: 300;
       color: var(--cream);
       line-height: 1;
+      letter-spacing: -.02em;
+      opacity: .92;
+      position: relative;
+      text-align: center;
     }
-    .card-names .first  { font-size: clamp(68px, 19vw, 88px); display: block; }
-    .card-names .amp    { font-size: clamp(36px, 10vw, 48px); display: block; margin: 4px 0; opacity: .7; font-style: italic; }
-    .card-names .second { font-size: clamp(68px, 19vw, 88px); display: block; }
-
-    .card-date-block {
-      margin-top: 24px;
-      margin-bottom: 36px;
-    }
-    .card-day {
-      font-size: 9px;
+    .monogram span { font-style: italic; opacity: .6; font-size: .55em; vertical-align: middle; }
+    .cover-sub {
+      font-size: 10px;
       letter-spacing: .32em;
       text-transform: uppercase;
       color: var(--olive);
       opacity: .7;
-      display: block;
-      margin-bottom: 6px;
+      margin-top: 32px;
+      text-align: center;
     }
-    .card-date-num {
+    .cover-scroll {
+      position: absolute; bottom: 36px;
+      font-size: 9px; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--cream); opacity: .35;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .cover-scroll::after {
+      content: ''; width: 1px; height: 40px; background: var(--cream); opacity: .4;
+    }
+
+    /* ══════════════════════════════
+       2. NOMBRES + POLAROIDS
+    ══════════════════════════════ */
+    .invite {
+      background: var(--green);
+      padding: 52px 36px 0;
+      position: relative;
+    }
+    .invite-intro {
+      font-size: 9px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--olive);
+      opacity: .7;
+      line-height: 2;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .invite-names {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(26px, 8vw, 36px);
       font-weight: 300;
       color: var(--cream);
-      letter-spacing: .16em;
-    }
-
-    /* ── POLAROIDS ── */
-    .polaroids {
-      position: relative;
-      width: 100%;
-      height: 320px;
-      z-index: 3;
-      flex-shrink: 0;
-    }
-
-    .polaroid {
-      position: absolute;
-      background: white;
-      padding: 10px 10px 32px;
-      box-shadow: 0 8px 32px rgba(0,0,0,.35);
-    }
-    .polaroid img {
-      display: block;
-      width: 180px;
-      height: 200px;
-      object-fit: cover;
-      filter: saturate(.85) contrast(1.02);
-    }
-
-    .polaroid-1 {
-      left: 8px;
-      top: 20px;
-      transform: rotate(-5deg);
-    }
-    .polaroid-2 {
-      right: 8px;
-      top: 60px;
-      transform: rotate(4deg);
-    }
-    .polaroid-2 img {
-      filter: saturate(0) contrast(1.05) brightness(1.02);
-    }
-
-    /* ── DIVIDER ── */
-    .card-divider {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 0 32px;
-      margin: 8px 0;
-      z-index: 2;
-    }
-    .card-divider::before,
-    .card-divider::after {
-      content: '';
-      flex: 1;
-      height: 0.5px;
-      background: var(--olive);
-      opacity: .35;
-    }
-    .card-divider span {
-      font-size: 14px;
-      color: var(--olive);
-      opacity: .5;
-    }
-
-    /* ── BOTTOM ── */
-    .card-bottom {
-      background: var(--cream);
-      margin: 0;
-      padding: 32px 28px 48px;
-      flex: 1;
-      z-index: 2;
-    }
-
-    .event-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 18px;
-      padding: 20px 0;
-      border-bottom: 0.5px solid rgba(46,53,40,.1);
-    }
-    .event-row:last-child { border-bottom: none; }
-
-    .event-icon {
-      width: 32px;
-      height: 32px;
-      flex-shrink: 0;
-      color: var(--green);
-      opacity: .6;
-      margin-top: 2px;
-    }
-
-    .event-info { flex: 1; }
-    .event-label {
-      font-size: 8px;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: var(--olive);
-      display: block;
-      margin-bottom: 5px;
-    }
-    .event-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 300;
-      color: var(--green);
-      display: block;
-      line-height: 1.2;
-      margin-bottom: 3px;
-    }
-    .event-detail {
-      font-size: 11px;
-      letter-spacing: .1em;
-      color: var(--green);
-      opacity: .55;
-    }
-
-    .card-footer {
       text-align: center;
-      padding: 20px 28px 0;
-      border-top: 0.5px solid rgba(46,53,40,.1);
-      margin-top: 12px;
+      line-height: 1;
     }
-    .card-footer-link {
-      font-size: 9px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--green);
-      opacity: .45;
-      text-decoration: none;
+    .invite-names .n1,
+    .invite-names .n2 { font-size: clamp(64px, 18vw, 84px); display: block; }
+    .invite-names .amp {
+      font-size: clamp(34px, 9vw, 44px);
+      display: block; margin: 8px 0;
+      opacity: .65; font-style: italic;
     }
-    .card-footer-note {
-      font-size: 10px;
-      color: var(--green);
-      opacity: .4;
-      margin-top: 6px;
-      font-style: italic;
+    .invite-day-block {
+      text-align: center;
+      margin: 28px 0 40px;
+    }
+    .invite-day-label {
+      font-size: 9px; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--olive); opacity: .6; display: block; margin-bottom: 8px;
+    }
+    .invite-day-num {
       font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 8vw, 38px);
+      font-weight: 300; color: var(--cream);
+      letter-spacing: .18em;
     }
+
+    /* polaroids container */
+    .polaroids-wrap {
+      position: relative;
+      height: 300px;
+      width: 100%;
+    }
+    .pol {
+      position: absolute;
+      background: #fff;
+      padding: 9px 9px 28px;
+      box-shadow: 0 8px 28px rgba(0,0,0,.3);
+    }
+    .pol img {
+      width: 160px; height: 190px;
+      object-fit: cover; display: block;
+    }
+    .pol-1 { left: 10px; top: 15px; transform: rotate(-6deg); }
+    .pol-2 { right: 10px; top: 50px; transform: rotate(4.5deg); }
+    .pol-2 img { filter: saturate(0) contrast(1.05) brightness(1.02); }
+
+    /* ══════════════════════════════
+       3. CEREMONIA — blanco
+    ══════════════════════════════ */
+    .ceremony {
+      background: var(--cream);
+      padding: 56px 36px 52px;
+      text-align: center;
+    }
+    .section-icon {
+      margin: 0 auto 24px;
+      color: var(--green);
+      opacity: .7;
+    }
+    .section-tag {
+      font-size: 9px; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px; display: block;
+    }
+    .section-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(30px, 8vw, 40px);
+      font-weight: 300; color: var(--text);
+      letter-spacing: .08em; display: block; margin-bottom: 6px;
+    }
+    .section-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 11vw, 52px);
+      font-weight: 300; color: var(--text);
+      display: block; margin-bottom: 20px;
+    }
+    .section-venue {
+      font-size: 11px; font-weight: 500; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--text);
+      display: block; margin-bottom: 6px;
+    }
+    .section-address {
+      font-size: 13px; color: var(--muted);
+      line-height: 1.6; display: block; margin-bottom: 28px;
+    }
+    .btn-ubicacion {
+      display: inline-block;
+      border: 1px solid var(--green);
+      border-radius: 100px;
+      padding: 11px 32px;
+      font-size: 9px; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--green); text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .btn-ubicacion:hover { background: var(--green); color: var(--cream); }
+
+    /* ══════════════════════════════
+       4. RECEPCIÓN — verde arco
+    ══════════════════════════════ */
+    .reception {
+      background: var(--green);
+      padding: 56px 36px 52px;
+      text-align: center;
+      position: relative;
+    }
+    .reception .section-icon { color: var(--olive); opacity: .75; }
+    .reception .section-tag { color: var(--olive); opacity: .65; }
+    .reception .section-name { color: var(--cream); }
+    .reception .section-time { color: var(--cream); }
+    .reception .section-venue { color: var(--cream); }
+    .reception .section-address { color: var(--olive); opacity: .7; }
+    .reception .btn-ubicacion {
+      border-color: var(--olive);
+      color: var(--cream);
+    }
+    .reception .btn-ubicacion:hover { background: var(--olive); color: var(--green); }
+
+    /* ══════════════════════════════
+       5. VESTIMENTA — blanco
+    ══════════════════════════════ */
+    .dresscode {
+      background: var(--cream);
+      padding: 56px 36px 52px;
+      text-align: center;
+    }
+    .dresscode-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 10vw, 48px);
+      font-weight: 300; letter-spacing: .12em;
+      color: var(--text); display: block; margin-bottom: 6px;
+    }
+    .dresscode-sub {
+      font-size: 9px; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 28px; display: block;
+    }
+    .dresscode-p {
+      font-size: 14px; color: var(--muted);
+      line-height: 1.8; margin-bottom: 28px;
+    }
+    .color-dots {
+      display: flex; justify-content: center; gap: 10px; margin-top: 8px;
+    }
+    .dot {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 1px solid rgba(0,0,0,.08);
+    }
+
+    /* ══════════════════════════════
+       6. REGALOS — crema
+    ══════════════════════════════ */
+    .gifts {
+      background: var(--cream2);
+      padding: 56px 36px 52px;
+      text-align: center;
+    }
+    .gifts .section-icon { color: var(--green); opacity: .6; }
+    .gifts-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 10vw, 48px);
+      font-weight: 300; letter-spacing: .12em;
+      color: var(--text); display: block; margin-bottom: 16px;
+    }
+    .gifts-p {
+      font-size: 14px; color: var(--muted);
+      line-height: 1.85; margin-bottom: 28px;
+    }
+    .gift-row {
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 12px 0;
+      border-bottom: 0.5px solid rgba(46,53,40,.12);
+      text-align: left;
+    }
+    .gift-row:last-child { border-bottom: none; }
+    .gift-k {
+      font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--muted); flex: 0 0 52px;
+    }
+    .gift-v {
+      font-size: 13px; color: var(--text); flex: 1; padding: 0 10px;
+      word-break: break-all;
+    }
+    .gift-copy {
+      font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--green); background: none; border: none;
+      border-bottom: 1px solid var(--green); padding: 2px 0;
+      cursor: pointer; transition: opacity .2s; flex-shrink: 0;
+    }
+    .gift-copy:hover, .gift-copy.ok { opacity: .5; }
+    .gift-section-head {
+      font-size: 10px; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--green); margin: 24px 0 8px; display: block; text-align: left;
+      opacity: .7;
+    }
+
+    /* ══════════════════════════════
+       7. CONFIRMACIÓN — verde
+    ══════════════════════════════ */
+    .confirm {
+      background: var(--green);
+      padding: 56px 36px 64px;
+      text-align: center;
+    }
+    .confirm .section-icon { color: var(--olive); opacity: .7; }
+    .confirm-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(30px, 9vw, 40px);
+      font-weight: 300; color: var(--cream);
+      line-height: 1.2; margin-bottom: 12px; display: block;
+    }
+    .confirm-dead {
+      font-size: 11px; letter-spacing: .14em;
+      color: var(--olive); opacity: .75;
+      display: block; margin-bottom: 36px;
+    }
+    .btn-confirm {
+      display: inline-block;
+      background: var(--cream); color: var(--green);
+      border-radius: 100px; padding: 16px 44px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px; font-weight: 500; letter-spacing: .2em;
+      text-transform: uppercase; text-decoration: none;
+      transition: opacity .2s;
+    }
+    .btn-confirm:hover { opacity: .85; }
+    .confirm-footer {
+      margin-top: 48px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-style: italic; font-weight: 300;
+      color: var(--cream); opacity: .4;
+    }
+
+    /* ══════════════════════════════
+       SEPARADORES
+    ══════════════════════════════ */
+    .sep {
+      display: flex; align-items: center; gap: 16px;
+      padding: 0 36px; background: inherit;
+    }
+    .sep::before, .sep::after {
+      content: ''; flex: 1; height: 0.5px; opacity: .25;
+    }
+    .sep span { font-size: 13px; opacity: .4; }
+    .sep-green { background: var(--green); }
+    .sep-green::before, .sep-green::after { background: var(--olive); }
+    .sep-green span { color: var(--olive); }
+    .sep-cream { background: var(--cream); }
+    .sep-cream::before, .sep-cream::after { background: var(--green); }
+    .sep-cream span { color: var(--green); }
+    .sep-cream2 { background: var(--cream2); }
+    .sep-cream2::before, .sep-cream2::after { background: var(--green); }
+    .sep-cream2 span { color: var(--green); }
   </style>
 </head>
 <body>
-  <div class="card">
 
-    <div class="card-top">
-      <p class="card-intro">Con mucha alegría<br>los invitamos a celebrar<br>nuestro casamiento</p>
+  <!-- 1. PORTADA -->
+  <section class="cover">
+    <div class="monogram">N<span>&</span>J</div>
+    <p class="cover-sub">Natalia &amp; Joaquín · 2026</p>
+    <div class="cover-scroll">Deslizá</div>
+  </section>
 
-      <div class="card-names">
-        <span class="first">NATI</span>
-        <span class="amp">&amp;</span>
-        <span class="second">JOACO</span>
-      </div>
-
-      <div class="card-date-block">
-        <span class="card-day">Viernes · 27 de Noviembre de 2026</span>
-        <span class="card-date-num">27 · 11 · 26</span>
-      </div>
+  <!-- 2. NOMBRES + POLAROIDS -->
+  <section class="invite">
+    <p class="invite-intro">
+      Con mucha alegría<br>
+      los invitamos a celebrar<br>
+      nuestro casamiento
+    </p>
+    <div class="invite-names">
+      <span class="n1">NATI</span>
+      <span class="amp">&amp;</span>
+      <span class="n2">JOACO</span>
     </div>
-
-    <div class="polaroids">
-      <div class="polaroid polaroid-1">
-        <img src="foto1.jpg" alt="">
-      </div>
-      <div class="polaroid polaroid-2">
-        <img src="beso3.jpg" alt="">
-      </div>
+    <div class="invite-day-block">
+      <span class="invite-day-label">Se realizará el día · Viernes</span>
+      <span class="invite-day-num">27 · 11 · 26</span>
     </div>
-
-    <div class="card-divider"><span>✦</span></div>
-
-    <div class="card-bottom">
-
-      <div class="event-row">
-        <svg class="event-icon" viewBox="0 0 48 54" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6,22 24,10 42,22"/>
-          <rect x="6" y="22" width="36" height="30"/>
-          <line x1="24" y1="2" x2="24" y2="10"/>
-          <line x1="20" y1="6" x2="28" y2="6"/>
-          <rect x="16" y="36" width="16" height="16"/>
-        </svg>
-        <div class="event-info">
-          <span class="event-label">Ceremonia · 18:00 hs</span>
-          <span class="event-name">Parroquia Exaltación<br>de la Cruz</span>
-          <span class="event-detail">Capilla del Señor · Buenos Aires</span>
-        </div>
-      </div>
-
-      <div class="event-row">
-        <svg class="event-icon" viewBox="0 0 52 54" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14,4 L6,28 Q6,36 14,36 Q22,36 22,28 L14,4 Z"/>
-          <line x1="14" y1="36" x2="14" y2="48"/>
-          <line x1="7" y1="48" x2="21" y2="48"/>
-          <path d="M38,4 L30,28 Q30,36 38,36 Q46,36 46,28 L38,4 Z"/>
-          <line x1="38" y1="36" x2="38" y2="48"/>
-          <line x1="31" y1="48" x2="45" y2="48"/>
-        </svg>
-        <div class="event-info">
-          <span class="event-label">Celebración · 19:00 hs</span>
-          <span class="event-name">Espacio PK</span>
-          <span class="event-detail">Capilla del Señor · Buenos Aires</span>
-        </div>
-      </div>
-
-      <div class="card-footer">
-        <a class="card-footer-link" href="https://naticondomi-cloud.github.io/Casamiento-Nati-Joaco/">Ver invitación completa</a>
-        <p class="card-footer-note">Confirmá antes del 1° de octubre</p>
-      </div>
-
+    <div class="polaroids-wrap">
+      <div class="pol pol-1"><img src="foto1.jpg" alt=""></div>
+      <div class="pol pol-2"><img src="abrazo1.jpg" alt=""></div>
     </div>
+  </section>
+
+  <!-- SEP -->
+  <div class="sep sep-green" style="padding-top:24px;padding-bottom:24px;background:var(--green)">
+    <span>✦</span>
   </div>
+
+  <!-- 3. CEREMONIA -->
+  <section class="ceremony">
+    <svg class="section-icon" width="72" height="80" viewBox="0 0 72 80" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="36" y1="2" x2="36" y2="10"/>
+      <line x1="31" y1="6" x2="41" y2="6"/>
+      <polyline points="8,32 36,16 64,32"/>
+      <rect x="8" y="32" width="56" height="46"/>
+      <rect x="22" y="52" width="28" height="26"/>
+      <line x1="36" y1="32" x2="36" y2="52"/>
+      <rect x="14" y="40" width="14" height="14"/>
+      <rect x="44" y="40" width="14" height="14"/>
+    </svg>
+    <span class="section-tag">Ceremonia religiosa</span>
+    <span class="section-name">CEREMONIA</span>
+    <span class="section-time">18:00 hs</span>
+    <span class="section-venue">Parroquia Exaltación de la Cruz</span>
+    <span class="section-address">Capilla del Señor<br>Buenos Aires</span>
+    <a class="btn-ubicacion" href="https://maps.app.goo.gl/AFt39m4bcoL6gsdo9" target="_blank">Ubicación →</a>
+  </section>
+
+  <div class="sep sep-cream"><span>✦</span></div>
+
+  <!-- 4. RECEPCIÓN -->
+  <section class="reception">
+    <svg class="section-icon" width="64" height="72" viewBox="0 0 64 72" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16,4 L8,32 Q8,44 16,44 Q24,44 24,32 L16,4Z"/>
+      <line x1="16" y1="44" x2="16" y2="60"/>
+      <line x1="6" y1="60" x2="26" y2="60"/>
+      <path d="M48,4 L40,32 Q40,44 48,44 Q56,44 56,32 L48,4Z"/>
+      <line x1="48" y1="44" x2="48" y2="60"/>
+      <line x1="38" y1="60" x2="58" y2="60"/>
+      <path d="M24,8 Q32,16 40,8"/>
+      <line x1="16" y1="62" x2="48" y2="62"/>
+    </svg>
+    <span class="section-tag">Celebración</span>
+    <span class="section-name">RECEPCIÓN</span>
+    <span class="section-time">19:00 hs</span>
+    <span class="section-venue">Espacio PK</span>
+    <span class="section-address">Capilla del Señor<br>Buenos Aires</span>
+    <a class="btn-ubicacion" href="https://maps.app.goo.gl/NCFduDQNpT9jeaGE6" target="_blank">Ubicación →</a>
+  </section>
+
+  <div class="sep sep-green" style="padding-top:24px;padding-bottom:24px;background:var(--green)"><span>✦</span></div>
+
+  <!-- 5. VESTIMENTA -->
+  <section class="dresscode">
+    <svg class="section-icon" width="64" height="72" viewBox="0 0 64 72" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+      <!-- vestido -->
+      <path d="M20,4 L12,18 L8,68 L28,68 L28,32 L20,4Z"/>
+      <path d="M20,4 L28,14 L28,32"/>
+      <path d="M20,4 Q22,10 24,4"/>
+      <!-- traje -->
+      <path d="M44,4 L36,18 L36,68 L56,68 L56,18 L44,4Z"/>
+      <path d="M44,4 L40,14 L44,22 L48,14 L44,4Z"/>
+      <line x1="44" y1="22" x2="44" y2="40"/>
+    </svg>
+    <span class="dresscode-title">VESTIMENTA</span>
+    <span class="dresscode-sub">Elegante y cómoda</span>
+    <p class="dresscode-p">
+      Ellas: vestido elegante<br>
+      Ellos: traje oscuro o sport coat<br><br>
+      <em style="font-size:12px;opacity:.7;">Para que puedas disfrutar del día con comodidad</em>
+    </p>
+    <div class="color-dots">
+      <div class="dot" style="background:#3A4A30"></div>
+      <div class="dot" style="background:#A2AE74"></div>
+      <div class="dot" style="background:#C8B99A"></div>
+      <div class="dot" style="background:#F8F5F0"></div>
+      <div class="dot" style="background:#1A1A1A"></div>
+    </div>
+  </section>
+
+  <div class="sep sep-cream"><span>✦</span></div>
+
+  <!-- 6. REGALOS -->
+  <section class="gifts">
+    <svg class="section-icon" width="60" height="64" viewBox="0 0 60 64" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="22" width="52" height="10" rx="1"/>
+      <rect x="8" y="32" width="44" height="28" rx="1"/>
+      <line x1="30" y1="22" x2="30" y2="60"/>
+      <path d="M30,22 Q30,12 22,10 Q14,8 16,16 Q18,22 30,22Z"/>
+      <path d="M30,22 Q30,12 38,10 Q46,8 44,16 Q42,22 30,22Z"/>
+      <line x1="4" y1="32" x2="56" y2="32"/>
+    </svg>
+    <span class="gifts-title">REGALOS</span>
+    <p class="gifts-p">
+      Tu presencia es nuestro mejor regalo.<br>
+      Si querés tener un detalle con nosotros,<br>podés usar estos datos:
+    </p>
+
+    <span class="gift-section-head">Pesos argentinos</span>
+    <div class="gift-row"><span class="gift-k">Alias</span><span class="gift-v">boda.nati.joaco</span><button class="gift-copy" onclick="cp(this,'boda.nati.joaco')">Copiar</button></div>
+    <div class="gift-row"><span class="gift-k">CBU</span><span class="gift-v">0070133030004026589658</span><button class="gift-copy" onclick="cp(this,'0070133030004026589658')">Copiar</button></div>
+
+    <span class="gift-section-head" style="margin-top:20px">Dólares USD</span>
+    <div class="gift-row"><span class="gift-k">Alias</span><span class="gift-v">boda.nati.joaco.usd</span><button class="gift-copy" onclick="cp(this,'boda.nati.joaco.usd')">Copiar</button></div>
+    <div class="gift-row"><span class="gift-k">CBU</span><span class="gift-v">0070133031004024937887</span><button class="gift-copy" onclick="cp(this,'0070133031004024937887')">Copiar</button></div>
+  </section>
+
+  <div class="sep sep-cream2"><span>✦</span></div>
+
+  <!-- 7. CONFIRMACIÓN -->
+  <section class="confirm">
+    <svg class="section-icon" width="48" height="72" viewBox="0 0 48 72" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24,4 Q28,12 26,20 Q24,28 24,36"/>
+      <path d="M24,36 Q20,44 18,52 Q16,60 20,66"/>
+      <path d="M24,4 Q18,8 16,16"/>
+      <path d="M24,4 Q30,8 32,16"/>
+      <path d="M24,36 Q18,32 14,36 Q12,40 16,42"/>
+      <path d="M24,36 Q30,32 34,36 Q36,40 32,42"/>
+    </svg>
+    <span class="confirm-title">CONFIRMACIÓN<br>DE ASISTENCIA</span>
+    <span class="confirm-dead">Tenés tiempo hasta el 1° de octubre</span>
+    <a class="btn-confirm" href="https://naticondomi-cloud.github.io/Casamiento-Nati-Joaco/#form">Confirmar →</a>
+    <p class="confirm-footer">Natalia &amp; Joaquín · 27.11.26</p>
+  </section>
+
+  <script>
+    function cp(btn, txt) {
+      navigator.clipboard.writeText(txt).then(function() {
+        var orig = btn.textContent;
+        btn.textContent = '¡Copiado!';
+        btn.classList.add('ok');
+        setTimeout(function(){ btn.textContent = orig; btn.classList.remove('ok'); }, 2000);
+      });
+    }
+  </script>
 </body>
 </html>
