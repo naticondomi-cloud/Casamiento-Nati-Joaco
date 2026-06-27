@@ -32,6 +32,13 @@
       overflow-x: hidden;
       line-height: 1.6;
     }
+    body.bv-open {
+      overflow: hidden;
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      touch-action: none;
+    }
     img { display: block; width: 100%; }
     a   { color: inherit; text-decoration: none; }
 
@@ -43,18 +50,24 @@
 
     /* ── HERO ── */
     .hero {
-      display: grid;
-      grid-template-columns: 38% 62%;
-      height: auto; min-height: 100svh;
+      display: flex; flex-direction: column;
+      min-height: 100svh;
+      position: relative;
+    }
+    .hero-right {
+      overflow: hidden;
+      order: -1;
+    }
+    .hero-right img {
+      width: 100%; height: auto; display: block;
+      filter: sepia(.15) contrast(.95) brightness(.95) saturate(.85);
     }
     .hero-left {
       display: flex; flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 6vw 12vh 7vw;
-      position: relative; z-index: 2;
-      background-image: url('fondo foto1.jpg');
-      background-size: cover;
-      background-position: center;
+      justify-content: flex-start;
+      padding: 52px 7vw 72px;
+      background: var(--dark);
+      flex: 1;
     }
     .hero-nav {
       position: absolute; top: 0; left: 0; right: 0;
@@ -65,52 +78,41 @@
     }
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(64px, 10vw, 160px);
-      font-weight: 300; line-height: 1.1;
-      letter-spacing: .05em; color: var(--bg);
+      font-size: clamp(72px, 14vw, 160px);
+      font-weight: 300; line-height: 1;
+      letter-spacing: .04em; color: var(--bg);
     }
     .hero-title span { display: block; }
     .hero-amp {
       color: var(--bg);
-      font-size: clamp(36px, 5vw, 72px);
-      line-height: 1; margin: .1em 0;
+      font-size: clamp(40px, 7vw, 80px);
+      line-height: 1; margin: .05em 0;
       opacity: 0.8;
     }
     .hero-meta {
-      margin-top: 48px;
-      display: flex; flex-direction: column; gap: 10px;
+      margin-top: 32px;
+      display: flex; flex-direction: column; gap: 8px;
     }
     .hero-date {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(18px, 2vw, 26px); font-weight: 300;
+      font-size: clamp(14px, 2vw, 20px); font-weight: 300;
       letter-spacing: .12em;
-      color: var(--bg); opacity: 1;
+      color: var(--bg); opacity: 0.5;
     }
     .hero-date:first-child {
-      font-size: clamp(22px, 2.5vw, 32px);
+      font-size: clamp(16px, 2.2vw, 22px); opacity: 0.7;
     }
     .hero-enter {
-      margin-top: 80px;
-      display: flex; flex-direction: column; gap: 24px;
+      margin-top: 48px;
+      display: flex; flex-direction: column; gap: 20px;
       color: var(--bg); font-size: 10px; letter-spacing: .2em; cursor: pointer;
-      opacity: 0.8; transition: opacity .3s;
+      opacity: 0.6; transition: opacity .3s;
     }
     .hero-enter:hover { opacity: 1; }
     .hero-line {
-      width: 1px; height: 64px; background: var(--bg);
+      width: 1px; height: 48px; background: var(--bg);
       margin-left: 12px;
     }
-    .hero-right {
-      overflow: hidden; position: relative;
-    }
-    .hero-right img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center 50%;
-      filter: sepia(.15) contrast(.95) brightness(.95) saturate(.85);
-      transform: scale(1);
-      transition: transform 9s ease;
-    }
-    .hero-right img.loaded { transform: scale(1); }
 
     /* ── STORY (Ex Foto Cuadrada) ── */
     .story {
@@ -120,7 +122,7 @@
       background: var(--bg-alt);
     }
     .story-left {
-      padding: 120px 8vw;
+      padding: clamp(72px, 8vw, 112px) 8vw;
       display: flex; flex-direction: column; justify-content: center;
     }
     .section-marker {
@@ -151,16 +153,16 @@
     /* ── DATES ── */
     .dates {
       position: relative;
-      padding-top: 100px;
+      padding-top: 72px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      background: var(--bg-alt);
+      background: var(--dark);
     }
     .dates > .section-marker {
-      position: absolute; top: 100px; left: 8vw;
+      position: absolute; top: 72px; left: 8vw; color: var(--muted);
     }
     .date-col {
-      padding: 120px 40px;
+      padding: clamp(72px, 7vw, 104px) 32px;
       border-right: none;
       text-align: center;
       display: flex; flex-direction: column; align-items: center;
@@ -168,18 +170,18 @@
     .date-col:last-child { border-right: none; }
     .date-icon {
       width: 40px; height: 40px;
-      color: var(--text); opacity: 0.8;
+      color: var(--accent-light); opacity: 0.8;
       margin-bottom: 24px; flex-shrink: 0;
     }
     .date-label {
       font-size: 11px; font-weight: 400; letter-spacing: .44em;
-      text-transform: uppercase; color: var(--text); opacity: 0.6;
+      text-transform: uppercase; color: var(--accent-light); opacity: 0.6;
       display: block; margin-bottom: 20px;
     }
     .date-time {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(32px, 3.5vw, 52px);
-      font-weight: 300; color: var(--text);
+      font-weight: 300; color: var(--bg);
       display: block; line-height: 1; letter-spacing: .04em;
       margin-bottom: 16px;
     }
@@ -187,22 +189,22 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(16px, 1.6vw, 22px);
       font-weight: 300; font-style: italic;
-      color: var(--text); display: block;
+      color: var(--bg); display: block;
       line-height: 1.45; margin-bottom: 6px;
     }
     .date-sub {
       font-size: 10px; font-weight: 400; letter-spacing: .18em;
-      text-transform: uppercase; color: var(--text); opacity: 0.5;
+      text-transform: uppercase; color: var(--accent-light); opacity: 0.5;
       display: block; margin-bottom: 20px;
     }
     .date-body {
       font-size: 16px; font-weight: 300;
-      color: var(--text); opacity: 0.8; line-height: 1.8; text-align: center;
+      color: var(--bg-alt); opacity: 0.8; line-height: 1.8; text-align: center;
     }
     .date-link {
       font-size: 10px; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--text);
-      border-bottom: 1px solid var(--text);
+      text-transform: uppercase; color: var(--accent-light);
+      border-bottom: 1px solid var(--accent-light);
       padding-bottom: 1px; display: inline-block;
       transition: opacity .3s;
     }
@@ -212,13 +214,13 @@
     .rsvp {
       display: grid;
       grid-template-columns: 42% 58%;
-      min-height: 80vh;
+      min-height: 0;
       border-top: none;
-      padding: 10vw 0;
+      padding: clamp(72px, 7vw, 112px) 0;
       background: #fff;
     }
     .rsvp-left {
-      padding: 8vw;
+      padding: clamp(64px, 7vw, 96px) 8vw;
       display: flex; flex-direction: column; justify-content: center;
       border-right: none;
     }
@@ -261,57 +263,72 @@
 
     /* ── FORM ── */
     .form-section {
-      background: #fff;
+      background: var(--bg);
+      padding: clamp(64px, 8vw, 112px) 8vw;
     }
     .form-wrap {
-      padding: 160px 8vw;
-      border-top: none;
-      max-width: 600px; margin: 0 auto;
+      max-width: 560px; margin: 0 auto;
+    }
+    .form-card {
+      background: #fff;
+      padding: clamp(40px, 5vw, 60px) clamp(28px, 5vw, 52px);
+      border: 1px solid rgba(117,129,59,0.12);
+    }
+    .form-tag {
+      font-size: 9px; font-weight: 400; letter-spacing: .26em;
+      text-transform: uppercase; color: var(--muted);
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 20px;
+    }
+    .form-tag::after {
+      content: ''; flex: 1; height: 0.5px;
+      background: var(--muted); opacity: 0.35;
     }
     .form-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(32px, 3vw, 46px);
-      font-weight: 300; color: var(--dark);
-      margin-bottom: 56px; line-height: 1;
+      font-size: clamp(44px, 5vw, 64px);
+      font-weight: 300; font-style: italic; color: var(--dark);
+      margin-bottom: 36px; line-height: 1;
     }
-    .form-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    .form-field { display: flex; flex-direction: column; gap: 8px; }
+    .form-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .form-field { display: flex; flex-direction: column; gap: 7px; }
     .form-field.full { grid-column: 1/-1; }
     .form-lbl {
-      font-size: 11px; font-weight: 400;
-      letter-spacing: .18em; text-transform: uppercase; color: var(--text);
+      font-size: 9px; font-weight: 400;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
     }
     .form-field input,
     .form-field textarea,
     .form-field select {
-      background: transparent; border: none;
-      border-bottom: 1px solid rgba(0,0,0,.18);
-      padding: 12px 0; font-family: 'Inter', sans-serif;
-      font-size: 15px; font-weight: 300; color: var(--text);
+      background: var(--bg); border: 1px solid rgba(117,129,59,0.2);
+      padding: 11px 13px; font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 300; color: var(--text);
       outline: none; width: 100%; appearance: none;
-      transition: border-color .2s;
+      transition: border-color .2s; border-radius: 0;
     }
     .form-field input::placeholder,
-    .form-field textarea::placeholder { color: var(--muted); opacity: .4; }
+    .form-field textarea::placeholder { color: var(--muted); opacity: .55; }
     .form-field input:focus,
     .form-field textarea:focus,
-    .form-field select:focus { border-color: rgba(0,0,0,.25); }
+    .form-field select:focus { border-color: rgba(117,129,59,0.45); }
     .sel-wrap { position: relative; }
     .sel-wrap::after {
-      content: '↓'; position: absolute; right: 0; top: 50%;
+      content: '↓'; position: absolute; right: 13px; top: 50%;
       transform: translateY(-50%); font-size: 10px;
       color: var(--muted); pointer-events: none;
     }
-    .form-field textarea { resize: none; min-height: 72px; }
+    .form-field textarea { resize: none; min-height: 80px; }
     .form-submit {
-      margin-top: 48px; padding: 18px 44px;
-      background: var(--bg-alt); border: none;
-      font-family: 'Inter', sans-serif; font-size: 12px;
-      font-weight: 400; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--text);
-      cursor: pointer; transition: background .3s;
+      margin-top: 32px; padding: 17px 44px;
+      background: var(--dark); border: none;
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif; font-size: 11px;
+      font-weight: 400; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--bg);
+      cursor: pointer; transition: opacity .3s;
+      width: 100%;
     }
-    .form-submit:hover { background: var(--accent-light); color: var(--bg); }
+    .form-submit:hover { opacity: .82; }
     .form-ok { padding: 60px 0; }
     .form-ok-title {
       font-family: 'Cormorant Garamond', serif;
@@ -326,7 +343,7 @@
     /* ── ACCOUNTS ── */
     .acct-header {
       grid-column: 1 / -1;
-      padding: 80px 8vw 0;
+      padding: 72px 8vw 0;
     }
     .acct-title {
       font-family: 'Cormorant Garamond', serif;
@@ -338,11 +355,11 @@
     .accounts {
       display: grid; grid-template-columns: 1fr 1fr;
       border-top: none;
-      padding-bottom: 160px;
+      padding-bottom: 96px;
       background: #fff;
     }
     .acct-col {
-      padding: 80px 8vw;
+      padding: 64px 8vw;
       border-right: none;
     }
     .acct-col:last-child { border-right: none; }
@@ -376,6 +393,97 @@
     }
     .acct-copy:hover, .acct-copy.ok { opacity: 0.6; }
 
+    /* ── FAQ ── */
+    .faq-section {
+      background: var(--bg);
+      padding: clamp(64px, 8vw, 112px) 8vw;
+    }
+    .faq {
+      background: #fff;
+      border: 1px solid rgba(117,129,59,0.12);
+      padding: clamp(40px, 5vw, 60px) clamp(28px, 5vw, 52px);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .faq-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1;
+      letter-spacing: .05em;
+      margin-bottom: 56px;
+    }
+    .faq-list {
+      border-top: 1px solid var(--line);
+    }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+      padding: 28px 0;
+      background: none;
+      border: 0;
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+    }
+    .faq-q-text {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .45s ease;
+    }
+    .faq-answer p {
+      max-width: 680px;
+      padding: 0 56px 28px 0;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.8;
+      opacity: .82;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    /* ── VENUE PHOTOS ── */
+    .venue-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: clamp(280px, 45vw, 560px);
+      overflow: hidden;
+    }
+    .venue-photo { overflow: hidden; }
+    .venue-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: sepia(.12) contrast(.96) brightness(.96) saturate(.88);
+      transition: transform .6s ease;
+    }
+    .venue-photo:hover img { transform: scale(1.03); }
+
     /* ── PHOTO STRIP ── */
     .strip { overflow: hidden; line-height: 0; }
     .strip-track {
@@ -388,7 +496,7 @@
       width: auto;
       object-fit: cover;
       flex-shrink: 0;
-      filter: saturate(0) contrast(1.05);
+      filter: sepia(.15) contrast(.95) brightness(.95) saturate(.85);
     }
     @keyframes strip-scroll {
       0%   { transform: translateX(0); }
@@ -438,6 +546,8 @@
       background: var(--bg); display: flex;
       align-items: center; padding: 0 10vw;
       opacity: 1; transition: opacity .7s;
+      overflow: auto;
+      overscroll-behavior: contain;
     }
     .bv.out { opacity: 0; pointer-events: none; }
     .bv-inner { max-width: 440px; animation: up .9s ease both; }
@@ -461,39 +571,60 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; height: auto; min-height: 100svh; }
-      .hero-left {
-        order: 2; padding: 52px 7vw 72px; justify-content: flex-start;
-        background-image: none; background: var(--dark);
-      }
-      .hero-right { order: 1; height: 62svh; min-height: 320px; }
-      .hero-right img { height: 100%; }
+      .hero-right { flex-basis: 62svh; }
       .story { grid-template-columns: 1fr; }
-      .story-left { padding: 72px 8vw; }
+      .story-left { padding: 64px 8vw; }
       .story-right { height: 70vw; min-height: 280px; }
       .dates { grid-template-columns: 1fr 1fr; }
+      .dates { padding-top: 56px; }
+      .dates > .section-marker { top: 56px; }
       .date-col:nth-child(2) { border-right: none; }
       .date-col:nth-child(3) { border-top: none; border-right: none; }
       .date-col:nth-child(4) { border-top: none; border-right: none; }
-      .rsvp { grid-template-columns: 1fr; padding: 16vw 0; }
-      .rsvp-left { border-right: none; border-bottom: none; min-height: auto; padding-bottom: 12vw; }
+      .rsvp { grid-template-columns: 1fr; padding: 72px 0; }
+      .rsvp-left { border-right: none; border-bottom: none; min-height: auto; padding-bottom: 48px; }
       .rsvp-right { height: 60vw; min-height: 300px; }
       .rsvp-right img { height: 100%; }
       .accounts { grid-template-columns: 1fr; }
       .acct-col { border-right: none; border-bottom: none; padding-bottom: 0; }
       .acct-col:last-child { border-bottom: none; }
+      .faq-section { padding: 40px 5vw 64px; }
       footer { flex-direction: column; gap: 16px; align-items: flex-start; }
       .fab-wrap { bottom: 20px; right: 20px; gap: 8px; }
     }
     @media (max-width: 600px) {
-      .hero-left { padding: 72px 6vw 52px; }
+      .hero-left { padding: 48px 6vw 56px; }
       .story-left { padding: 60px 6vw; }
       .dates { grid-template-columns: 1fr; }
-      .date-col { border-right: none !important; border-top: none !important; padding: 72px 6vw; border-bottom: none; }
+      .dates > .section-marker { left: 6vw; }
+      .date-col { border-right: none !important; border-top: none !important; padding: 56px 6vw; border-bottom: none; }
       .date-col:last-child { border-bottom: none; }
-      .rsvp-left { padding: 72px 6vw; }
-      .form-wrap { padding: 72px 6vw; }
+      .rsvp { padding: 56px 0; }
+      .rsvp-left { padding: 56px 6vw 40px; }
+      .rsvp-right { min-height: 260px; }
+      .form-section { padding: 40px 5vw 64px; }
+      .form-card { padding: 32px 22px; }
+      .rsvp-title { font-size: clamp(42px, 14vw, 58px); }
+      .form-field input,
+      .form-field textarea,
+      .form-field select { font-size: 16px; }
+      .form-submit { width: 100%; padding: 17px 20px; }
+      .acct-header { padding: 56px 6vw 0; }
       .acct-col { padding: 60px 6vw; }
+      .accounts { padding-bottom: 72px; }
+      .acct-row { align-items: flex-start; gap: 10px; }
+      .acct-k { flex-basis: 54px; }
+      .acct-v { padding: 0; font-size: 14px; }
+      .faq { padding: 32px 22px; }
+      .faq-heading { margin-bottom: 28px; }
+      .faq-question { gap: 18px; padding: 24px 0; }
+      .faq-q-text { font-size: 10px; letter-spacing: .16em; }
+      .faq-answer p { padding-right: 0; font-size: 14px; }
+      .fab-wrap { bottom: 14px; right: 14px; }
+      .fab { padding: 10px 12px; font-size: 8px; }
+      .bv { align-items: flex-start; padding: 34svh 10vw 12vh; }
+      .bv-label { margin-bottom: 34px; }
+      .bv-p { margin-bottom: 44px; }
       footer { padding: 52px 6vw; }
       .form-row { grid-template-columns: 1fr; }
       .photo-split { grid-template-columns: 1fr; }
@@ -506,10 +637,10 @@
   <!-- BIENVENIDA -->
   <div class="bv" id="bv" style="display:none">
     <div class="bv-inner">
-      <span class="bv-label">Natalia y Joaquín · 28 noviembre 2026</span>
+      <span class="bv-label">Natalia y Joaquín · 27 noviembre 2026</span>
       <h1 class="bv-h">Hola, <span class="bv-name" id="bv-name"></span></h1>
       <p class="bv-p">Te queremos invitar a celebrar<br>el día más importante de nuestras vidas.</p>
-      <button class="btn" onclick="closeBv(); startMusic()">Ver invitación</button>
+      <button type="button" class="btn" onclick="closeBv(); startMusic()">Ver invitación</button>
     </div>
   </div>
 
@@ -526,8 +657,8 @@
         <span>JOACO</span>
       </h1>
       <div class="hero-meta">
-        <span class="hero-date">28 de Noviembre de 2026</span>
-        <span class="hero-date">Zárate, Argentina</span>
+        <span class="hero-date">27 de Noviembre de 2026</span>
+        <span class="hero-date">Capilla del Señor, Argentina</span>
       </div>
       <div class="hero-enter" onclick="document.getElementById('historia').scrollIntoView({behavior:'smooth'})">
         <div class="hero-line"></div>
@@ -564,9 +695,9 @@
         <rect x="19" y="24" width="10" height="8" rx="1"/>
       </svg>
       <span class="date-label">Ceremonia</span>
-      <span class="date-time">16:00 hs</span>
-      <span class="date-name">Parroquia San Isidro Labrador</span>
-      <span class="date-sub">Lima · Zárate · Buenos Aires</span>
+      <span class="date-time">18:00 hs</span>
+      <span class="date-name">Parroquia Exaltación de la Cruz</span>
+      <span class="date-sub">Capilla del Señor · Buenos Aires</span>
       <a class="date-link" href="https://maps.app.goo.gl/AFt39m4bcoL6gsdo9" target="_blank">Ver en mapa →</a>
     </div>
 
@@ -584,9 +715,9 @@
         <line x1="23" y1="10" x2="29" y2="10"/>
       </svg>
       <span class="date-label">Celebración</span>
-      <span class="date-time">18:00 hs</span>
-      <span class="date-name">Chacras El Aduar</span>
-      <span class="date-sub">Zárate · Buenos Aires</span>
+      <span class="date-time">19:00 hs</span>
+      <span class="date-name">Espacio PK</span>
+      <span class="date-sub">Capilla del Señor · Buenos Aires</span>
       <a class="date-link" href="https://maps.app.goo.gl/NCFduDQNpT9jeaGE6" target="_blank">Ver en mapa →</a>
     </div>
 
@@ -621,10 +752,16 @@
         <line x1="4" y1="20" x2="56" y2="20"/>
       </svg>
       <span class="date-label">Viaje</span>
-      <span class="date-body">1.30 hs de Capital<br><br>Panamericana, Ramal Campana (Ruta 9)<br>hasta Lima (pasando Zárate, km 103)<br>desvío por Atucha</span>
+      <span class="date-body">1 hs de Capital<br><br>Acceso Norte (Ruta 9)<br>hasta Capilla del Señor</span>
     </div>
 
   </section>
+
+  <!-- VENUE PHOTOS -->
+  <div class="venue-strip">
+    <div class="venue-photo"><img src="pk1.png" loading="lazy" alt="Espacio PK"></div>
+    <div class="venue-photo"><img src="pk2.png" loading="lazy" alt="Espacio PK"></div>
+  </div>
 
   <!-- RSVP -->
   <section class="rsvp fade" id="rsvp">
@@ -634,40 +771,42 @@
       <button class="btn" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">Confirmar asistencia ↓</button>
     </div>
     <div class="rsvp-right">
-      <img src="civil1.jpg" loading="lazy" alt="">
+      <img src="beso2.jpg" loading="lazy" alt="">
     </div>
   </section>
 
   <!-- FORM -->
   <div class="form-section">
   <div class="form-wrap fade" id="form">
-    <h2 class="rsvp-title" style="margin-bottom:16px;">CONFIRMAR<br>ASISTENCIA</h2>
-    <span class="rsvp-note" style="display:block;margin-bottom:40px;">Antes del 15 de octubre</span>
-    <form id="cf" action="https://formspree.io/f/mpqnzwno" method="POST">
-      <input type="hidden" name="_language" value="es">
-      <input type="hidden" name="_subject" value="Nueva confirmación — Nati & Joaco 2026">
-      <div class="form-row">
-        <div class="form-field"><label class="form-lbl">Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
-        <div class="form-field"><label class="form-lbl">Teléfono</label><input type="tel" name="telefono" placeholder="11 XXXX-XXXX"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label class="form-lbl">Asistencia</label>
-          <div class="sel-wrap"><select name="asistencia" required><option value="">Seleccioná</option><option>Sí, confirmo</option><option>No puedo ir</option></select></div>
+    <div class="form-card">
+      <div class="form-tag">Confirmanos tu asistencia</div>
+      <h2 class="form-title">¿Venís?</h2>
+      <form id="cf" action="https://formspree.io/f/mpqnzwno" method="POST">
+        <input type="hidden" name="_language" value="es">
+        <input type="hidden" name="_subject" value="Nueva confirmación — Nati & Joaco 2026">
+        <div class="form-row">
+          <div class="form-field"><label class="form-lbl">Nombre completo</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+          <div class="form-field"><label class="form-lbl">Teléfono</label><input type="tel" name="telefono" placeholder="11 XXXX-XXXX"></div>
         </div>
-        <div class="form-field"><label class="form-lbl">Personas</label><input type="number" name="personas" min="1" max="10" placeholder="1"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field full"><label class="form-lbl">Restricciones alimentarias</label><input type="text" name="restricciones" placeholder="Ninguna / vegetariano / celiaco..."></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field full"><label class="form-lbl">Canción que no puede faltar</label><input type="text" name="cancion" placeholder="Artista o canción..."></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field full"><label class="form-lbl">Mensaje</label><textarea name="mensaje" placeholder="Opcional..."></textarea></div>
-      </div>
-      <button type="submit" class="form-submit">Confirmar asistencia</button>
-    </form>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-lbl">¿Confirmás asistencia?</label>
+            <div class="sel-wrap"><select name="asistencia" required><option value="">Seleccioná</option><option>Sí, confirmo</option><option>No puedo ir</option></select></div>
+          </div>
+          <div class="form-field"><label class="form-lbl">Personas que confirman</label><input type="number" name="personas" min="1" max="10" placeholder="1"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field full"><label class="form-lbl">Restricciones alimentarias o alergias</label><input type="text" name="restricciones" placeholder="Ninguna / vegetariano / celiaco..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field full"><label class="form-lbl">¿Alguna canción que no pueda faltar?</label><input type="text" name="cancion" placeholder="Artista o canción..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field full"><label class="form-lbl">¿Algo más que quieras contarnos?</label><textarea name="mensaje" placeholder="Mensaje opcional..."></textarea></div>
+        </div>
+        <button type="submit" class="form-submit">Confirmar asistencia</button>
+      </form>
+    </div>
   </div>
   </div>
 
@@ -689,6 +828,51 @@
       <div class="acct-row"><span class="acct-k">CBU</span><span class="acct-v">0070133031004024937887</span><button class="acct-copy" onclick="cp(this,'0070133031004024937887')">Copiar</button></div>
       <div class="acct-row"><span class="acct-k">Banco</span><span class="acct-v">Galicia · 4024937-8 133-8</span></div>
     </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+  <section class="faq fade" id="dudas">
+    <div class="form-tag">Preguntas frecuentes</div>
+    <h2 class="faq-heading" style="margin-bottom:40px">¿Dudas?</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿A qué distancia queda Capilla del Señor de Buenos Aires?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>Capilla del Señor queda a aproximadamente 70 km de la Ciudad de Buenos Aires, unos 50-60 minutos por el Acceso Norte (Ruta 9).</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Cómo llego?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>Por el Acceso Norte (Ruta 9) hasta la salida de Capilla del Señor.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Dónde es la ceremonia religiosa?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>La ceremonia religiosa es en la Parroquia Exaltación de la Cruz, en Capilla del Señor, a las 18:00 hs. Está a pocos minutos de la celebración.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Dónde es la fiesta?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>La celebración es en Espacio PK, en Capilla del Señor, a las 19:00 hs.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-q-text">¿Hay alojamiento cerca?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>Sí, en Capilla del Señor y alrededores hay casas de alquiler para quienes quieran quedarse y volver al otro día.</p></div>
+      </div>
+    </div>
+  </section>
   </div>
 
   <!-- PHOTO STRIP -->
@@ -723,13 +907,15 @@
       document.getElementById('bv-name').textContent = decodeURIComponent(m[1].replace(/\+/g,' '));
       var el = document.getElementById('bv');
       el.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('bv-open');
     })();
     function closeBv(){
       var el = document.getElementById('bv');
       el.classList.add('out');
-      document.body.style.overflow = '';
-      setTimeout(function(){ el.style.display='none'; }, 700);
+      setTimeout(function(){
+        el.style.display='none';
+        document.body.classList.remove('bv-open');
+      }, 700);
     }
 
     // hero
@@ -781,6 +967,21 @@
       });
     }
 
+    // faq
+    function toggleFaq(btn){
+      var item = btn.closest('.faq-item');
+      var answer = item.querySelector('.faq-answer');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(openItem){
+        openItem.classList.remove('open');
+        openItem.querySelector('.faq-answer').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
+
     // form
     var form=document.getElementById('cf');
     form.addEventListener('submit',function(e){
@@ -790,7 +991,7 @@
       fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
         .then(function(r){
           if(r.ok){
-            form.parentElement.innerHTML='<div class="form-ok"><p class="form-ok-title">¡Gracias por confirmar!</p><p class="form-ok-sub">Los esperamos el 28 de noviembre</p></div>';
+            form.parentElement.innerHTML='<div class="form-ok"><p class="form-ok-title">¡Gracias por confirmar!</p><p class="form-ok-sub">Los esperamos el 27 de noviembre</p></div>';
           } else { btn.textContent='Confirmar asistencia'; btn.disabled=false; }
         }).catch(function(){ btn.textContent='Confirmar asistencia'; btn.disabled=false; });
     });
