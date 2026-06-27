@@ -607,6 +607,43 @@
       color: rgba(245,241,235,.18);
     }
 
+    /* ── FLOATING NAV ── */
+    .fnav-btn {
+      position: fixed; bottom: 32px; left: 32px; z-index: 900;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--dark); border: none; cursor: pointer;
+      display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+      transition: opacity .3s; box-shadow: 0 4px 16px rgba(46,53,40,.3);
+    }
+    .fnav-btn:hover { opacity: .85; }
+    .fnav-btn span {
+      display: block; width: 18px; height: 1px;
+      background: var(--bg); transition: transform .3s, opacity .3s;
+    }
+    .fnav-btn.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .fnav-btn.open span:nth-child(2) { opacity: 0; }
+    .fnav-btn.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .fnav-menu {
+      position: fixed; bottom: 88px; left: 32px; z-index: 899;
+      background: var(--dark);
+      padding: 8px 0;
+      min-width: 180px;
+      box-shadow: 0 8px 32px rgba(46,53,40,.35);
+      opacity: 0; pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity .25s, transform .25s;
+    }
+    .fnav-menu.open { opacity: 1; pointer-events: all; transform: none; }
+    .fnav-menu a {
+      display: block; padding: 12px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px; font-weight: 400; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--bg);
+      text-decoration: none; transition: opacity .2s;
+    }
+    .fnav-menu a:hover { opacity: .6; }
+    .fnav-menu a + a { border-top: 1px solid rgba(162,174,116,.12); }
+
     /* ── BIENVENIDA ── */
     .bv {
       position: fixed; inset: 0; z-index: 2000;
@@ -745,7 +782,7 @@
   <section class="story fade" id="historia">
     <div class="story-left fade">
       <span class="section-marker">01 &mdash;&mdash;&mdash;&mdash;</span>
-      <h2 class="story-title">NUESTRA<br>HISTORIA</h2>
+      <h2 class="story-title">¡NOS<br>CASAMOS!</h2>
       <p class="story-p">Entre millones de caminos,<br>la vida encontró la forma<br>de llevarnos al mismo lugar.<br><br>Como si algo divino<br>hubiera estado trabajando en silencio<br>mucho antes de conocernos.</p>
     </div>
     <div class="story-right fade d1">
@@ -969,6 +1006,18 @@
     </div>
   </div>
 
+  <!-- FLOATING NAV -->
+  <button class="fnav-btn" id="fnavBtn" onclick="toggleFnav()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="fnav-menu" id="fnavMenu">
+    <a href="#historia" onclick="closeFnav()">¡Nos casamos!</a>
+    <a href="#fechas" onclick="closeFnav()">El gran día</a>
+    <a href="#rsvp" onclick="closeFnav()">Confirmar</a>
+    <a href="#regalos" onclick="closeFnav()">Regalos</a>
+    <a href="#dudas" onclick="closeFnav()">Dudas</a>
+  </nav>
+
   <!-- FOOTER -->
   <footer>
     <span class="footer-name">NATALIA & JOAQUÍN</span>
@@ -994,6 +1043,20 @@
       el.style.display = 'flex';
       document.body.classList.add('bv-open');
     })();
+    function toggleFnav(){
+      var btn=document.getElementById('fnavBtn');
+      var menu=document.getElementById('fnavMenu');
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    }
+    function closeFnav(){
+      document.getElementById('fnavBtn').classList.remove('open');
+      document.getElementById('fnavMenu').classList.remove('open');
+    }
+    document.addEventListener('click',function(e){
+      if(!e.target.closest('#fnavBtn')&&!e.target.closest('#fnavMenu')) closeFnav();
+    });
+
     function closeBv(){
       var el = document.getElementById('bv');
       el.classList.add('out');
