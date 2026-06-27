@@ -263,9 +263,11 @@
       color: var(--text); line-height: 1.85; margin-bottom: 32px; opacity: .85;
     }
     .rsvp-note {
-      font-size: 10px; font-weight: 400; letter-spacing: .28em;
-      text-transform: uppercase; color: var(--text); opacity: .7;
-      display: block; margin-bottom: 48px;
+      font-size: 10px; font-weight: 400; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--bg);
+      display: inline-block; margin-bottom: 48px;
+      background: var(--dark);
+      padding: 10px 18px;
     }
     .btn {
       display: inline-block;
@@ -610,11 +612,11 @@
 
     /* ── FLOATING NAV ── */
     .fnav-btn {
-      position: fixed; bottom: 28px; left: 28px; z-index: 900;
-      width: 50px; height: 50px; border-radius: 50%;
-      background: var(--dark); border: none; cursor: pointer;
+      position: fixed; top: 20px; right: 20px; z-index: 1000;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--dark); border: 1.5px solid rgba(162,174,116,.35); cursor: pointer;
       display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
-      box-shadow: 0 4px 20px rgba(46,53,40,.45);
+      box-shadow: 0 3px 16px rgba(0,0,0,.4);
       transition: transform .2s;
     }
     .fnav-btn:hover { transform: scale(1.07); }
@@ -626,14 +628,14 @@
     .fnav-btn.open span:nth-child(2) { opacity: 0; }
     .fnav-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
     .fnav-menu {
-      position: fixed; bottom: 90px; left: 28px; z-index: 899;
+      position: fixed; top: 76px; right: 20px; z-index: 999;
       background: var(--dark);
       padding: 6px 0;
       min-width: 200px;
       box-shadow: 0 8px 32px rgba(46,53,40,.45);
       opacity: 0; pointer-events: none;
-      transform: translateY(10px) scale(.97);
-      transform-origin: bottom left;
+      transform: translateY(-8px) scale(.97);
+      transform-origin: top right;
       transition: opacity .22s, transform .22s;
     }
     .fnav-menu.open { opacity: 1; pointer-events: all; transform: none; }
@@ -682,7 +684,8 @@
       .hero-left { padding: 48px 6vw 60px; }
       .story { grid-template-columns: 1fr; }
       .story-left { padding: 64px 8vw; }
-      .story-right { height: 70vw; min-height: 280px; }
+      .story-right { height: auto; min-height: unset; }
+      .story-right img { height: auto !important; object-fit: unset !important; }
       .dates { grid-template-columns: 1fr 1fr; }
       .dates { padding-top: 56px; }
       .dates > .section-marker { top: 56px; }
@@ -694,7 +697,7 @@
       .rsvp-right img { height: auto !important; object-fit: unset !important; }
       .form-section { grid-template-columns: 1fr; }
       .form-photo { display: none; }
-      .rsvp-left { padding: 10vw 8vw 6vw; }
+      .rsvp-left { padding: 10vw 8vw 6vw; text-align: center; align-items: center; }
       .accounts { grid-template-columns: 1fr; }
       .acct-col { border-right: none; border-bottom: none; padding-bottom: 0; }
       .acct-col:last-child { border-bottom: none; }
