@@ -134,22 +134,24 @@
 
     /* polaroids container */
     .polaroids-wrap {
-      position: relative;
-      height: 300px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
       width: 100%;
+      padding: 16px 12px 24px;
     }
     .pol {
-      position: absolute;
       background: #fff;
       padding: 9px 9px 28px;
       box-shadow: 0 8px 28px rgba(0,0,0,.3);
+      flex-shrink: 0;
     }
     .pol img {
-      width: 160px; height: 190px;
+      width: 140px; height: 175px;
       object-fit: cover; display: block;
     }
-    .pol-1 { left: 10px; top: 15px; transform: rotate(-6deg); }
-    .pol-2 { right: 10px; top: 50px; transform: rotate(4.5deg); }
+    .pol-1 { transform: rotate(-4deg); }
+    .pol-2 { transform: rotate(3.5deg); margin-top: 20px; }
     .pol-2 img { filter: none; }
 
     /* ══════════════════════════════
