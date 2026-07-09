@@ -6,11 +6,11 @@
 <title>Natalia &amp; Joaquín — 27.11.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500&family=Parisienne&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --marfil:#F7F3EA;
-  --marfil-2:#F1EBDD;
+  --marfil:#FFFFFF;
+  --marfil-2:#F3F3F0;
   --tinta:#26312A;          /* verde bosque muy oscuro, casi negro */
   --tinta-60:rgba(38,49,42,.6);
   --tinta-40:rgba(38,49,42,.42);
@@ -27,6 +27,38 @@ body{
 }
 ::selection{background:var(--tinta);color:var(--marfil)}
 img{display:block;width:100%;height:100%;object-fit:cover}
+body.locked{overflow:hidden;height:100vh}
+
+/* ---------- SPLASH ---------- */
+.splash{
+  position:fixed;inset:0;z-index:200;
+  background:var(--marfil);
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:2rem;
+  transition:opacity .6s ease,visibility .6s ease;
+}
+.splash.hide{opacity:0;visibility:hidden;pointer-events:none}
+.splash-inner{max-width:420px}
+.splash-eyebrow{
+  font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--tinta-60);margin-bottom:1.8rem;
+}
+.splash-nombre{
+  font-family:'Playfair Display',serif;font-weight:400;
+  font-size:clamp(2rem,9vw,3.2rem);line-height:1.15;margin-bottom:1.1rem;
+  word-break:break-word;
+}
+.splash-msg{font-size:1rem;color:var(--tinta-60);margin-bottom:2.4rem}
+.splash-btn{
+  display:inline-block;background:var(--tinta);color:var(--marfil);
+  border:1px solid var(--tinta);cursor:pointer;
+  font-family:'Hanken Grotesk',sans-serif;font-weight:400;
+  font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+  padding:1.05rem 2.6rem;border-radius:0;
+  transition:background .3s,color .3s;
+}
+.splash-btn:hover{background:transparent;color:var(--tinta)}
+.splash-btn:focus-visible{outline:1px solid var(--tinta);outline-offset:4px}
 
 /* ---------- NAV ---------- */
 nav{
@@ -114,11 +146,13 @@ header{
   font-family:'Playfair Display',serif;font-weight:400;
   font-size:clamp(2.9rem,11.5vw,6rem);
   line-height:1.06;margin-top:1.4rem;letter-spacing:.01em;
+  width:100%;text-align:center;
   opacity:0;animation:fade 1.4s ease .5s forwards;
 }
 .hero-names em{
-  font-family:'Parisienne',cursive;font-style:normal;font-size:.85em;display:block;
-  color:var(--borgona);margin:.1em 0;
+  font-family:'Playfair Display',serif;font-style:italic;font-size:.6em;display:block;
+  width:100%;text-align:center;line-height:1;
+  color:var(--tinta);margin:.45em 0 .05em;
 }
 .hero-lugar{
   margin-top:1.7rem;font-size:clamp(.92rem,4vw,1.05rem);font-weight:500;letter-spacing:.1em;text-transform:uppercase;
@@ -134,7 +168,7 @@ header{
 .hero-foto img{object-position:50% 40%}
 .hero-foto{
   margin-top:2.8rem;width:min(78vw,340px);aspect-ratio:3/4;
-  border-radius:999px 999px 0 0;overflow:hidden;
+  border-radius:0;overflow:hidden;
   opacity:0;animation:fade 1.6s ease 1.2s forwards;
 }
 @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
@@ -229,6 +263,12 @@ h2 em{font-style:italic;color:var(--borgona)}
   text-align:center;margin-top:1.4rem;
   font-family:'Fraunces',serif;font-style:italic;color:var(--borgona);font-size:1rem;
 }
+
+/* ---------- PLAYLIST ---------- */
+.playlist-embed{
+  max-width:460px;margin:2.4rem auto 0;border-radius:8px;overflow:hidden;
+}
+.playlist-embed iframe{display:block;border:none}
 
 /* ---------- FOTO ANCHA ---------- */
 .foto-ancha{
@@ -354,13 +394,23 @@ footer{
 }
 </style>
 </head>
-<body>
+<body class="locked">
+
+<div class="splash" id="splash">
+  <div class="splash-inner">
+    <p class="splash-eyebrow">Natalia &amp; Joaquín</p>
+    <h1 class="splash-nombre" id="splashNombre">¡Hola!</h1>
+    <p class="splash-msg" data-i18n="splash.msg">Nos casamos y queremos que estés ahí.</p>
+    <button class="splash-btn" id="splashBtn" type="button" data-i18n="splash.btn">Ver invitación</button>
+  </div>
+</div>
 
 <nav id="nav">
   <a class="nav-mono" href="#top">N—J</a>
   <div class="nav-links">
     <a href="#eldia" data-i18n="nav.eldia">El día</a>
     <a href="#dresscode" data-i18n="nav.vestimenta">Vestimenta</a>
+    <a href="#playlist" data-i18n="nav.playlist">Música</a>
     <a href="#regalos" data-i18n="nav.regalos">Regalos</a>
     <a href="#rsvp" data-i18n="nav.confirmar">Confirmar</a>
     <a href="#faq" data-i18n="nav.dudas">Dudas</a>
@@ -446,6 +496,23 @@ footer{
 
   <hr class="hr">
 
+  <!-- PLAYLIST -->
+  <section id="playlist">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="playlist.eyebrow">Música</p>
+      <h2 data-i18n="playlist.h2">Sumá tu <em>canción</em></h2>
+      <p class="lede" data-i18n="playlist.lede">Armamos esta playlist para bailar toda la noche: agregá los temas que no pueden faltar. ¿No tenés Spotify? Escribilo en el formulario de confirmación, un poco más abajo.</p>
+    </div>
+    <div class="playlist-embed reveal">
+      <iframe src="https://open.spotify.com/embed/playlist/21qQINeFrJPCweo31xKQwX?utm_source=generator" width="100%" height="380" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    <div class="dia-acciones reveal">
+      <a class="link" href="https://open.spotify.com/playlist/21qQINeFrJPCweo31xKQwX" target="_blank" rel="noopener" data-i18n="playlist.abrir">Abrir en Spotify</a>
+    </div>
+  </section>
+
+  <hr class="hr">
+
   <!-- REGALOS -->
   <section id="regalos">
     <div class="reveal">
@@ -497,7 +564,6 @@ footer{
     <div class="reveal">
       <p class="eyebrow" data-i18n="rsvp.eyebrow">Confirmación</p>
       <h2 data-i18n="rsvp.h2">Confirmar <em>asistencia</em></h2>
-      <p class="lede" data-i18n="rsvp.lede">Tarda menos de un minuto.</p>
     </div>
     <div class="form reveal">
       <div class="campo">
@@ -542,11 +608,11 @@ footer{
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span data-i18n="faq.q1">¿A qué distancia queda Espacio PK?</span><span class="signo">+</span></button>
-        <div class="faq-a"><p data-i18n="faq.a1">Espacio PK queda a unos 80 km de la ciudad: calculen una hora y cuarto de viaje. Como es viernes, suele haber más tráfico a esa hora, así que mejor salir con tiempo de sobra. La ceremonia empieza 19.00 en punto; lo ideal es llegar 18.30.</p></div>
+        <div class="faq-a"><p data-i18n="faq.a1">Espacio PK queda a unos 80 km de CABA (aproximadamente una hora y media de viaje). Como la ceremonia comienza puntual a las 19:00 hs, lo ideal es llegar a las 18:30 hs. Al ser viernes por la tarde suele haber bastante tránsito, por lo que les recomendamos salir con buen margen de tiempo para viajar tranquilos. ¡Los esperamos!</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span data-i18n="faq.q2">¿Hay estacionamiento?</span><span class="signo">+</span></button>
-        <div class="faq-a"><p data-i18n="faq.a2">Sí, el predio tiene estacionamiento propio. Si pueden compartir auto, mejor para todos.</p></div>
+        <div class="faq-a"><p data-i18n="faq.a2">Sí, el predio tiene estacionamiento propio.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span data-i18n="faq.q3">¿Dónde me puedo alojar cerca?</span><span class="signo">+</span></button>
@@ -570,7 +636,7 @@ footer{
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span data-i18n="faq.q5">¿Es al aire libre? ¿Y si llueve?</span><span class="signo">+</span></button>
-        <div class="faq-a"><p data-i18n="faq.a5">La ceremonia es al aire libre y la fiesta en el Salón Granero, que es cubierto. Si llueve, todo pasa adentro sin cambios de horario. A fines de noviembre suele hacer calor de día y refrescar apenas de noche.</p></div>
+        <div class="faq-a"><p data-i18n="faq.a5">La ceremonia es al aire libre y la fiesta en el Salón Granero, que es cubierto. Si llueve, todo pasa adentro sin cambios de horario.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span data-i18n="faq.q6">¿Hasta cuándo puedo confirmar?</span><span class="signo">+</span></button>
@@ -615,13 +681,16 @@ var FOTOS = {
 /* ---- traducciones ---- */
 var TRANSLATIONS = {
   es: {
-    "nav.eldia":"El día","nav.vestimenta":"Vestimenta","nav.regalos":"Regalos","nav.confirmar":"Confirmar","nav.dudas":"Dudas",
+    "nav.eldia":"El día","nav.vestimenta":"Vestimenta","nav.playlist":"Música","nav.regalos":"Regalos","nav.confirmar":"Confirmar","nav.dudas":"Dudas",
     "hero.fecha":"27 de noviembre de 2026","hero.hora":"Ceremonia 19:00 h",
     "eldia.eyebrow":"El día","momento.ceremonia":"Ceremonia","momento.recepcion":"Recepción y fiesta","momento.cierre":"Cierre",
     "accion.comollegar":"Cómo llegar","accion.agendar":"Agendar fecha",
     "dress.eyebrow":"Vestimenta","dress.h2":"<em>Elegante</em>",
     "dress.lede":"Elegante pero cómodo, para que puedas disfrutar de este gran día.",
     "dress.evitar":"Solo les pedimos evitar el blanco.",
+    "playlist.eyebrow":"Música","playlist.h2":"Sumá tu <em>canción</em>",
+    "playlist.lede":"Armamos esta playlist para bailar toda la noche: agregá los temas que no pueden faltar. ¿No tenés Spotify? Escribilo en el formulario de confirmación, un poco más abajo.",
+    "playlist.abrir":"Abrir en Spotify",
     "regalos.eyebrow":"Regalos","regalos.h2":"<em>Regalos</em>",
     "regalos.lede":"Su presencia es lo más importante para nosotros. Si quieren colaborar para nuestra luna de miel, estos son nuestros datos.",
     "regalos.pesos":"Pesos argentinos","regalos.usd":"USD dólares",
@@ -629,39 +698,44 @@ var TRANSLATIONS = {
     "label.dieta":"Alergias o alimentación especial","label.cancion":"Canción que no puede faltar","label.msj":"Algo más que quieras decirnos",
     "btn.copiar":"Copiar","btn.enviar":"Enviar confirmación",
     "radio.voy":"Voy a estar","radio.no":"No puedo ir",
-    "rsvp.eyebrow":"Confirmación","rsvp.h2":"Confirmar <em>asistencia</em>","rsvp.lede":"Tarda menos de un minuto.",
+    "rsvp.eyebrow":"Confirmación","rsvp.h2":"Confirmar <em>asistencia</em>",
     "rsvp.deadline":"Antes del 1 de octubre, por favor.",
     "faq.eyebrow":"Preguntas frecuentes","faq.h2":"<em>Dudas</em>",
     "faq.q1":"¿A qué distancia queda Espacio PK?",
-    "faq.a1":"Espacio PK queda a unos 80 km de la ciudad: calculen una hora y cuarto de viaje. Como es viernes, suele haber más tráfico a esa hora, así que mejor salir con tiempo de sobra. La ceremonia empieza 19.00 en punto; lo ideal es llegar 18.30.",
+    "faq.a1":"Espacio PK queda a unos 80 km de CABA (aproximadamente una hora y media de viaje). Como la ceremonia comienza puntual a las 19:00 hs, lo ideal es llegar a las 18:30 hs. Al ser viernes por la tarde suele haber bastante tránsito, por lo que les recomendamos salir con buen margen de tiempo para viajar tranquilos. ¡Los esperamos!",
     "faq.q2":"¿Hay estacionamiento?",
-    "faq.a2":"Sí, el predio tiene estacionamiento propio. Si pueden compartir auto, mejor para todos.",
+    "faq.a2":"Sí, el predio tiene estacionamiento propio.",
     "faq.q3":"¿Dónde me puedo alojar cerca?",
     "faq.a3":"Algunas opciones en Capilla del Señor y alrededores:<br>Cabañas Lily Bee — instagram.com/lilybee.ecohome · 11 5048 4264<br>La Martinetta — lamartinetaposada.com · 2323 49 2063<br>Cabañas Campo Alto — 11 6131 7475<br>Tía Úrsula — Malvón 542, Parada Robles · 11 2685 1342<br>Carmine Hotel Apart — Hipólito Irigoyen 594, Capilla del Señor · (02323) 491833<br>Quinta Loma Alta — Mateo S. Casco 1380 · 011 4195 7992<br>Camberland — hotelcamberland.com · 0230 4499 111<br>Hilton Pilar — hiltonpilar.ar · 0230 453 3800<br>Sofitel Cardales — sofitellareserva.com · 3489 43 5555",
     "faq.q4":"¿Hay combis o traslados?",
     "faq.a4":"Sí, estas empresas hacen el viaje hasta Espacio PK:<br>Lichabus — 11 530 78673<br>Boomerang — 11 15 6986 60059 · turismoboomerang.com.ar<br>Belardinelli Viajes — 11 4401 1600",
     "faq.q5":"¿Es al aire libre? ¿Y si llueve?",
-    "faq.a5":"La ceremonia es al aire libre y la fiesta en el Salón Granero, que es cubierto. Si llueve, todo pasa adentro sin cambios de horario. A fines de noviembre suele hacer calor de día y refrescar apenas de noche.",
+    "faq.a5":"La ceremonia es al aire libre y la fiesta en el Salón Granero, que es cubierto. Si llueve, todo pasa adentro sin cambios de horario.",
     "faq.q6":"¿Hasta cuándo puedo confirmar?",
     "faq.a6":"Hasta el 1 de octubre de 2026. Nos ayuda muchísimo para cerrar los números con el catering.",
     "msgs.completaNombre":"Completá tu nombre, por favor.",
     "msgs.completaForm":"Completá la confirmación en el formulario que se abrió.",
-    "msgs.enviando":"Enviando…","msgs.gracias":"Gracias, {name}. Ya tenemos tu confirmación.",
+    "msgs.enviando":"Enviando…","msgs.gracias":"¡Gracias por tu respuesta, {name}!",
     "msgs.error":"No se pudo enviar. Probá de nuevo en un rato.","msgs.copiado":"Copiado",
     "alts.hero":"Natalia y Joaquín caminando de la mano","alts.duo1":"Natalia y Joaquín abrazados en el civil",
     "alts.duo2":"Natalia y Joaquín besándose en el civil","alts.salon":"Espacio PK al atardecer","alts.ancha":"Interior del Salón Granero",
     "music.play":"Reproducir música","music.pause":"Pausar música",
     "calendar.text":"Casamiento Natalia & Joaquín",
-    "calendar.details":"Ceremonia 19.00 h y fiesta a continuación en Espacio PK (Salón Granero), Capilla del Señor."
+    "calendar.details":"Ceremonia 19.00 h y fiesta a continuación en Espacio PK (Salón Granero), Capilla del Señor.",
+    "splash.saludo":"¡Hola, {name}!","splash.saludoGenerico":"¡Hola!",
+    "splash.msg":"Nos casamos y queremos que estés ahí.","splash.btn":"Ver invitación"
   },
   en: {
-    "nav.eldia":"The Day","nav.vestimenta":"Dress code","nav.regalos":"Gifts","nav.confirmar":"RSVP","nav.dudas":"FAQ",
+    "nav.eldia":"The Day","nav.vestimenta":"Dress code","nav.playlist":"Music","nav.regalos":"Gifts","nav.confirmar":"RSVP","nav.dudas":"FAQ",
     "hero.fecha":"November 27, 2026","hero.hora":"Ceremony 7:00 PM",
     "eldia.eyebrow":"The Day","momento.ceremonia":"Ceremony","momento.recepcion":"Reception & party","momento.cierre":"End",
     "accion.comollegar":"Get directions","accion.agendar":"Add to calendar",
     "dress.eyebrow":"Dress code","dress.h2":"<em>Elegant</em>",
     "dress.lede":"Elegant but comfortable — the party is standing, on the grass.",
     "dress.evitar":"Just one request: please avoid wearing white.",
+    "playlist.eyebrow":"Music","playlist.h2":"Add your <em>song</em>",
+    "playlist.lede":"We put together this playlist to dance all night: add the songs that can't be missing. No Spotify? Write it in the RSVP form below.",
+    "playlist.abrir":"Open in Spotify",
     "regalos.eyebrow":"Gifts","regalos.h2":"<em>Gifts</em>",
     "regalos.lede":"Your presence means the most to us. If you'd like to contribute to our honeymoon, here are our details.",
     "regalos.pesos":"Argentine pesos","regalos.usd":"USD dollars",
@@ -669,39 +743,44 @@ var TRANSLATIONS = {
     "label.dieta":"Allergies or dietary needs","label.cancion":"A song we must play","label.msj":"Anything else you'd like to tell us",
     "btn.copiar":"Copy","btn.enviar":"Send RSVP",
     "radio.voy":"I'll be there","radio.no":"I can't make it",
-    "rsvp.eyebrow":"RSVP","rsvp.h2":"Confirm <em>attendance</em>","rsvp.lede":"It takes less than a minute.",
+    "rsvp.eyebrow":"RSVP","rsvp.h2":"Confirm <em>attendance</em>",
     "rsvp.deadline":"Please confirm before October 1st.",
     "faq.eyebrow":"Frequently asked questions","faq.h2":"<em>FAQ</em>",
     "faq.q1":"How far is Espacio PK?",
-    "faq.a1":"Espacio PK is about 80 km from the city: plan for roughly an hour and fifteen minutes of travel. Since it's a Friday, there's usually more traffic at that time, so it's best to leave with extra time. The ceremony starts sharp at 7:00 PM; ideally arrive by 6:30 PM.",
+    "faq.a1":"Espacio PK is about 80 km from CABA (roughly an hour and a half by car). Since the ceremony starts sharp at 7:00 PM, it's best to arrive by 6:30 PM. As it's a Friday afternoon, traffic tends to be heavy, so we recommend leaving with plenty of time to travel comfortably. We can't wait to see you!",
     "faq.q2":"Is there parking?",
-    "faq.a2":"Yes, the venue has its own parking lot. Carpooling is welcome if you can.",
+    "faq.a2":"Yes, the venue has its own parking lot.",
     "faq.q3":"Where can I stay nearby?",
     "faq.a3":"Some options in and around Capilla del Señor:<br>Cabañas Lily Bee — instagram.com/lilybee.ecohome · 11 5048 4264<br>La Martinetta — lamartinetaposada.com · 2323 49 2063<br>Cabañas Campo Alto — 11 6131 7475<br>Tía Úrsula — Malvón 542, Parada Robles · 11 2685 1342<br>Carmine Hotel Apart — Hipólito Irigoyen 594, Capilla del Señor · (02323) 491833<br>Quinta Loma Alta — Mateo S. Casco 1380 · 011 4195 7992<br>Camberland — hotelcamberland.com · 0230 4499 111<br>Hilton Pilar — hiltonpilar.ar · 0230 453 3800<br>Sofitel Cardales — sofitellareserva.com · 3489 43 5555",
     "faq.q4":"Are there shuttles or transfers?",
     "faq.a4":"Yes, these companies run trips to Espacio PK:<br>Lichabus — 11 530 78673<br>Boomerang — 11 15 6986 60059 · turismoboomerang.com.ar<br>Belardinelli Viajes — 11 4401 1600",
     "faq.q5":"Is it outdoors? What if it rains?",
-    "faq.a5":"The ceremony is outdoors and the party is in the Salón Granero, which is covered. If it rains, everything moves indoors with no change to the schedule. Late November tends to be warm during the day and just a bit cooler at night.",
+    "faq.a5":"The ceremony is outdoors and the party is in the Salón Granero, which is covered. If it rains, everything moves indoors with no change to the schedule.",
     "faq.q6":"By when can I RSVP?",
     "faq.a6":"By October 1st, 2026. It helps us a lot to close the numbers with catering.",
     "msgs.completaNombre":"Please fill in your name.",
     "msgs.completaForm":"Please complete your RSVP in the form that just opened.",
-    "msgs.enviando":"Sending…","msgs.gracias":"Thanks, {name}. We've got your RSVP.",
+    "msgs.enviando":"Sending…","msgs.gracias":"Thanks for your response, {name}!",
     "msgs.error":"Something went wrong. Please try again in a bit.","msgs.copiado":"Copied",
     "alts.hero":"Natalia and Joaquín walking hand in hand","alts.duo1":"Natalia and Joaquín hugging at the civil ceremony",
     "alts.duo2":"Natalia and Joaquín kissing at the civil ceremony","alts.salon":"Espacio PK at sunset","alts.ancha":"Inside the Salón Granero",
     "music.play":"Play music","music.pause":"Pause music",
     "calendar.text":"Natalia & Joaquín's Wedding",
-    "calendar.details":"Ceremony at 7:00 PM, followed by the party at Espacio PK (Salón Granero), Capilla del Señor."
+    "calendar.details":"Ceremony at 7:00 PM, followed by the party at Espacio PK (Salón Granero), Capilla del Señor.",
+    "splash.saludo":"Hello, {name}!","splash.saludoGenerico":"Hello!",
+    "splash.msg":"We're getting married and we want you there.","splash.btn":"View invitation"
   },
   fr: {
-    "nav.eldia":"Le Jour J","nav.vestimenta":"Tenue","nav.regalos":"Cadeaux","nav.confirmar":"Confirmer","nav.dudas":"Questions",
+    "nav.eldia":"Le Jour J","nav.vestimenta":"Tenue","nav.playlist":"Musique","nav.regalos":"Cadeaux","nav.confirmar":"Confirmer","nav.dudas":"Questions",
     "hero.fecha":"27 novembre 2026","hero.hora":"Cérémonie 19h00",
     "eldia.eyebrow":"Le Jour J","momento.ceremonia":"Cérémonie","momento.recepcion":"Réception et fête","momento.cierre":"Fin",
     "accion.comollegar":"Itinéraire","accion.agendar":"Ajouter au calendrier",
     "dress.eyebrow":"Tenue","dress.h2":"<em>Élégant</em>",
     "dress.lede":"Élégant mais confortable : la fête se passe debout, sur l'herbe.",
     "dress.evitar":"On vous demande simplement d'éviter le blanc.",
+    "playlist.eyebrow":"Musique","playlist.h2":"Ajoutez votre <em>chanson</em>",
+    "playlist.lede":"On a préparé cette playlist pour danser toute la nuit : ajoutez les chansons incontournables. Pas de Spotify ? Écrivez-la dans le formulaire de confirmation, un peu plus bas.",
+    "playlist.abrir":"Ouvrir dans Spotify",
     "regalos.eyebrow":"Cadeaux","regalos.h2":"<em>Cadeaux</em>",
     "regalos.lede":"Votre présence est ce qui compte le plus pour nous. Si vous souhaitez contribuer à notre lune de miel, voici nos coordonnées.",
     "regalos.pesos":"Pesos argentins","regalos.usd":"Dollars US",
@@ -709,30 +788,32 @@ var TRANSLATIONS = {
     "label.dieta":"Allergies ou régime particulier","label.cancion":"Une chanson incontournable","label.msj":"Autre chose à nous dire",
     "btn.copiar":"Copier","btn.enviar":"Envoyer la confirmation",
     "radio.voy":"Je serai présent(e)","radio.no":"Je ne pourrai pas venir",
-    "rsvp.eyebrow":"Confirmation","rsvp.h2":"Confirmer <em>votre présence</em>","rsvp.lede":"Ça prend moins d'une minute.",
+    "rsvp.eyebrow":"Confirmation","rsvp.h2":"Confirmer <em>votre présence</em>",
     "rsvp.deadline":"Merci de confirmer avant le 1er octobre.",
     "faq.eyebrow":"Questions fréquentes","faq.h2":"<em>Questions</em>",
     "faq.q1":"À quelle distance se trouve Espacio PK ?",
-    "faq.a1":"Espacio PK se trouve à environ 80 km de la ville : comptez une heure et quart de trajet. Comme c'est un vendredi, il y a souvent plus de circulation à cette heure, mieux vaut donc partir avec de la marge. La cérémonie commence à 19h00 précises ; l'idéal est d'arriver à 18h30.",
+    "faq.a1":"Espacio PK se trouve à environ 80 km de CABA (environ une heure et demie de route). Comme la cérémonie commence à 19h00 précises, l'idéal est d'arriver à 18h30. Comme c'est un vendredi après-midi, il y a souvent beaucoup de circulation, nous vous recommandons donc de partir avec de la marge pour voyager tranquillement. On vous attend avec impatience !",
     "faq.q2":"Y a-t-il un parking ?",
-    "faq.a2":"Oui, le domaine dispose de son propre parking. Le covoiturage est bienvenu si possible.",
+    "faq.a2":"Oui, le domaine dispose de son propre parking.",
     "faq.q3":"Où puis-je loger à proximité ?",
     "faq.a3":"Quelques options à Capilla del Señor et aux alentours :<br>Cabañas Lily Bee — instagram.com/lilybee.ecohome · 11 5048 4264<br>La Martinetta — lamartinetaposada.com · 2323 49 2063<br>Cabañas Campo Alto — 11 6131 7475<br>Tía Úrsula — Malvón 542, Parada Robles · 11 2685 1342<br>Carmine Hotel Apart — Hipólito Irigoyen 594, Capilla del Señor · (02323) 491833<br>Quinta Loma Alta — Mateo S. Casco 1380 · 011 4195 7992<br>Camberland — hotelcamberland.com · 0230 4499 111<br>Hilton Pilar — hiltonpilar.ar · 0230 453 3800<br>Sofitel Cardales — sofitellareserva.com · 3489 43 5555",
     "faq.q4":"Y a-t-il des navettes ou des transferts ?",
     "faq.a4":"Oui, ces entreprises assurent le trajet jusqu'à Espacio PK:<br>Lichabus — 11 530 78673<br>Boomerang — 11 15 6986 60059 · turismoboomerang.com.ar<br>Belardinelli Viajes — 11 4401 1600",
     "faq.q5":"Est-ce en extérieur ? Et s'il pleut ?",
-    "faq.a5":"La cérémonie a lieu en extérieur et la fête dans le Salón Granero, qui est couvert. S'il pleut, tout se passe à l'intérieur sans changement d'horaire. Fin novembre, il fait généralement chaud la journée et un peu plus frais le soir.",
+    "faq.a5":"La cérémonie a lieu en extérieur et la fête dans le Salón Granero, qui est couvert. S'il pleut, tout se passe à l'intérieur sans changement d'horaire.",
     "faq.q6":"Jusqu'à quand puis-je confirmer ?",
     "faq.a6":"Jusqu'au 1er octobre 2026. Cela nous aide beaucoup à finaliser les chiffres avec le traiteur.",
     "msgs.completaNombre":"Merci de renseigner votre nom.",
     "msgs.completaForm":"Merci de compléter la confirmation dans le formulaire qui vient de s'ouvrir.",
-    "msgs.enviando":"Envoi…","msgs.gracias":"Merci, {name}. Nous avons bien reçu votre confirmation.",
+    "msgs.enviando":"Envoi…","msgs.gracias":"Merci pour votre réponse, {name} !",
     "msgs.error":"L'envoi a échoué. Merci de réessayer dans un instant.","msgs.copiado":"Copié",
     "alts.hero":"Natalia et Joaquín se promenant main dans la main","alts.duo1":"Natalia et Joaquín s'enlaçant lors du mariage civil",
     "alts.duo2":"Natalia et Joaquín s'embrassant lors du mariage civil","alts.salon":"Espacio PK au coucher du soleil","alts.ancha":"Intérieur du Salón Granero",
     "music.play":"Jouer la musique","music.pause":"Mettre en pause",
     "calendar.text":"Mariage de Natalia & Joaquín",
-    "calendar.details":"Cérémonie à 19h00, suivie de la fête à Espacio PK (Salón Granero), Capilla del Señor."
+    "calendar.details":"Cérémonie à 19h00, suivie de la fête à Espacio PK (Salón Granero), Capilla del Señor.",
+    "splash.saludo":"Bonjour, {name} !","splash.saludoGenerico":"Bonjour !",
+    "splash.msg":"On se marie et on veut que tu sois là.","splash.btn":"Voir l'invitation"
   }
 };
 function t(lang,key){
@@ -740,6 +821,17 @@ function t(lang,key){
   return d[key]!==undefined?d[key]:TRANSLATIONS.es[key];
 }
 var CURRENT_LANG = localStorage.getItem('idiomaBoda') || 'es';
+var GUEST_NAME = (new URLSearchParams(window.location.search).get('para')||'').trim().slice(0,40);
+function updateSplashGreeting(lang){
+  var el=document.getElementById('splashNombre');
+  if(!el)return;
+  if(GUEST_NAME){
+    var parts=t(lang,'splash.saludo').split('{name}');
+    el.textContent=parts[0]+GUEST_NAME+(parts[1]||'');
+  }else{
+    el.textContent=t(lang,'splash.saludoGenerico');
+  }
+}
 function buildCalendarUrl(lang){
   return "https://calendar.google.com/calendar/render?action=TEMPLATE"
     +"&text="+encodeURIComponent(t(lang,'calendar.text'))
@@ -768,10 +860,21 @@ function applyLang(lang){
     b.classList.toggle('active',b.getAttribute('data-lang')===lang);
   });
   localStorage.setItem('idiomaBoda',lang);
+  updateSplashGreeting(lang);
 }
 document.querySelectorAll('#langSwitch button').forEach(function(b){
   b.addEventListener('click',function(){applyLang(b.getAttribute('data-lang'));});
 });
+
+/* ---- splash de bienvenida ---- */
+(function(){
+  var splash=document.getElementById('splash');
+  var btn=document.getElementById('splashBtn');
+  btn.addEventListener('click',function(){
+    splash.classList.add('hide');
+    document.body.classList.remove('locked');
+  });
+})();
 
 /* ---- cargar fotos ---- */
 (function(){
