@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natalia & Joaquín · 27 · 11 · 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --c1:   #F7F4EE;
+      --c2:   #EFE9DE;
+      --dk:   #2F352D;
+      --text: #2F352D;
+      --mut:  #748043;
+      --line: rgba(47,53,45,.1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--c1);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body.locked { overflow: hidden; position: fixed; inset: 0; }
+    img { display: block; width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* REVEAL */
+    .r {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 1.3s cubic-bezier(.22,.61,.36,1), transform 1.3s cubic-bezier(.22,.61,.36,1);
+    }
+    .r.on { opacity: 1; transform: none; }
+    .d1 { transition-delay: .2s; }
+    .d2 { transition-delay: .4s; }
+
+    /* ─── WELCOME ─── */
+    .welcome {
+      position: fixed; inset: 0; z-index: 3000;
+      background: var(--c1);
+      display: flex; align-items: center; padding: 0 12vw;
+      transition: opacity .9s ease;
+    }
+    .welcome.out { opacity: 0; pointer-events: none; }
+    .welcome-inner { max-width: 520px; animation: fu .9s ease both; }
+    @keyframes fu { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+    .w-label {
+      font-size: 9px; letter-spacing: .52em; text-transform: uppercase;
+      color: var(--mut); display: block; margin-bottom: 52px;
+    }
+    .w-h {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 5vw, 68px); font-weight: 300;
+      line-height: 1.1; color: var(--dk); margin-bottom: 24px;
+    }
+    .w-name { color: var(--mut); }
+    .w-p {
+      font-size: 13px; font-weight: 300; letter-spacing: .08em;
+      color: rgba(47,53,45,.5); line-height: 2; margin-bottom: 56px;
+    }
+    .w-btn {
+      background: none; border: none; font-family: 'Inter', sans-serif;
+      font-size: 9px; font-weight: 300; letter-spacing: .52em; text-transform: uppercase;
+      color: var(--text); cursor: pointer; padding: 0;
+      border-bottom: 1px solid rgba(47,53,45,.25); padding-bottom: 4px;
+      transition: color .3s, border-color .3s;
+    }
+    .w-btn:hover { color: var(--mut); border-color: var(--mut); }
+
+    /* ─── HERO ─── */
+    .hero { position: relative; height: 100svh; overflow: hidden; }
+    .hero-photo { position: absolute; inset: 0; }
+    .hero-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
+      filter: contrast(1.02) saturate(.94) brightness(.97);
+    }
+    .hero-gradient {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.12) 0%,
+        rgba(0,0,0,0) 30%,
+        rgba(0,0,0,0) 50%,
+        rgba(0,0,0,.45) 100%
+      );
+    }
+    .hero-top {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 32px 8vw;
+      display: flex; justify-content: space-between;
+      z-index: 2;
+    }
+    .hero-top span {
+      font-size: 9px; letter-spacing: .44em; text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+    }
+    .hero-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 0 8vw 56px; z-index: 2;
+    }
+    .hero-names {
+      font-size: 9px; letter-spacing: .44em; text-transform: uppercase;
+      color: rgba(255,255,255,.65); display: block; margin-bottom: 20px;
+    }
+    .hero-phrase {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 6.5vw, 100px); font-weight: 300; font-style: italic;
+      color: #fff; line-height: 1.05; max-width: 80%;
+    }
+    .hero-foot {
+      margin-top: 28px; display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .hero-where {
+      font-size: 9px; letter-spacing: .34em; text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+    }
+    .hero-scroll {
+      display: flex; align-items: center; gap: 14px;
+      font-size: 9px; letter-spacing: .34em; text-transform: uppercase;
+      color: rgba(255,255,255,.4); cursor: pointer; transition: color .3s;
+    }
+    .hero-scroll:hover { color: rgba(255,255,255,.7); }
+    .hero-scroll-line { width: 36px; height: 1px; background: currentColor; }
+
+    /* ─── EL DÍA ─── */
+    .el-dia { background: var(--c1); padding: 120px 10vw; }
+    .eyebrow {
+      font-size: 9px; letter-spacing: .54em; text-transform: uppercase;
+      color: var(--mut); display: block; margin-bottom: 72px;
+    }
+    .dia-grid {
+      display: grid; grid-template-columns: 1fr 1px 1fr;
+      gap: 0 8vw; align-items: start;
+    }
+    .dia-sep { background: var(--line); }
+    .dia-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(88px, 13vw, 188px); font-weight: 300;
+      line-height: .86; color: var(--text); display: block;
+    }
+    .dia-hs {
+      font-size: 9px; letter-spacing: .5em; text-transform: uppercase;
+      color: var(--mut);
+    }
+    .dia-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 2.2vw, 34px); font-weight: 300;
+      color: var(--text); display: block; margin-top: 28px; margin-bottom: 16px;
+    }
+    .dia-info {
+      font-size: 9px; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--mut); line-height: 2.4;
+    }
+    .dia-dress {
+      margin-top: 80px; padding-top: 52px; border-top: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .dia-dress-k {
+      font-size: 9px; letter-spacing: .48em; text-transform: uppercase;
+      color: rgba(47,53,45,.38);
+    }
+    .dia-dress-v {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3vw, 48px); font-weight: 300;
+      color: var(--text);
+    }
+
+    /* ─── FOTO GRANDE ─── */
+    .photo-full { overflow: hidden; height: 85vh; }
+    .photo-full img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
+    }
+
+    /* ─── SPLIT ─── */
+    .split { display: grid; grid-template-columns: 55% 45%; min-height: 88vh; }
+    .split-photo { overflow: hidden; }
+    .split-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .split-text {
+      background: var(--c2);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 7vw;
+    }
+    .split-num {
+      font-size: 9px; letter-spacing: .5em; text-transform: uppercase;
+      color: rgba(47,53,45,.3); display: block; margin-bottom: 52px;
+    }
+    .split-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(64px, 8vw, 120px); font-weight: 300; line-height: .88;
+      color: var(--text); display: block;
+    }
+    .split-hs {
+      font-size: 9px; letter-spacing: .46em; text-transform: uppercase;
+      color: var(--mut);
+    }
+    .split-event {
+      font-size: 9px; letter-spacing: .38em; text-transform: uppercase;
+      color: var(--mut); display: block; margin-top: 16px; margin-bottom: 40px;
+    }
+    .split-where {
+      font-size: 9px; letter-spacing: .26em; text-transform: uppercase;
+      color: rgba(47,53,45,.38); line-height: 2.4;
+    }
+    .split-divider { width: 32px; height: 1px; background: var(--line); margin: 40px 0; }
+
+    /* ─── RSVP ─── */
+    .rsvp-wrap { background: var(--c1); padding: 120px 10vw; }
+    .rsvp-inner { display: grid; grid-template-columns: 38% 62%; gap: 0 8vw; align-items: start; }
+    .rsvp-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 60px); font-weight: 300;
+      line-height: 1.05; color: var(--text); margin-bottom: 16px;
+    }
+    .rsvp-dead {
+      font-size: 9px; letter-spacing: .44em; text-transform: uppercase; color: var(--mut);
+    }
+    .f-field { margin-bottom: 32px; }
+    .f-label {
+      font-size: 9px; letter-spacing: .44em; text-transform: uppercase;
+      color: rgba(47,53,45,.38); display: block; margin-bottom: 12px;
+    }
+    .f-input, .f-sel, .f-ta {
+      width: 100%; background: none; border: none;
+      border-bottom: 1px solid rgba(47,53,45,.14);
+      padding: 10px 0; font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 300; color: var(--text);
+      outline: none; appearance: none; transition: border-color .25s;
+    }
+    .f-input::placeholder, .f-ta::placeholder { color: var(--mut); opacity: .45; }
+    .f-input:focus, .f-sel:focus, .f-ta:focus { border-color: var(--mut); }
+    .f-ta { resize: none; min-height: 68px; }
+    .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .sel-w { position: relative; }
+    .sel-w::after {
+      content: '↓'; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%); font-size: 10px; color: var(--mut); pointer-events: none;
+    }
+    .f-submit {
+      margin-top: 48px; background: var(--dk); color: var(--c1);
+      border: none; padding: 16px 52px; font-family: 'Inter', sans-serif;
+      font-size: 9px; font-weight: 300; letter-spacing: .52em; text-transform: uppercase;
+      cursor: pointer; transition: background .3s;
+    }
+    .f-submit:hover { background: var(--mut); }
+    .form-ok { padding: 64px 0; }
+    .form-ok-h {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px; font-weight: 300; color: var(--text); margin-bottom: 16px;
+    }
+    .form-ok-s {
+      font-size: 9px; letter-spacing: .42em; text-transform: uppercase; color: var(--mut);
+    }
+
+    /* ─── REGALOS ─── */
+    .gifts { background: var(--c2); padding: 120px 10vw; }
+    .gifts-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 60px); font-weight: 300;
+      color: var(--text); margin-bottom: 12px;
+    }
+    .gifts-sub {
+      font-size: 12px; font-weight: 300; letter-spacing: .1em;
+      color: var(--mut); line-height: 2; margin-bottom: 64px; max-width: 400px;
+    }
+    .gifts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8vw; }
+    .g-title {
+      font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--ink); display: block; margin-bottom: 24px;
+      padding-bottom: 14px; border-bottom: 1px solid var(--line);
+    }
+    .g-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0; border-bottom: 1px solid var(--line); gap: 12px;
+    }
+    .g-row:last-of-type { border-bottom: none; }
+    .g-k { font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: rgba(47,53,45,.38); flex: 0 0 50px; }
+    .g-v { font-size: 13px; font-weight: 300; color: var(--text); flex: 1; min-width: 0; word-break: break-all; padding: 0 10px; }
+    .g-copy {
+      background: none; border: none; border-bottom: 1px solid currentColor;
+      font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: .22em;
+      text-transform: uppercase; color: rgba(47,53,45,.3); padding: 3px 0;
+      cursor: pointer; transition: color .3s; flex-shrink: 0;
+    }
+    .g-copy:hover, .g-copy.ok { color: var(--mut); }
+
+    /* ─── LOCATION ─── */
+    .location {
+      background: var(--dk); padding: 120px 10vw;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0 8vw; align-items: center;
+    }
+    .loc-ey {
+      font-size: 9px; letter-spacing: .5em; text-transform: uppercase;
+      color: rgba(247,244,238,.24); display: block; margin-bottom: 44px;
+    }
+    .loc-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 5vw, 76px); font-weight: 300;
+      line-height: 1.05; color: var(--c1); margin-bottom: 28px;
+    }
+    .loc-addr {
+      font-size: 9px; letter-spacing: .26em; text-transform: uppercase;
+      color: rgba(247,244,238,.3); line-height: 2.4; margin-bottom: 20px;
+    }
+    .loc-note {
+      font-size: 12px; font-weight: 300; letter-spacing: .08em;
+      color: rgba(247,244,238,.22); line-height: 2; margin-bottom: 52px;
+    }
+    .loc-btn {
+      display: inline-block; border: 1px solid rgba(247,244,238,.18);
+      color: rgba(247,244,238,.65); padding: 15px 44px;
+      font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 300;
+      letter-spacing: .48em; text-transform: uppercase; transition: all .3s;
+    }
+    .loc-btn:hover { background: rgba(247,244,238,.06); border-color: rgba(247,244,238,.35); }
+    .loc-details { display: flex; flex-direction: column; }
+    .loc-row { padding: 24px 0; border-bottom: 1px solid rgba(247,244,238,.06); }
+    .loc-row:first-child { border-top: 1px solid rgba(247,244,238,.06); }
+    .lk { font-size: 9px; letter-spacing: .44em; text-transform: uppercase; color: rgba(247,244,238,.24); display: block; margin-bottom: 10px; }
+    .lv { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 1.8vw, 26px); font-weight: 300; color: rgba(247,244,238,.58); }
+
+    /* ─── FAQ ─── */
+    .faq { background: var(--c1); padding: 120px 10vw; }
+    .faq-inner { max-width: 820px; }
+    .faq-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 56px); font-weight: 300;
+      color: var(--text); margin-bottom: 56px;
+    }
+    .faq-list { border-top: 1px solid var(--line); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-btn {
+      width: 100%; display: flex; justify-content: space-between;
+      align-items: center; gap: 28px; padding: 28px 0;
+      background: none; border: 0; cursor: pointer; text-align: left;
+    }
+    .faq-q { font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: var(--text); line-height: 1.7; font-weight: 300; }
+    .faq-icon { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: var(--mut); flex-shrink: 0; transition: transform .35s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-ans { max-height: 0; overflow: hidden; transition: max-height .45s ease; }
+    .faq-ans p { padding: 0 56px 24px 0; font-size: 13px; font-weight: 300; letter-spacing: .07em; color: var(--text); line-height: 2; opacity: .6; }
+
+    /* ─── STRIP ─── */
+    .strip { overflow: hidden; line-height: 0; }
+    .strip-track { display: flex; width: max-content; gap: 3px; animation: gostrip 360s linear infinite; }
+    .strip-track img { height: 280px; width: auto; object-fit: cover; flex-shrink: 0; filter: sepia(.15) contrast(.95) brightness(.95) saturate(.85); }
+    @keyframes gostrip { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dk); padding: 64px 10vw;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2vw, 26px); font-weight: 300; color: rgba(247,244,238,.3); letter-spacing: .08em; }
+    .footer-date { font-size: 8px; letter-spacing: .46em; text-transform: uppercase; color: rgba(247,244,238,.14); }
+
+    /* ─── FAB ─── */
+    .fab-wrap { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 10px; z-index: 500; }
+    .fab { background: var(--dk); color: rgba(247,244,238,.75); border: none; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 8px; font-weight: 300; letter-spacing: .3em; text-transform: uppercase; padding: 10px 16px; transition: opacity .3s; }
+    .fab:hover { opacity: .6; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .dia-grid { grid-template-columns: 1fr; gap: 60px; }
+      .dia-sep { display: none; }
+      .dia-dress { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .split { grid-template-columns: 1fr; min-height: auto; }
+      .split-photo { height: 72svh; }
+      .split-photo img { height: 100%; }
+      .rsvp-inner { grid-template-columns: 1fr; gap: 52px; }
+      .gifts-grid { grid-template-columns: 1fr; gap: 56px; }
+      .location { grid-template-columns: 1fr; }
+      .loc-details { margin-top: 56px; }
+      footer { flex-direction: column; gap: 14px; align-items: flex-start; }
+      .fab-wrap { bottom: 16px; right: 16px; }
+    }
+
+    @media (max-width: 600px) {
+      .el-dia, .rsvp-wrap, .gifts, .faq { padding: 88px 6vw; }
+      .location { padding: 88px 6vw; }
+      .hero-phrase { max-width: 100%; }
+      .f-row { grid-template-columns: 1fr; }
+      .photo-full { height: 78svh; }
+      footer { padding: 52px 6vw; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- WELCOME -->
+  <div class="welcome" id="welcome" style="display:none">
+    <div class="welcome-inner">
+      <span class="w-label">N & J · 27 · 11 · 2026</span>
+      <h1 class="w-h">Hola, <span class="w-name" id="welcome-name"></span></h1>
+      <p class="w-p">Queremos que estés con nosotros<br>el día más importante de nuestras vidas.</p>
+      <button class="w-btn" onclick="closeWelcome(); startMusic()">VER INVITACIÓN</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-photo">
+      <img src="civil1.jpg" alt="">
+    </div>
+    <div class="hero-gradient"></div>
+    <div class="hero-top">
+      <span>NATALIA & JOAQUÍN</span>
+      <span>27 · 11 · 2026</span>
+    </div>
+    <div class="hero-bottom">
+      <span class="hero-names">N & J</span>
+      <h1 class="hero-phrase">Qué suerte<br>habernos encontrado.</h1>
+      <div class="hero-foot">
+        <span class="hero-where">Capilla del Señor · Buenos Aires</span>
+        <div class="hero-scroll" onclick="document.getElementById('dia').scrollIntoView({behavior:'smooth'})">
+          <div class="hero-scroll-line"></div>
+          <span>scroll</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EL DÍA -->
+  <section class="el-dia r" id="dia">
+    <span class="eyebrow">El Día · 27 · 11 · 2026</span>
+    <div class="dia-grid">
+      <div class="r">
+        <span class="dia-time">19<span class="dia-hs"> hs</span></span>
+        <span class="dia-name">Ceremonia</span>
+        <span class="dia-info">Espacio PK Campo<br>Capilla del Señor<br>Buenos Aires</span>
+      </div>
+      <div class="dia-sep r d1"></div>
+      <div class="r d1">
+        <span class="dia-time">20<span class="dia-hs"> hs</span></span>
+        <span class="dia-name">Festejo</span>
+        <span class="dia-info">Espacio PK Campo<br>Capilla del Señor<br>Hasta las 3:00 hs</span>
+      </div>
+    </div>
+    <div class="dia-dress r d2">
+      <span class="dia-dress-k">Vestimenta</span>
+      <span class="dia-dress-v">Formal</span>
+    </div>
+  </section>
+
+  <!-- FOTO BESO -->
+  <div class="photo-full">
+    <img src="foto3.jpg" loading="lazy" alt="">
+  </div>
+
+  <!-- SPLIT ABRAZO + INFO -->
+  <section class="split r" id="fotos">
+    <div class="split-photo">
+      <img src="abrazo2.jpg" loading="lazy" alt="">
+    </div>
+    <div class="split-text">
+      <span class="split-num">Espacio PK Campo</span>
+      <span class="split-time">19<span class="split-hs"> hs</span></span>
+      <span class="split-event">Ceremonia</span>
+      <span class="split-where">Capilla del Señor<br>Buenos Aires</span>
+      <div class="split-divider"></div>
+      <span class="split-time">20<span class="split-hs"> hs</span></span>
+      <span class="split-event">Festejo · hasta las 3:00 hs</span>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp-wrap r" id="rsvp">
+    <div class="rsvp-inner">
+      <div>
+        <span class="eyebrow">Confirmación</span>
+        <h2 class="rsvp-heading">Confirmá tu presencia</h2>
+        <span class="rsvp-dead">Antes de agosto · 2026</span>
+      </div>
+      <div>
+        <form id="rsvp-form" action="https://formspree.io/f/mpqnzwno" method="POST">
+          <input type="hidden" name="_language" value="es">
+          <input type="hidden" name="_subject" value="Nueva confirmación — Nati & Joaco 2026">
+          <div class="f-row">
+            <div class="f-field">
+              <label class="f-label">Nombre</label>
+              <input class="f-input" type="text" name="nombre" placeholder="Tu nombre" required>
+            </div>
+            <div class="f-field">
+              <label class="f-label">Teléfono</label>
+              <input class="f-input" type="tel" name="telefono" placeholder="11 XXXX-XXXX">
+            </div>
+          </div>
+          <div class="f-row">
+            <div class="f-field">
+              <label class="f-label">Asistencia</label>
+              <div class="sel-w">
+                <select class="f-sel" name="asistencia" required>
+                  <option value="">Seleccioná</option>
+                  <option>Sí, confirmo</option>
+                  <option>No puedo ir</option>
+                </select>
+              </div>
+            </div>
+            <div class="f-field">
+              <label class="f-label">Personas</label>
+              <input class="f-input" type="number" name="personas" min="1" max="10" placeholder="1">
+            </div>
+          </div>
+          <div class="f-field">
+            <label class="f-label">Restricciones alimentarias</label>
+            <input class="f-input" type="text" name="restricciones" placeholder="Ninguna / vegetariano / celíaco...">
+          </div>
+          <div class="f-field">
+            <label class="f-label">Canción que no puede faltar</label>
+            <input class="f-input" type="text" name="cancion" placeholder="Artista o canción...">
+          </div>
+          <div class="f-field">
+            <label class="f-label">Mensaje (opcional)</label>
+            <textarea class="f-ta" name="mensaje" placeholder="..."></textarea>
+          </div>
+          <button type="submit" class="f-submit">CONFIRMAR</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGALOS -->
+  <section class="gifts r" id="regalos">
+    <span class="eyebrow">Regalos</span>
+    <h2 class="gifts-heading">Si querés regalarnos algo</h2>
+    <p class="gifts-sub">Tu presencia es el mejor regalo.<br>Si querés sumarte a nuestro viaje, gracias.</p>
+    <div class="gifts-grid">
+      <div>
+        <span class="g-title">Pesos argentinos</span>
+        <div class="g-row"><span class="g-k">Alias</span><span class="g-v">boda.nati.joaco</span><button class="g-copy" onclick="cp(this,'boda.nati.joaco')">Copiar</button></div>
+        <div class="g-row"><span class="g-k">CBU</span><span class="g-v">0070133030004026589658</span><button class="g-copy" onclick="cp(this,'0070133030004026589658')">Copiar</button></div>
+        <div class="g-row"><span class="g-k">Banco</span><span class="g-v">Galicia · 4026589-6 133-5</span></div>
+      </div>
+      <div>
+        <span class="g-title">USD Dólares</span>
+        <div class="g-row"><span class="g-k">Alias</span><span class="g-v">boda.nati.joaco.usd</span><button class="g-copy" onclick="cp(this,'boda.nati.joaco.usd')">Copiar</button></div>
+        <div class="g-row"><span class="g-k">CBU</span><span class="g-v">0070133031004024937887</span><button class="g-copy" onclick="cp(this,'0070133031004024937887')">Copiar</button></div>
+        <div class="g-row"><span class="g-k">Banco</span><span class="g-v">Galicia · 4024937-8 133-8</span></div>
+
+        <span class="g-title" style="margin-top:28px;display:block">USD desde el exterior · Banco Galicia</span>
+        <div class="g-row"><span class="g-k">Titular</span><span class="g-v">Joaquin Fernando Figaredo</span></div>
+        <div class="g-row"><span class="g-k">Alias</span><span class="g-v">Joacofigaredo.USD</span><button class="g-copy" onclick="cp(this,'Joacofigaredo.USD')">Copiar</button></div>
+        <div class="g-row"><span class="g-k">CBU</span><span class="g-v">00701330-31004010355110</span><button class="g-copy" onclick="cp(this,'00701330-31004010355110')">Copiar</button></div>
+        <div class="g-row"><span class="g-k">Cuenta</span><span class="g-v">4010355-1 133-1</span><button class="g-copy" onclick="cp(this,'4010355-1 133-1')">Copiar</button></div>
+        <div class="g-row"><span class="g-k">CUIL</span><span class="g-v">20-38995667-9</span></div>
+        <div class="g-row"><span class="g-k">SWIFT</span><span class="g-v">GABAARBA</span><button class="g-copy" onclick="cp(this,'GABAARBA')">Copiar</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location r" id="llegar">
+    <div>
+      <span class="loc-ey">Cómo llegar</span>
+      <h2 class="loc-name">Espacio PK<br>Campo</h2>
+      <p class="loc-addr">Capilla del Señor<br>Buenos Aires, Argentina</p>
+      <p class="loc-note">A pocos minutos de la Ruta Nacional 8, Ramal Pilar.<br>Recomendamos Google Maps o Waze.</p>
+      <a class="loc-btn" href="https://maps.app.goo.gl/c6avffEVzWFghkbHA" target="_blank">VER UBICACIÓN</a>
+    </div>
+    <div class="loc-details r d1">
+      <div class="loc-row"><span class="lk">Ceremonia</span><span class="lv">19:00 hs</span></div>
+      <div class="loc-row"><span class="lk">Festejo</span><span class="lv">20:00 → 03:00 hs</span></div>
+      <div class="loc-row"><span class="lk">Vestimenta</span><span class="lv">Formal</span></div>
+      <div class="loc-row"><span class="lk">Confirmar antes de</span><span class="lv">Agosto 2026</span></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq r" id="dudas">
+    <div class="faq-inner">
+      <span class="eyebrow">Dudas</span>
+      <h2 class="faq-heading">Preguntas</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span class="faq-q">¿A qué distancia queda de Buenos Aires?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-ans"><p>Capilla del Señor queda a aproximadamente 70 km de la Ciudad de Buenos Aires. Unos 50-60 minutos por la Ruta Nacional 8, Ramal Pilar.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span class="faq-q">¿Cómo llego al predio?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-ans"><p>Por la Ruta Nacional 8, Ramal Pilar, hasta Capilla del Señor. El predio queda a pocos minutos de la ruta. Recomendamos usar Google Maps o Waze.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span class="faq-q">¿Hay lugar para estacionar?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-ans"><p>Sí, Espacio PK Campo cuenta con estacionamiento propio dentro del predio.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span class="faq-q">¿Hay alojamiento cerca?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-ans"><p>
+            <strong>Alojamiento</strong><br>
+            Cabañas Lily Bee · instagram.com/lilybee.ecohome · +54 9 11 5048 4264<br>
+            La Martinetta · lamartinetaposada.com · +54 2323 49 2063<br>
+            Cabañas Campo Alto · Facebook · 11 6131 7475<br>
+            Tía Úrsula · Malvón 542, Parada Robles · 11 2685 1342 · tiaursula.com.ar<br>
+            Carmine Hotel Apart · Hipólito Irigoyen 594 · (02323) 491833<br>
+            Quinta Loma Alta · Mateo S. Casco 1380 · 011 4195 7992<br>
+            Camberland · hotelcamberland.com · 0230 4499 111/110<br>
+            Hilton Pilar · hiltonpilar.ar · 0230 453 3800<br>
+            Sofitel Cardales · sofitellareserva.com · +54 3489 43 5555<br><br>
+            <strong>Traslados · Combis & Bus</strong><br>
+            Lichabus · +54 11 530 78673 · lisandrototoro@hotmail.com<br>
+            Boomerang · +54 11 15 6986 60059 · facundo.boomerang@gmail.com · turismoboomerang.com.ar<br>
+            Belardinelli Viajes · 11 4401 1600
+          </p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO STRIP -->
+  <div class="strip">
+    <div class="strip-track">
+      <img src="civil1.jpg" alt=""><img src="civil2.jpg" alt=""><img src="civil3.jpg" alt=""><img src="civil4.jpg" alt=""><img src="civil5.jpg" alt=""><img src="civil6.jpg" alt=""><img src="civil7.jpg" alt=""><img src="civil8.jpg" alt=""><img src="civil9.jpg" alt=""><img src="civil10.jpg" alt=""><img src="civil11.jpg" alt=""><img src="civil12.jpg" alt=""><img src="civil13.jpg" alt=""><img src="civil14.jpg" alt=""><img src="civil15.jpg" alt=""><img src="civil16.jpg" alt=""><img src="civil17.jpg" alt=""><img src="civil18.jpg" alt=""><img src="civil19.jpg" alt=""><img src="civil20.jpg" alt=""><img src="civil21.jpg" alt=""><img src="civil22.jpg" alt=""><img src="civil23.jpg" alt=""><img src="civil24.jpg" alt=""><img src="civil25.jpg" alt=""><img src="civil26.jpg" alt=""><img src="civil27.jpg" alt=""><img src="civil28.jpg" alt=""><img src="civil29.jpg" alt=""><img src="civil30.jpg" alt=""><img src="civil31.jpg" alt=""><img src="civil32.jpg" alt=""><img src="civil33.jpg" alt=""><img src="civil34.jpg" alt=""><img src="civil35.jpg" alt=""><img src="civil36.jpg" alt=""><img src="civil37.jpg" alt=""><img src="civil38.jpg" alt=""><img src="civil39.jpg" alt=""><img src="civil40.jpg" alt=""><img src="civil41.jpg" alt=""><img src="civil42.jpg" alt=""><img src="civil43.jpg" alt=""><img src="civil44.jpg" alt=""><img src="civil45.jpg" alt=""><img src="civil46.jpg" alt=""><img src="civil47.jpg" alt=""><img src="civil48.jpg" alt=""><img src="civil49.jpg" alt=""><img src="civil50.jpg" alt=""><img src="civil51.jpg" alt=""><img src="civil52.jpg" alt=""><img src="civil53.jpg" alt=""><img src="civil54.jpg" alt=""><img src="civil55.jpg" alt=""><img src="civil56.jpg" alt=""><img src="civil57.jpg" alt=""><img src="civil58.jpg" alt=""><img src="civil59.jpg" alt=""><img src="civil60.jpg" alt=""><img src="civil61.jpg" alt=""><img src="civil62.jpg" alt=""><img src="civil63.jpg" alt=""><img src="civil64.jpg" alt=""><img src="civil65.jpg" alt=""><img src="civil66.jpg" alt=""><img src="civil67.jpg" alt=""><img src="civil68.jpg" alt=""><img src="civil69.jpg" alt=""><img src="civil70.jpg" alt=""><img src="civil71.jpg" alt=""><img src="civil72.jpg" alt=""><img src="civil73.jpg" alt=""><img src="civil74.jpg" alt=""><img src="civil75.jpg" alt=""><img src="civil76.jpg" alt=""><img src="civil78.jpg" alt=""><img src="civil79.jpg" alt=""><img src="civil80.jpg" alt=""><img src="civil81.jpg" alt=""><img src="civil82.jpg" alt=""><img src="civil83.jpg" alt=""><img src="civil84.jpg" alt=""><img src="civil85.jpg" alt=""><img src="civil86.jpg" alt=""><img src="civil87.jpg" alt="">
+      <img src="civil1.jpg" alt=""><img src="civil2.jpg" alt=""><img src="civil3.jpg" alt=""><img src="civil4.jpg" alt=""><img src="civil5.jpg" alt=""><img src="civil6.jpg" alt=""><img src="civil7.jpg" alt=""><img src="civil8.jpg" alt=""><img src="civil9.jpg" alt=""><img src="civil10.jpg" alt=""><img src="civil11.jpg" alt=""><img src="civil12.jpg" alt=""><img src="civil13.jpg" alt=""><img src="civil14.jpg" alt=""><img src="civil15.jpg" alt=""><img src="civil16.jpg" alt=""><img src="civil17.jpg" alt=""><img src="civil18.jpg" alt=""><img src="civil19.jpg" alt=""><img src="civil20.jpg" alt=""><img src="civil21.jpg" alt=""><img src="civil22.jpg" alt=""><img src="civil23.jpg" alt=""><img src="civil24.jpg" alt=""><img src="civil25.jpg" alt=""><img src="civil26.jpg" alt=""><img src="civil27.jpg" alt=""><img src="civil28.jpg" alt=""><img src="civil29.jpg" alt=""><img src="civil30.jpg" alt=""><img src="civil31.jpg" alt=""><img src="civil32.jpg" alt=""><img src="civil33.jpg" alt=""><img src="civil34.jpg" alt=""><img src="civil35.jpg" alt=""><img src="civil36.jpg" alt=""><img src="civil37.jpg" alt=""><img src="civil38.jpg" alt=""><img src="civil39.jpg" alt=""><img src="civil40.jpg" alt=""><img src="civil41.jpg" alt=""><img src="civil42.jpg" alt=""><img src="civil43.jpg" alt=""><img src="civil44.jpg" alt=""><img src="civil45.jpg" alt=""><img src="civil46.jpg" alt=""><img src="civil47.jpg" alt=""><img src="civil48.jpg" alt=""><img src="civil49.jpg" alt=""><img src="civil50.jpg" alt=""><img src="civil51.jpg" alt=""><img src="civil52.jpg" alt=""><img src="civil53.jpg" alt=""><img src="civil54.jpg" alt=""><img src="civil55.jpg" alt=""><img src="civil56.jpg" alt=""><img src="civil57.jpg" alt=""><img src="civil58.jpg" alt=""><img src="civil59.jpg" alt=""><img src="civil60.jpg" alt=""><img src="civil61.jpg" alt=""><img src="civil62.jpg" alt=""><img src="civil63.jpg" alt=""><img src="civil64.jpg" alt=""><img src="civil65.jpg" alt=""><img src="civil66.jpg" alt=""><img src="civil67.jpg" alt=""><img src="civil68.jpg" alt=""><img src="civil69.jpg" alt=""><img src="civil70.jpg" alt=""><img src="civil71.jpg" alt=""><img src="civil72.jpg" alt=""><img src="civil73.jpg" alt=""><img src="civil74.jpg" alt=""><img src="civil75.jpg" alt=""><img src="civil76.jpg" alt=""><img src="civil78.jpg" alt=""><img src="civil79.jpg" alt=""><img src="civil80.jpg" alt=""><img src="civil81.jpg" alt=""><img src="civil82.jpg" alt=""><img src="civil83.jpg" alt=""><img src="civil84.jpg" alt=""><img src="civil85.jpg" alt=""><img src="civil86.jpg" alt=""><img src="civil87.jpg" alt="">
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Natalia & Joaquín</span>
+    <span class="footer-date">27 · 11 · 2026</span>
+  </footer>
+
+  <!-- FAB -->
+  <div class="fab-wrap">
+    <button class="fab" onclick="document.getElementById('regalos').scrollIntoView({behavior:'smooth'})">Regalo</button>
+    <button class="fab" id="music-btn" onclick="toggleMusic()">♪ Música</button>
+  </div>
+
+  <iframe id="yt" src="https://www.youtube.com/embed/oP242q6EbFY?enablejsapi=1&controls=0&loop=1&playlist=oP242q6EbFY" allow="autoplay; encrypted-media" style="position:fixed;left:-9999px;top:0;width:1px;height:1px;opacity:0;pointer-events:none;"></iframe>
+
+  <script>
+    (function(){
+      var m = location.search.match(/[?&]nombre=([^&]*)/);
+      if (!m) return;
+      document.getElementById('welcome-name').textContent = decodeURIComponent(m[1].replace(/\+/g,' '));
+      var el = document.getElementById('welcome');
+      el.style.display = 'flex';
+      document.body.classList.add('locked');
+    })();
+    function closeWelcome(){
+      var el = document.getElementById('welcome');
+      el.classList.add('out');
+      setTimeout(function(){ el.style.display='none'; document.body.classList.remove('locked'); }, 900);
+    }
+
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('on'); });
+    }, { threshold: .07 });
+    document.querySelectorAll('.r').forEach(function(el){ io.observe(el); });
+
+    var yt=null, on=false, pending=false, unlocked=false;
+    window.onYouTubeIframeAPIReady = function(){
+      yt = new YT.Player('yt', { events: { onReady: function(e){
+        e.target.setVolume(34);
+        if (pending){ try{ e.target.playVideo(); }catch(x){} document.getElementById('music-btn').textContent='⏸ Música'; on=true; pending=false; }
+      }}});
+    };
+    function unlockAudio(){
+      if (unlocked || !yt) return;
+      try{ yt.playVideo(); setTimeout(function(){ if(!on){ yt.pauseVideo(); yt.seekTo(0); }},200); }catch(e){}
+      unlocked=true;
+    }
+    document.addEventListener('touchstart', unlockAudio, {once:true});
+    document.addEventListener('click', unlockAudio, {once:true});
+    function startMusic(){
+      if (on) return; unlocked=true;
+      if (!yt){ pending=true; return; }
+      try{ yt.playVideo(); on=true; document.getElementById('music-btn').textContent='⏸ Música'; }catch(e){ pending=true; }
+    }
+    function toggleMusic(){
+      unlocked=true;
+      if (!yt){ pending=true; return; }
+      if (on){ try{yt.pauseVideo();}catch(e){} on=false; document.getElementById('music-btn').textContent='♪ Música'; }
+      else   { try{yt.playVideo(); }catch(e){} on=true;  document.getElementById('music-btn').textContent='⏸ Música'; }
+    }
+    var sc=document.createElement('script'); sc.src='https://www.youtube.com/iframe_api'; document.head.appendChild(sc);
+
+    function cp(btn,txt){
+      navigator.clipboard.writeText(txt).then(function(){
+        var o=btn.textContent; btn.textContent='✓'; btn.classList.add('ok');
+        setTimeout(function(){ btn.textContent=o; btn.classList.remove('ok'); }, 2000);
+      });
+    }
+
+    function toggleFaq(btn){
+      var item=btn.closest('.faq-item'), ans=item.querySelector('.faq-ans'), open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(i){
+        i.classList.remove('open'); i.querySelector('.faq-ans').style.maxHeight=null;
+      });
+      if (!open){ item.classList.add('open'); ans.style.maxHeight=ans.scrollHeight+'px'; }
+    }
+
+    var form=document.getElementById('rsvp-form');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var btn=form.querySelector('.f-submit');
+      btn.textContent='Enviando…'; btn.disabled=true;
+      fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+        .then(function(r){
+          if(r.ok){ form.parentElement.innerHTML='<div class="form-ok"><p class="form-ok-h">Gracias por confirmar</p><p class="form-ok-s">Los esperamos el 27 de noviembre</p></div>'; }
+          else { btn.textContent='CONFIRMAR'; btn.disabled=false; }
+        }).catch(function(){ btn.textContent='CONFIRMAR'; btn.disabled=false; });
+    });
+  </script>
+</body>
+</html>

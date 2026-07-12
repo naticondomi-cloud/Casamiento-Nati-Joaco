@@ -387,8 +387,8 @@
     }
     .acct-col:last-child { border-right: none; }
     .acct-heading {
-      font-size: 10px; font-weight: 400; letter-spacing: .36em;
-      text-transform: uppercase; color: var(--accent-light); opacity: 0.7;
+      font-size: 13px; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent-light);
       display: block; margin-bottom: 36px;
     }
     .acct-row {
@@ -540,6 +540,19 @@
     }
     .faq-item.open .faq-icon { transform: rotate(45deg); }
 
+    /* ── ALOJAMIENTO & TRASLADOS ── */
+    .aloj-section { background: var(--bg-alt); padding: clamp(65px, 8vw, 113px) 8vw; }
+    .aloj-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(35px, 3.8vw, 53px); font-weight: 300; color: var(--dark); line-height: 1; letter-spacing: .06em; margin-bottom: 10px; }
+    .aloj-sub { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.8; margin-bottom: 64px; }
+    .aloj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8vw; }
+    .aloj-col-title { font-size: 10px; font-weight: 400; letter-spacing: .36em; text-transform: uppercase; color: var(--accent-light); opacity: .7; display: block; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid rgba(162,174,116,.3); }
+    .aloj-item { padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .aloj-item:last-child { border-bottom: none; }
+    .aloj-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(17px, 1.6vw, 22px); font-weight: 300; color: var(--text); display: block; margin-bottom: 5px; }
+    .aloj-info { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); line-height: 2.2; }
+    .aloj-info a { color: var(--accent); border-bottom: 1px solid rgba(117,129,59,.3); transition: opacity .3s; }
+    .aloj-info a:hover { opacity: .6; }
+
     /* ── VENUE PHOTOS ── */
     .venue-strip {
       display: grid;
@@ -685,6 +698,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
+      .aloj-grid { grid-template-columns: 1fr; gap: 56px; }
       .hero-left { padding: 48px 6vw 60px; }
       .story { grid-template-columns: 1fr; }
       .story-left { padding: 64px 8vw; }
@@ -813,10 +827,10 @@
         <rect x="19" y="24" width="10" height="8" rx="1"/>
       </svg>
       <span class="date-label">Ceremonia</span>
-      <span class="date-time">18:00 hs</span>
-      <span class="date-name">Parroquia Exaltación de la Cruz</span>
+      <span class="date-time">19:00 hs</span>
+      <span class="date-name">Espacio PK</span>
       <span class="date-sub">Capilla del Señor · Buenos Aires</span>
-      <a class="date-link" href="https://maps.app.goo.gl/2WB5jkLQLeQRi5ji6" target="_blank">Ver en mapa →</a>
+      <a class="date-link" href="https://maps.app.goo.gl/WTSpuqoF7MHCsxTy6" target="_blank">Ver en mapa →</a>
     </div>
 
     <div class="date-col fade d1">
@@ -874,7 +888,7 @@
     </div>
 
     <div class="dates-cta fade">
-      <a class="date-cal-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Casamiento+Nati+%26+Joaco&dates=20261127T180000%2F20261128T040000&details=Ceremonia+18%3A00+hs+en+Parroquia+Exaltaci%C3%B3n+de+la+Cruz%2C+Capilla+del+Se%C3%B1or.+Celebraci%C3%B3n+19%3A00+hs+en+Espacio+PK%2C+Capilla+del+Se%C3%B1or.&location=Espacio+PK%2C+Capilla+del+Se%C3%B1or%2C+Buenos+Aires" target="_blank" rel="noopener">
+      <a class="date-cal-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Casamiento+Nati+%26+Joaco&dates=20261127T190000%2F20261128T030000&details=Ceremonia+y+festejo+en+Espacio+PK%2C+Capilla+del+Se%C3%B1or.+Citaci%C3%B3n+19%3A00+hs.+Hasta+las+3%3A00+hs.&location=Espacio+PK%2C+Capilla+del+Se%C3%B1or%2C+Buenos+Aires" target="_blank" rel="noopener">
         Agendar fecha ↗
       </a>
     </div>
@@ -952,6 +966,14 @@
       <div class="acct-row"><span class="acct-k">Alias</span><span class="acct-v">boda.nati.joaco.usd</span><button class="acct-copy" onclick="cp(this,'boda.nati.joaco.usd')">Copiar</button></div>
       <div class="acct-row"><span class="acct-k">CBU</span><span class="acct-v">0070133031004024937887</span><button class="acct-copy" onclick="cp(this,'0070133031004024937887')">Copiar</button></div>
       <div class="acct-row"><span class="acct-k">Banco</span><span class="acct-v">Galicia · 4024937-8 133-8</span></div>
+
+      <span class="acct-heading" style="margin-top:24px;display:block">USD desde el exterior · Banco Galicia</span>
+      <div class="acct-row"><span class="acct-k">Titular</span><span class="acct-v">Joaquin Fernando Figaredo</span></div>
+      <div class="acct-row"><span class="acct-k">Alias</span><span class="acct-v">Joacofigaredo.USD</span><button class="acct-copy" onclick="cp(this,'Joacofigaredo.USD')">Copiar</button></div>
+      <div class="acct-row"><span class="acct-k">CBU</span><span class="acct-v">00701330-31004010355110</span><button class="acct-copy" onclick="cp(this,'00701330-31004010355110')">Copiar</button></div>
+      <div class="acct-row"><span class="acct-k">Cuenta</span><span class="acct-v">4010355-1 133-1</span><button class="acct-copy" onclick="cp(this,'4010355-1 133-1')">Copiar</button></div>
+      <div class="acct-row"><span class="acct-k">CUIL</span><span class="acct-v">20-38995667-9</span></div>
+      <div class="acct-row"><span class="acct-k">SWIFT</span><span class="acct-v">GABAARBA</span><button class="acct-copy" onclick="cp(this,'GABAARBA')">Copiar</button></div>
     </div>
   </div>
 
@@ -987,18 +1009,81 @@
           <span class="faq-q-text">¿Dónde es la ceremonia religiosa?</span>
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer"><p>La ceremonia religiosa es en la Parroquia Exaltación de la Cruz, en Capilla del Señor, a las 18:00 hs. Está a pocos minutos de la celebración.</p></div>
+        <div class="faq-answer"><p>La ceremonia religiosa se realiza en el mismo salón que la celebración: Espacio PK, Capilla del Señor, a las 19:00 hs.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
           <span class="faq-q-text">¿Hay alojamiento cerca?</span>
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-answer"><p>Sí, en Capilla del Señor y alrededores hay casas de alquiler para quienes quieran quedarse y volver al otro día.</p></div>
+        <div class="faq-answer"><p>Sí, hay varias opciones en Capilla del Señor y alrededores. Encontrás la lista completa de alojamientos y contactos de traslados en la sección siguiente.</p></div>
       </div>
     </div>
   </section>
   </div>
+
+  <!-- ALOJAMIENTO & TRASLADOS -->
+  <section class="aloj-section fade" id="alojamiento">
+    <span class="section-marker">05 &mdash;&mdash;&mdash;&mdash;</span>
+    <h2 class="aloj-heading">Alojamiento<br>& Traslados</h2>
+    <p class="aloj-sub">Opciones recomendadas en Capilla del Señor y alrededores.</p>
+    <div class="aloj-grid">
+      <div>
+        <span class="aloj-col-title">Alojamiento</span>
+        <div class="aloj-item">
+          <span class="aloj-name">Cabañas Lily Bee</span>
+          <span class="aloj-info"><a href="https://www.instagram.com/lilybee.ecohome" target="_blank">instagram.com/lilybee.ecohome</a><br>+54 9 11 5048 4264</span>
+        </div>
+        <div class="aloj-item">
+          <span class="aloj-name">La Martinetta</span>
+          <span class="aloj-info"><a href="http://lamartinetaposada.com" target="_blank">lamartinetaposada.com</a><br>+54 2323 49 2063</span>
+        </div>
+        <div class="aloj-item">
+          <span class="aloj-name">Cabañas Campo Alto</span>
+          <span class="aloj-info">Facebook · 11 6131 7475</span>
+        </div>
+        <div class="aloj-item">
+          <span class="aloj-name">Tía Úrsula</span>
+          <span class="aloj-info">Malvón 542, Parada Robles<br>11 2685 1342 · <a href="http://www.tiaursula.com.ar" target="_blank">tiaursula.com.ar</a></span>
+        </div>
+        <div class="aloj-item">
+          <span class="aloj-name">Carmine Hotel Apart</span>
+          <span class="aloj-info">Hipólito Irigoyen 594, Capilla del Señor<br>(02323) 491833</span>
+        </div>
+        <div class="aloj-item">
+          <span class="aloj-name">Quinta Loma Alta</span>
+          <span class="aloj-info">Mateo S. Casco 1380 · 011 4195 7992<br><a href="https://www.facebook.com/quintalomaalta" target="_blank">facebook.com/quintalomaalta</a></span>
+        </div>
+        <div class="aloj-item">
+          <span class="aloj-name">Camberland</span>
+          <span class="aloj-info"><a href="http://hotelcamberland.com" target="_blank">hotelcamberland.com</a><br>0230 4499 111/110</span>
+        </div>
+        <div class="aloj-item">
+          <span class="aloj-name">Hilton Pilar</span>
+          <span class="aloj-info"><a href="http://hiltonpilar.ar" target="_blank">hiltonpilar.ar</a><br>0230 453 3800</span>
+        </div>
+        <div class="aloj-item">
+          <span class="aloj-name">Sofitel Cardales</span>
+          <span class="aloj-info"><a href="http://sofitellareserva.com" target="_blank">sofitellareserva.com</a><br>+54 3489 43 5555</span>
+        </div>
+      </div>
+      <div>
+        <span class="aloj-col-title">Traslados · Combis & Bus</span>
+        <div class="aloj-item">
+          <span class="aloj-name">Lichabus</span>
+          <span class="aloj-info">+54 11 530 78673<br>lisandrototoro@hotmail.com</span>
+        </div>
+        <div class="aloj-item">
+          <span class="aloj-name">Boomerang</span>
+          <span class="aloj-info">+54 11 15 6986 60059<br>facundo.boomerang@gmail.com<br><a href="http://turismoboomerang.com.ar" target="_blank">turismoboomerang.com.ar</a></span>
+        </div>
+        <div class="aloj-item">
+          <span class="aloj-name">Belardinelli Viajes</span>
+          <span class="aloj-info">11 4401 1600</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- PHOTO STRIP -->
   <div class="strip">
@@ -1019,6 +1104,7 @@
     <a href="#form" onclick="closeFnav()">Confirmar</a>
     <a href="#regalos" onclick="closeFnav()">Regalos</a>
     <a href="#dudas" onclick="closeFnav()">Dudas</a>
+    <a href="#alojamiento" onclick="closeFnav()">Alojamiento</a>
   </nav>
 
   <!-- FOOTER -->

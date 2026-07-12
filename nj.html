@@ -347,8 +347,8 @@ textarea{resize:vertical;min-height:60px}
   border-top:1px solid var(--linea);
 }
 .regalo-heading{
-  text-align:center;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--tinta-60);margin:1.6rem 0 .2rem;
+  text-align:center;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--tinta);margin:1.6rem 0 .2rem;
 }
 .regalo-datos .regalo-heading:first-child{margin-top:1.4rem}
 .regalo-fila{
@@ -551,6 +551,36 @@ footer{
         <span class="r-label" data-i18n="label.banco">Banco</span>
         <span class="r-valor">Galicia · 4024937-8 133-8</span>
       </div>
+
+      <p class="regalo-heading" data-i18n="regalos.usd.ext">USD desde el exterior · Banco Galicia</p>
+      <div class="regalo-fila">
+        <span class="r-label" data-i18n="label.titular">Titular</span>
+        <span class="r-valor">Joaquin Fernando Figaredo</span>
+      </div>
+      <div class="regalo-fila">
+        <span class="r-label" data-i18n="label.alias">Alias</span>
+        <span class="r-valor" id="dataAliasUsdInt">Joacofigaredo.USD</span>
+        <button class="copiar" type="button" data-copia="dataAliasUsdInt" data-i18n="btn.copiar">Copiar</button>
+      </div>
+      <div class="regalo-fila">
+        <span class="r-label">CBU</span>
+        <span class="r-valor" id="dataCbuUsdInt">00701330-31004010355110</span>
+        <button class="copiar" type="button" data-copia="dataCbuUsdInt" data-i18n="btn.copiar">Copiar</button>
+      </div>
+      <div class="regalo-fila">
+        <span class="r-label" data-i18n="label.cuenta">Cuenta</span>
+        <span class="r-valor" id="dataCuentaUsdInt">4010355-1 133-1</span>
+        <button class="copiar" type="button" data-copia="dataCuentaUsdInt" data-i18n="btn.copiar">Copiar</button>
+      </div>
+      <div class="regalo-fila">
+        <span class="r-label">CUIL</span>
+        <span class="r-valor">20-38995667-9</span>
+      </div>
+      <div class="regalo-fila">
+        <span class="r-label">SWIFT</span>
+        <span class="r-valor" id="dataSwiftUsd">GABAARBA</span>
+        <button class="copiar" type="button" data-copia="dataSwiftUsd" data-i18n="btn.copiar">Copiar</button>
+      </div>
     </div>
   </section>
 
@@ -693,8 +723,8 @@ var TRANSLATIONS = {
     "playlist.abrir":"Abrir en Spotify",
     "regalos.eyebrow":"Regalos","regalos.h2":"<em>Regalos</em>",
     "regalos.lede":"Su presencia es lo más importante para nosotros. Si quieren colaborar para nuestra luna de miel, estos son nuestros datos.",
-    "regalos.pesos":"Pesos argentinos","regalos.usd":"USD dólares",
-    "label.alias":"Alias","label.banco":"Banco","label.nombre":"Nombre y apellido","label.asistencia":"Asistencia",
+    "regalos.pesos":"Pesos argentinos","regalos.usd":"USD dólares","regalos.usd.ext":"USD desde el exterior · Banco Galicia",
+    "label.alias":"Alias","label.banco":"Banco","label.titular":"Titular","label.cuenta":"Cuenta","label.nombre":"Nombre y apellido","label.asistencia":"Asistencia",
     "label.dieta":"Alergias o alimentación especial","label.cancion":"Canción que no puede faltar","label.msj":"Algo más que quieras decirnos",
     "btn.copiar":"Copiar","btn.enviar":"Enviar confirmación",
     "radio.voy":"Voy a estar","radio.no":"No puedo ir",
@@ -738,8 +768,8 @@ var TRANSLATIONS = {
     "playlist.abrir":"Open in Spotify",
     "regalos.eyebrow":"Gifts","regalos.h2":"<em>Gifts</em>",
     "regalos.lede":"Your presence means the most to us. If you'd like to contribute to our honeymoon, here are our details.",
-    "regalos.pesos":"Argentine pesos","regalos.usd":"USD dollars",
-    "label.alias":"Alias","label.banco":"Bank","label.nombre":"Full name","label.asistencia":"Attendance",
+    "regalos.pesos":"Argentine pesos","regalos.usd":"USD dollars","regalos.usd.ext":"USD from abroad · Banco Galicia",
+    "label.alias":"Alias","label.banco":"Bank","label.titular":"Account holder","label.cuenta":"Account","label.nombre":"Full name","label.asistencia":"Attendance",
     "label.dieta":"Allergies or dietary needs","label.cancion":"A song we must play","label.msj":"Anything else you'd like to tell us",
     "btn.copiar":"Copy","btn.enviar":"Send RSVP",
     "radio.voy":"I'll be there","radio.no":"I can't make it",
@@ -783,8 +813,8 @@ var TRANSLATIONS = {
     "playlist.abrir":"Ouvrir dans Spotify",
     "regalos.eyebrow":"Cadeaux","regalos.h2":"<em>Cadeaux</em>",
     "regalos.lede":"Votre présence est ce qui compte le plus pour nous. Si vous souhaitez contribuer à notre lune de miel, voici nos coordonnées.",
-    "regalos.pesos":"Pesos argentins","regalos.usd":"Dollars US",
-    "label.alias":"Alias","label.banco":"Banque","label.nombre":"Nom et prénom","label.asistencia":"Présence",
+    "regalos.pesos":"Pesos argentins","regalos.usd":"Dollars US","regalos.usd.ext":"USD depuis l'étranger · Banco Galicia",
+    "label.alias":"Alias","label.banco":"Banque","label.titular":"Titulaire","label.cuenta":"Compte","label.nombre":"Nom et prénom","label.asistencia":"Présence",
     "label.dieta":"Allergies ou régime particulier","label.cancion":"Une chanson incontournable","label.msj":"Autre chose à nous dire",
     "btn.copiar":"Copier","btn.enviar":"Envoyer la confirmation",
     "radio.voy":"Je serai présent(e)","radio.no":"Je ne pourrai pas venir",

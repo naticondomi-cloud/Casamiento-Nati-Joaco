@@ -14,6 +14,7 @@
       --green:  #3A4A30;
       --green2: #4A5C3A;
       --olive:  #A2AE74;
+      --sage:   #8DAA7E;
       --cream:  #F8F5F0;
       --cream2: #EFE9DE;
       --text:   #2A2A2A;
@@ -296,7 +297,7 @@
     }
     .gift-copy:hover, .gift-copy.ok { opacity: .5; }
     .gift-section-head {
-      font-size: 10px; letter-spacing: .24em; text-transform: uppercase;
+      font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
       color: var(--green); margin: 24px 0 8px; display: block; text-align: left;
       opacity: .7;
     }
@@ -358,6 +359,25 @@
     .sep-cream2 { background: var(--cream2); }
     .sep-cream2::before, .sep-cream2::after { background: var(--green); }
     .sep-cream2 span { color: var(--green); }
+
+    /* ══════════════════════════════
+       DUDAS — accordion
+    ══════════════════════════════ */
+    .dudas { background: var(--cream); padding: 56px 36px 48px; }
+    .duda-btn {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 0; font-family: 'Inter', sans-serif;
+      font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--text); text-align: left; gap: 16px;
+    }
+    .duda-item { border-bottom: 0.5px solid rgba(58,74,48,.15); }
+    .duda-item:first-of-type { border-top: 0.5px solid rgba(58,74,48,.15); }
+    .duda-arrow { font-size: 16px; color: var(--green); transition: transform .35s; flex-shrink: 0; line-height: 1; opacity: .7; }
+    .duda-body { max-height: 0; overflow: hidden; transition: max-height .45s ease; }
+    .duda-inner { padding-bottom: 24px; font-size: 13px; color: var(--muted); line-height: 1.8; }
+    .duda-inner b { display: block; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--green); opacity: .8; margin: 14px 0 4px; font-weight: 500; }
+    .duda-inner b:first-child { margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -398,13 +418,12 @@
 
   <!-- 3. CEREMONIA -->
   <section class="ceremony">
-    <img src="iglesia1.png" alt="" style="width:95%;max-width:400px;height:auto;margin:0 auto 8px;display:block;mix-blend-mode:multiply;opacity:.8;">
     <span class="section-tag">Ceremonia religiosa</span>
     <span class="section-name">CEREMONIA</span>
-    <span class="section-time">18:00 hs</span>
-    <span class="section-venue">Parroquia Exaltación de la Cruz</span>
+    <span class="section-time">19:00 hs</span>
+    <span class="section-venue">Espacio PK</span>
     <span class="section-address">Capilla del Señor<br>Buenos Aires</span>
-    <a class="btn-ubicacion" href="https://maps.app.goo.gl/2WB5jkLQLeQRi5ji6" target="_blank">Ubicación →</a>
+    <a class="btn-ubicacion" href="https://maps.app.goo.gl/WTSpuqoF7MHCsxTy6" target="_blank">Ubicación →</a>
   </section>
 
   <div class="sep sep-cream"><span>✦</span></div>
@@ -414,7 +433,7 @@
     <img src="copas.jpg" alt="" style="width:190px;height:190px;object-fit:contain;margin:0 auto 8px;display:block;mix-blend-mode:screen;filter:invert(1);opacity:.8;">
     <span class="section-tag">Celebración</span>
     <span class="section-name">RECEPCIÓN</span>
-    <span class="section-time">19:00 hs</span>
+    <span class="section-time">20:00 hs</span>
     <span class="section-venue">Espacio PK</span>
     <span class="section-address">Capilla del Señor<br>Buenos Aires</span>
     <a class="btn-ubicacion" href="https://maps.app.goo.gl/WTSpuqoF7MHCsxTy6" target="_blank">Ubicación →</a>
@@ -467,6 +486,15 @@
     <span class="gift-section-head" style="margin-top:20px">Dólares USD</span>
     <div class="gift-row"><span class="gift-k">Alias</span><span class="gift-v">boda.nati.joaco.usd</span><button class="gift-copy" onclick="cp(this,'boda.nati.joaco.usd')">Copiar</button></div>
     <div class="gift-row"><span class="gift-k">CBU</span><span class="gift-v">0070133031004024937887</span><button class="gift-copy" onclick="cp(this,'0070133031004024937887')">Copiar</button></div>
+    <div class="gift-row"><span class="gift-k">Banco</span><span class="gift-v">Galicia · 4024937-8 133-8</span></div>
+
+    <span class="gift-section-head" style="margin-top:20px">USD desde el exterior · Banco Galicia</span>
+    <div class="gift-row"><span class="gift-k">Titular</span><span class="gift-v">Joaquin Fernando Figaredo</span></div>
+    <div class="gift-row"><span class="gift-k">Alias</span><span class="gift-v">Joacofigaredo.USD</span><button class="gift-copy" onclick="cp(this,'Joacofigaredo.USD')">Copiar</button></div>
+    <div class="gift-row"><span class="gift-k">CBU</span><span class="gift-v">00701330-31004010355110</span><button class="gift-copy" onclick="cp(this,'00701330-31004010355110')">Copiar</button></div>
+    <div class="gift-row"><span class="gift-k">Cuenta</span><span class="gift-v">4010355-1 133-1</span><button class="gift-copy" onclick="cp(this,'4010355-1 133-1')">Copiar</button></div>
+    <div class="gift-row"><span class="gift-k">CUIL</span><span class="gift-v">20-38995667-9</span></div>
+    <div class="gift-row"><span class="gift-k">SWIFT</span><span class="gift-v">GABAARBA</span><button class="gift-copy" onclick="cp(this,'GABAARBA')">Copiar</button></div>
 
     <div class="polaroids-wrap" style="margin-top:48px;">
       <div class="pol pol-1" style="transform:rotate(-4deg)"><img src="beso3.jpg" alt="" style="filter:sepia(.1) contrast(.97) brightness(.97) saturate(.9)"></div>
@@ -476,6 +504,74 @@
   </section>
 
   <div class="sep sep-cream2"><span>✦</span></div>
+
+  <!-- DUDAS -->
+  <section class="dudas">
+    <span class="gifts-title" style="color:var(--text);text-align:center;display:block;margin-bottom:32px;">DUDAS</span>
+
+    <div class="duda-item">
+      <button class="duda-btn" onclick="toggleDuda(this)">
+        <span>¿Hay alojamiento cerca?</span>
+        <span class="duda-arrow">▾</span>
+      </button>
+      <div class="duda-body"><div class="duda-inner">
+        <b>Cabañas Lily Bee</b>instagram.com/lilybee.ecohome · +54 9 11 5048 4264
+        <b>La Martinetta</b>lamartinetaposada.com · +54 2323 49 2063
+        <b>Cabañas Campo Alto</b>Facebook · 11 6131 7475
+        <b>Tía Úrsula</b>Malvón 542, Parada Robles · 11 2685 1342 · tiaursula.com.ar
+        <b>Carmine Hotel Apart</b>Hipólito Irigoyen 594, Capilla del Señor · (02323) 491833
+        <b>Quinta Loma Alta</b>Mateo S. Casco 1380 · 011 4195 7992 · facebook.com/quintalomaalta
+        <b>Camberland</b>hotelcamberland.com · 0230 4499 111/110
+        <b>Hilton Pilar</b>hiltonpilar.ar · 0230 453 3800
+        <b>Sofitel Cardales</b>sofitellareserva.com · +54 3489 43 5555
+      </div></div>
+    </div>
+
+    <div class="duda-item">
+      <button class="duda-btn" onclick="toggleDuda(this)">
+        <span>¿Hay traslados disponibles?</span>
+        <span class="duda-arrow">▾</span>
+      </button>
+      <div class="duda-body"><div class="duda-inner">
+        <b>Lichabus</b>+54 11 530 78673 · lisandrototoro@hotmail.com
+        <b>Boomerang</b>+54 11 15 6986 60059 · facundo.boomerang@gmail.com · turismoboomerang.com.ar
+        <b>Belardinelli Viajes</b>11 4401 1600
+      </div></div>
+    </div>
+
+    <div class="duda-item">
+      <button class="duda-btn" onclick="toggleDuda(this)">
+        <span>¿A cuánto tiempo de CABA está Espacio PK?</span>
+        <span class="duda-arrow">▾</span>
+      </button>
+      <div class="duda-body"><div class="duda-inner">
+        Espacio PK queda a unos 70 km de Capital, aproximadamente 50-60 minutos por el Acceso Norte (Ruta 9). Como el evento es un viernes, es probable que haya tráfico saliendo de la ciudad. Les recomendamos salir con anticipación para llegar tranquilos a la ceremonia de las 19:00 hs.
+      </div></div>
+    </div>
+
+    <div class="duda-item">
+      <button class="duda-btn" onclick="toggleDuda(this)">
+        <span>¿Cómo llego?</span>
+        <span class="duda-arrow">▾</span>
+      </button>
+      <div class="duda-body"><div class="duda-inner">
+        Por el Acceso Norte (Ruta 9) hasta la salida de Capilla del Señor. Recomendamos usar Google Maps o Waze con anticipación.
+      </div></div>
+    </div>
+
+    <div class="duda-item">
+      <button class="duda-btn" onclick="toggleDuda(this)">
+        <span>¿Hay estacionamiento?</span>
+        <span class="duda-arrow">▾</span>
+      </button>
+      <div class="duda-body"><div class="duda-inner">
+        Sí, Espacio PK cuenta con estacionamiento propio dentro del predio.
+      </div></div>
+    </div>
+
+  </section>
+
+  <div class="sep sep-cream"><span>✦</span></div>
 
   <!-- 7. CONFIRMACIÓN -->
   <section class="confirm">
@@ -496,6 +592,18 @@
         btn.classList.add('ok');
         setTimeout(function(){ btn.textContent = orig; btn.classList.remove('ok'); }, 2000);
       });
+    }
+    function toggleDuda(btn) {
+      var item = btn.parentElement;
+      var body = item.querySelector('.duda-body');
+      var arrow = btn.querySelector('.duda-arrow');
+      var isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
+      document.querySelectorAll('.duda-body').forEach(function(b) { b.style.maxHeight = '0px'; });
+      document.querySelectorAll('.duda-arrow').forEach(function(a) { a.style.transform = 'rotate(0deg)'; });
+      if (!isOpen) {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        arrow.style.transform = 'rotate(180deg)';
+      }
     }
   </script>
 </body>
