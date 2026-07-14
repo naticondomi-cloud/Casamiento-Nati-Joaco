@@ -907,6 +907,13 @@ document.querySelectorAll('#langSwitch button').forEach(function(b){
   btn.addEventListener('click',function(){
     splash.classList.add('hide');
     document.body.classList.remove('locked');
+    var audio=document.getElementById('musica');
+    var musicBtn=document.getElementById('musicToggle');
+    if(audio){
+      audio.play().then(function(){
+        if(musicBtn){musicBtn.classList.add('playing');musicBtn.setAttribute('aria-label',t(CURRENT_LANG,'music.pause'));}
+      }).catch(function(){});
+    }
   });
 })();
 
