@@ -411,10 +411,10 @@ footer{
   <a class="nav-mono" href="#top">N—J</a>
   <div class="nav-links">
     <a href="#eldia" data-i18n="nav.eldia">El día</a>
+    <a href="#rsvp" data-i18n="nav.confirmar">Confirmar</a>
     <a href="#dresscode" data-i18n="nav.vestimenta">Vestimenta</a>
     <a href="#playlist" data-i18n="nav.playlist">Música</a>
     <a href="#regalos" data-i18n="nav.regalos">Regalos</a>
-    <a href="#rsvp" data-i18n="nav.confirmar">Confirmar</a>
     <a href="#faq" data-i18n="nav.dudas">Dudas</a>
     <button class="music-toggle" id="musicToggle" type="button" aria-label="Reproducir música">♪</button>
     <div class="lang-switch" id="langSwitch">
@@ -483,6 +483,46 @@ footer{
     <figure data-foto="duo1"><div class="ph"><span>Foto</span></div></figure>
     <figure data-foto="duo2"><div class="ph"><span>Foto</span></div></figure>
   </div>
+
+  <hr class="hr">
+
+  <!-- RSVP -->
+  <section id="rsvp">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="rsvp.eyebrow">Confirmación</p>
+      <h2 data-i18n="rsvp.h2">Confirmar <em>asistencia</em></h2>
+    </div>
+    <div class="form reveal">
+      <div class="campo">
+        <label for="fNombre" data-i18n="label.nombre">Nombre y apellido</label>
+        <input type="text" id="fNombre" autocomplete="name">
+      </div>
+      <div class="campo">
+        <label data-i18n="label.asistencia">Asistencia</label>
+        <div class="radio-row" role="radiogroup" aria-label="Asistencia">
+          <label class="radio-op"><input type="radio" name="asiste" value="Confirmo asistencia" checked><span data-i18n="radio.voy">Voy a estar</span></label>
+          <label class="radio-op"><input type="radio" name="asiste" value="No voy a poder asistir"><span data-i18n="radio.no">No puedo ir</span></label>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="fDieta" data-i18n="label.dieta">Alergias o alimentación especial</label>
+        <input type="text" id="fDieta">
+      </div>
+      <div class="campo">
+        <label for="fCancion" data-i18n="label.cancion">Canción que no puede faltar</label>
+        <input type="text" id="fCancion">
+      </div>
+      <div class="campo">
+        <label for="fMsj" data-i18n="label.msj">Algo más que quieras decirnos</label>
+        <textarea id="fMsj"></textarea>
+      </div>
+      <div class="rsvp-send">
+        <button class="btn" id="rsvpBtn" type="button" data-i18n="btn.enviar">Enviar confirmación</button>
+        <p class="rsvp-nota" id="rsvpEstado"></p>
+      </div>
+    </div>
+    <p class="rsvp-deadline reveal" data-i18n="rsvp.deadline">Antes del 1 de octubre, por favor.</p>
+  </section>
 
   <hr class="hr">
 
@@ -590,44 +630,6 @@ footer{
   <figure class="foto-ancha reveal" data-foto="ancha">
     <div class="ph"><span>Foto</span></div>
   </figure>
-
-  <!-- RSVP -->
-  <section id="rsvp">
-    <div class="reveal">
-      <p class="eyebrow" data-i18n="rsvp.eyebrow">Confirmación</p>
-      <h2 data-i18n="rsvp.h2">Confirmar <em>asistencia</em></h2>
-    </div>
-    <div class="form reveal">
-      <div class="campo">
-        <label for="fNombre" data-i18n="label.nombre">Nombre y apellido</label>
-        <input type="text" id="fNombre" autocomplete="name">
-      </div>
-      <div class="campo">
-        <label data-i18n="label.asistencia">Asistencia</label>
-        <div class="radio-row" role="radiogroup" aria-label="Asistencia">
-          <label class="radio-op"><input type="radio" name="asiste" value="Confirmo asistencia" checked><span data-i18n="radio.voy">Voy a estar</span></label>
-          <label class="radio-op"><input type="radio" name="asiste" value="No voy a poder asistir"><span data-i18n="radio.no">No puedo ir</span></label>
-        </div>
-      </div>
-      <div class="campo">
-        <label for="fDieta" data-i18n="label.dieta">Alergias o alimentación especial</label>
-        <input type="text" id="fDieta">
-      </div>
-      <div class="campo">
-        <label for="fCancion" data-i18n="label.cancion">Canción que no puede faltar</label>
-        <input type="text" id="fCancion">
-      </div>
-      <div class="campo">
-        <label for="fMsj" data-i18n="label.msj">Algo más que quieras decirnos</label>
-        <textarea id="fMsj"></textarea>
-      </div>
-      <div class="rsvp-send">
-        <button class="btn" id="rsvpBtn" type="button" data-i18n="btn.enviar">Enviar confirmación</button>
-        <p class="rsvp-nota" id="rsvpEstado"></p>
-      </div>
-    </div>
-    <p class="rsvp-deadline reveal" data-i18n="rsvp.deadline">Antes del 1 de octubre, por favor.</p>
-  </section>
 
   <hr class="hr">
 
