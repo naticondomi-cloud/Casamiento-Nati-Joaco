@@ -425,7 +425,7 @@ footer{
   </div>
 </nav>
 
-<audio id="musica" src="musica.mp3" loop preload="none"></audio>
+<audio id="musica" src="musica.mp3" loop preload="metadata"></audio>
 
 <div class="float-actions" id="floatActions">
   <a class="float-btn float-btn-primary" href="#rsvp" data-i18n="nav.confirmar">Confirmar</a>
@@ -907,13 +907,8 @@ document.querySelectorAll('#langSwitch button').forEach(function(b){
   btn.addEventListener('click',function(){
     splash.classList.add('hide');
     document.body.classList.remove('locked');
-    var audio=document.getElementById('musica');
     var musicBtn=document.getElementById('musicToggle');
-    if(audio){
-      audio.play().then(function(){
-        if(musicBtn){musicBtn.classList.add('playing');musicBtn.setAttribute('aria-label',t(CURRENT_LANG,'music.pause'));}
-      }).catch(function(){});
-    }
+    if(musicBtn) musicBtn.click();
   });
 })();
 
