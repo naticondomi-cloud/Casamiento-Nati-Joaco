@@ -201,8 +201,7 @@ h2 em{font-style:italic;color:var(--borgona)}
   text-align:center;color:var(--tinta-60);max-width:440px;
   margin:1rem auto 0;font-size:.95rem;
 }
-.lede a{color:var(--borgona);text-decoration:underline;text-underline-offset:2px}
-.lede a:hover{opacity:.75}
+.campo-nota{font-size:.78rem;color:var(--tinta-40);margin-top:.5rem}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 
@@ -505,6 +504,7 @@ footer{
       <div class="campo">
         <label for="fCancion" data-i18n="label.cancion">Canción que no puede faltar</label>
         <input type="text" id="fCancion">
+        <p class="campo-nota" data-i18n="cancion.nota">Si tenés Spotify, también podés sumarla vos mismo a nuestra playlist, un poco más abajo.</p>
       </div>
       <div class="campo">
         <label for="fMsj" data-i18n="label.msj">Algo más que quieras decirnos</label>
@@ -543,7 +543,7 @@ footer{
     <div class="reveal">
       <p class="eyebrow" data-i18n="playlist.eyebrow">Música</p>
       <h2 data-i18n="playlist.h2">Sumá tu <em>canción</em></h2>
-      <p class="lede" data-i18n="playlist.lede">Armamos esta playlist para bailar toda la noche: agregá los temas que no pueden faltar. ¿No tenés Spotify? Contanos tu canción en el <a href="#rsvp">formulario de confirmación</a>.</p>
+      <p class="lede" data-i18n="playlist.lede">Armamos esta playlist para bailar toda la noche: agregá los temas que no pueden faltar.</p>
     </div>
     <div class="playlist-embed reveal">
       <iframe src="https://open.spotify.com/embed/playlist/21qQINeFrJPCweo31xKQwX?utm_source=generator" width="100%" height="380" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -707,13 +707,14 @@ var TRANSLATIONS = {
     "dress.lede":"Elegante pero cómodo, para que puedas disfrutar de este gran día.",
     "dress.evitar":"Solo les pedimos evitar el blanco.",
     "playlist.eyebrow":"Música","playlist.h2":"Sumá tu <em>canción</em>",
-    "playlist.lede":"Armamos esta playlist para bailar toda la noche: agregá los temas que no pueden faltar. ¿No tenés Spotify? Contanos tu canción en el <a href=\"#rsvp\">formulario de confirmación</a>.",
+    "playlist.lede":"Armamos esta playlist para bailar toda la noche: agregá los temas que no pueden faltar.",
     "playlist.abrir":"Abrir en Spotify",
     "regalos.eyebrow":"Regalos","regalos.h2":"<em>Regalos</em>",
     "regalos.lede":"Su presencia es lo más importante para nosotros. Si quieren colaborar para nuestra luna de miel, estos son nuestros datos.",
     "regalos.pesos":"Pesos argentinos","regalos.usd":"Dólares",
     "label.alias":"Alias","label.banco":"Banco","label.titular":"Titular","label.cuenta":"Cuenta","label.nombre":"Nombre y apellido","label.asistencia":"Asistencia",
     "label.dieta":"Alergias o alimentación especial","label.cancion":"Canción que no puede faltar","label.msj":"Algo más que quieras decirnos",
+    "cancion.nota":"Si tenés Spotify, también podés sumarla vos mismo a nuestra playlist, un poco más abajo.",
     "btn.copiar":"Copiar","btn.enviar":"Enviar confirmación",
     "radio.voy":"Voy a estar","radio.no":"No puedo ir",
     "rsvp.eyebrow":"Confirmación","rsvp.h2":"Confirmar <em>asistencia</em>",
@@ -752,13 +753,14 @@ var TRANSLATIONS = {
     "dress.lede":"Elegant but comfortable — the party is standing, on the grass.",
     "dress.evitar":"Just one request: please avoid wearing white.",
     "playlist.eyebrow":"Music","playlist.h2":"Add your <em>song</em>",
-    "playlist.lede":"We put together this playlist to dance all night: add the songs that can't be missing. No Spotify? Tell us your song in the <a href=\"#rsvp\">RSVP form</a>.",
+    "playlist.lede":"We put together this playlist to dance all night: add the songs that can't be missing.",
     "playlist.abrir":"Open in Spotify",
     "regalos.eyebrow":"Gifts","regalos.h2":"<em>Gifts</em>",
     "regalos.lede":"Your presence means the most to us. If you'd like to contribute to our honeymoon, here are our details.",
     "regalos.pesos":"Argentine pesos","regalos.usd":"USD",
     "label.alias":"Alias","label.banco":"Bank","label.titular":"Account holder","label.cuenta":"Account","label.nombre":"Full name","label.asistencia":"Attendance",
     "label.dieta":"Allergies or dietary needs","label.cancion":"A song we must play","label.msj":"Anything else you'd like to tell us",
+    "cancion.nota":"If you have Spotify, feel free to add it yourself to our playlist further down.",
     "btn.copiar":"Copy","btn.enviar":"Send RSVP",
     "radio.voy":"I'll be there","radio.no":"I can't make it",
     "rsvp.eyebrow":"RSVP","rsvp.h2":"Confirm <em>attendance</em>",
@@ -797,13 +799,14 @@ var TRANSLATIONS = {
     "dress.lede":"Élégant mais confortable : la fête se passe debout, sur l'herbe.",
     "dress.evitar":"On vous demande simplement d'éviter le blanc.",
     "playlist.eyebrow":"Musique","playlist.h2":"Ajoutez votre <em>chanson</em>",
-    "playlist.lede":"On a préparé cette playlist pour danser toute la nuit : ajoutez les chansons incontournables. Pas de Spotify ? Dites-nous votre chanson dans le <a href=\"#rsvp\">formulaire de confirmation</a>.",
+    "playlist.lede":"On a préparé cette playlist pour danser toute la nuit : ajoutez les chansons incontournables.",
     "playlist.abrir":"Ouvrir dans Spotify",
     "regalos.eyebrow":"Cadeaux","regalos.h2":"<em>Cadeaux</em>",
     "regalos.lede":"Votre présence est ce qui compte le plus pour nous. Si vous souhaitez contribuer à notre lune de miel, voici nos coordonnées.",
     "regalos.pesos":"Pesos argentins","regalos.usd":"Dollars",
     "label.alias":"Alias","label.banco":"Banque","label.titular":"Titulaire","label.cuenta":"Compte","label.nombre":"Nom et prénom","label.asistencia":"Présence",
     "label.dieta":"Allergies ou régime particulier","label.cancion":"Une chanson incontournable","label.msj":"Autre chose à nous dire",
+    "cancion.nota":"Si vous avez Spotify, vous pouvez aussi l'ajouter vous-même à notre playlist, un peu plus bas.",
     "btn.copiar":"Copier","btn.enviar":"Envoyer la confirmation",
     "radio.voy":"Je serai présent(e)","radio.no":"Je ne pourrai pas venir",
     "rsvp.eyebrow":"Confirmation","rsvp.h2":"Confirmer <em>votre présence</em>",
