@@ -77,6 +77,7 @@ nav.scrolled{
 .nav-mono{
   font-family:'Playfair Display',serif;font-weight:500;font-size:.95rem;
   letter-spacing:.08em;color:var(--tinta);text-decoration:none;white-space:nowrap;
+  transition:color .4s,text-shadow .4s;
 }
 .nav-links{display:flex;gap:1.4rem}
 .nav-links a{
@@ -102,6 +103,13 @@ nav.scrolled{
 }
 .lang-switch button:hover,.lang-switch button:focus-visible{color:var(--tinta)}
 .lang-switch button.active{color:var(--tinta);font-weight:500}
+nav:not(.scrolled) .nav-mono,
+nav:not(.scrolled) .nav-links a,
+nav:not(.scrolled) .music-toggle,
+nav:not(.scrolled) .lang-switch button{
+  color:rgba(255,255,255,.92);text-shadow:0 1px 3px rgba(0,0,0,.3);
+}
+nav:not(.scrolled) .lang-switch button.active{color:#fff}
 @media(max-width:560px){
   nav{padding:1rem 1.1rem}
   .nav-links{gap:.7rem}
@@ -134,13 +142,26 @@ nav.scrolled{
 
 /* ---------- HERO ---------- */
 header{
+  position:relative;overflow:hidden;
   min-height:100svh;
   display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  text-align:center;padding:6.5rem 1.5rem 0;
+  text-align:center;padding:6.5rem 1.5rem 4rem;
+}
+.hero-foto{
+  position:absolute;inset:0;z-index:-2;overflow:hidden;
+  opacity:0;animation:fade 1.8s ease forwards;
+}
+.hero-foto img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 40%;
+  transform:scale(1.08);will-change:transform;
+}
+header::before{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(0,0,0,.10) 0%,rgba(0,0,0,.08) 38%,rgba(0,0,0,.45) 100%);
 }
 .hero-eyebrow{
   font-size:clamp(.9rem,4vw,1.05rem);font-weight:500;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--tinta);
+  color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.3);
   opacity:0;animation:fade 1.4s ease .2s forwards;
 }
 .hero-names{
@@ -148,29 +169,20 @@ header{
   font-size:clamp(2.9rem,11.5vw,6rem);
   line-height:1.06;margin-top:1.4rem;letter-spacing:.01em;
   width:100%;text-align:center;
+  color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.35);
   opacity:0;animation:fade 1.4s ease .5s forwards;
 }
 .hero-names em{
   font-family:'Playfair Display',serif;font-style:italic;font-size:.6em;display:block;
   width:100%;text-align:center;line-height:1;
-  color:var(--tinta);margin:.45em 0 .05em;
+  color:#fff;margin:.45em 0 .05em;
 }
-.hero-lugar{
-  margin-top:1.7rem;font-size:clamp(.92rem,4vw,1.05rem);font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--tinta);
+.hero-frase{
+  margin-top:1.5rem;max-width:340px;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+  font-size:clamp(.92rem,3.6vw,1.05rem);line-height:1.55;
+  color:rgba(255,255,255,.88);text-shadow:0 1px 4px rgba(0,0,0,.3);
   opacity:0;animation:fade 1.4s ease .75s forwards;
-}
-.hero-hora{
-  margin-top:.55rem;font-size:clamp(.78rem,3.2vw,.88rem);letter-spacing:.22em;text-transform:uppercase;
-  color:var(--borgona);font-weight:500;
-  opacity:0;animation:fade 1.4s ease .9s forwards;
-}
-/* foto en arco */
-.hero-foto img{object-position:50% 40%}
-.hero-foto{
-  margin-top:2.8rem;width:min(92vw,440px);aspect-ratio:3/4;
-  border-radius:0;overflow:hidden;
-  opacity:0;animation:fade 1.6s ease 1.2s forwards;
 }
 @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
@@ -393,7 +405,7 @@ footer{
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
-  .hero-eyebrow,.hero-names,.hero-lugar,.hero-hora,.hero-foto img{object-position:50% 40%}
+  .hero-eyebrow,.hero-names,.hero-foto img{object-position:50% 40%}
 .hero-foto{opacity:1}
   .reveal{opacity:1;transform:none}
 }
@@ -436,13 +448,12 @@ footer{
 </div>
 
 <header id="top">
-  <p class="hero-eyebrow" data-i18n="hero.fecha">27 de noviembre de 2026</p>
-  <h1 class="hero-names">Natalia<em>&amp;</em>Joaquín</h1>
-  <p class="hero-lugar">Espacio PK · Capilla del Señor</p>
-  <p class="hero-hora" data-i18n="hero.hora">Ceremonia religiosa 19:00 h</p>
   <figure class="hero-foto" data-foto="hero">
     <div class="ph"><span>Foto</span></div>
   </figure>
+  <p class="hero-eyebrow" data-i18n="hero.fecha">27 de noviembre de 2026</p>
+  <h1 class="hero-names">Natalia<em>&amp;</em>Joaquín</h1>
+  <p class="hero-frase" data-i18n="hero.frase">Nos hace muy felices compartir este día con ustedes.</p>
 </header>
 
 <main>
@@ -702,7 +713,7 @@ var FOTOS = {
 var TRANSLATIONS = {
   es: {
     "nav.eldia":"El día","nav.vestimenta":"Vestimenta","nav.playlist":"Música","nav.regalos":"Regalos","nav.confirmar":"Confirmar","nav.dudas":"Dudas",
-    "hero.fecha":"27 de noviembre de 2026","hero.hora":"Ceremonia religiosa 19:00 h",
+    "hero.fecha":"27 de noviembre de 2026","hero.frase":"Nos hace muy felices compartir este día con ustedes.",
     "eldia.eyebrow":"El día","momento.ceremonia":"Ceremonia religiosa","momento.recepcion":"Recepción y fiesta","momento.cierre":"Cierre",
     "accion.comollegar":"Cómo llegar","accion.agendar":"Agendar fecha",
     "dress.eyebrow":"Vestimenta","dress.h2":"<em>Elegante</em>",
@@ -748,7 +759,7 @@ var TRANSLATIONS = {
   },
   en: {
     "nav.eldia":"The Day","nav.vestimenta":"Dress code","nav.playlist":"Music","nav.regalos":"Gifts","nav.confirmar":"RSVP","nav.dudas":"FAQ",
-    "hero.fecha":"November 27, 2026","hero.hora":"Religious ceremony 7:00 PM",
+    "hero.fecha":"November 27, 2026","hero.frase":"We're so happy to share this day with you.",
     "eldia.eyebrow":"The Day","momento.ceremonia":"Religious ceremony","momento.recepcion":"Reception & party","momento.cierre":"End",
     "accion.comollegar":"Get directions","accion.agendar":"Add to calendar",
     "dress.eyebrow":"Dress code","dress.h2":"<em>Elegant</em>",
@@ -794,7 +805,7 @@ var TRANSLATIONS = {
   },
   fr: {
     "nav.eldia":"Le Jour J","nav.vestimenta":"Tenue","nav.playlist":"Musique","nav.regalos":"Cadeaux","nav.confirmar":"Confirmer","nav.dudas":"Questions",
-    "hero.fecha":"27 novembre 2026","hero.hora":"Cérémonie religieuse 19h00",
+    "hero.fecha":"27 novembre 2026","hero.frase":"Nous sommes très heureux de partager ce jour avec vous.",
     "eldia.eyebrow":"Le Jour J","momento.ceremonia":"Cérémonie religieuse","momento.recepcion":"Réception et fête","momento.cierre":"Fin",
     "accion.comollegar":"Itinéraire","accion.agendar":"Ajouter au calendrier",
     "dress.eyebrow":"Tenue","dress.h2":"<em>Élégant</em>",
@@ -912,6 +923,21 @@ document.querySelectorAll('#langSwitch button').forEach(function(b){
     }
   });
   applyLang(CURRENT_LANG);
+})();
+
+/* ---- parallax hero ---- */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var header=document.getElementById('top');
+  var img=header.querySelector('.hero-foto img');
+  if(!img) return;
+  function onScroll(){
+    var y=window.scrollY;
+    if(y>header.offsetHeight) return;
+    var offset=Math.min(y*0.18,28);
+    img.style.transform='scale(1.08) translateY('+offset+'px)';
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
 })();
 
 /* ---- nav on scroll ---- */
