@@ -9,13 +9,13 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bodanatiyjoaco.ar/nj.html">
 <meta property="og:title" content="Naty y Joaco — 27 de noviembre de 2026">
-<meta property="og:description" content="Nos hace muy felices compartir este día con ustedes. Toda la info de nuestro casamiento acá.">
+<meta property="og:description" content="Entrá para confirmar tu asistencia y ver toda la info de nuestro casamiento 💍">
 <meta property="og:image" content="https://bodanatiyjoaco.ar/foto1.jpg">
 <meta property="og:image:width" content="900">
 <meta property="og:image:height" content="1600">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Naty y Joaco — 27 de noviembre de 2026">
-<meta name="twitter:description" content="Nos hace muy felices compartir este día con ustedes.">
+<meta name="twitter:description" content="Entrá para confirmar tu asistencia y ver toda la info de nuestro casamiento 💍">
 <meta name="twitter:image" content="https://bodanatiyjoaco.ar/foto1.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -197,6 +197,19 @@ header::before{
   opacity:0;animation:fade 1.4s ease .75s forwards;
 }
 @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.hero-scroll{
+  position:absolute;left:50%;bottom:1.7rem;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  color:#fff;text-decoration:none;z-index:1;
+  opacity:0;animation:fade 1.4s ease 1.15s forwards;
+}
+.hero-scroll span{
+  font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;font-weight:500;
+  text-shadow:0 1px 4px rgba(0,0,0,.35);
+}
+.hero-scroll svg{width:16px;height:16px;animation:hero-bounce 1.6s ease-in-out infinite}
+@keyframes hero-bounce{0%,100%{transform:translateY(0);opacity:.65}50%{transform:translateY(7px);opacity:1}}
+@media (prefers-reduced-motion:reduce){.hero-scroll svg{animation:none}}
 
 /* placeholder de foto */
 .ph{
@@ -466,6 +479,10 @@ footer{
   <p class="hero-eyebrow" data-i18n="hero.fecha">27 de noviembre de 2026</p>
   <h1 class="hero-names">Naty<em>y</em>Joaco</h1>
   <p class="hero-frase" data-i18n="hero.frase">Nos hace muy felices compartir este día con ustedes.</p>
+  <a class="hero-scroll" href="#eldia" aria-label="Ver más">
+    <span data-i18n="hero.scroll">Seguí bajando</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </a>
 </header>
 
 <main>
@@ -725,7 +742,7 @@ var FOTOS = {
 var TRANSLATIONS = {
   es: {
     "nav.eldia":"El día","nav.vestimenta":"Vestimenta","nav.playlist":"Música","nav.regalos":"Regalos","nav.confirmar":"Confirmar","nav.dudas":"Dudas",
-    "hero.fecha":"27 de noviembre de 2026","hero.frase":"Nos hace muy felices compartir este día con ustedes.",
+    "hero.fecha":"27 de noviembre de 2026","hero.frase":"Nos hace muy felices compartir este día con ustedes.","hero.scroll":"Seguí bajando",
     "eldia.eyebrow":"El día","momento.ceremonia":"Ceremonia religiosa","momento.recepcion":"Recepción y fiesta","momento.cierre":"Cierre",
     "accion.comollegar":"Cómo llegar","accion.agendar":"Agendar fecha",
     "dress.eyebrow":"Vestimenta","dress.h2":"<em>Elegante</em>",
@@ -771,7 +788,7 @@ var TRANSLATIONS = {
   },
   en: {
     "nav.eldia":"The Day","nav.vestimenta":"Dress code","nav.playlist":"Music","nav.regalos":"Gifts","nav.confirmar":"RSVP","nav.dudas":"FAQ",
-    "hero.fecha":"November 27, 2026","hero.frase":"We're so happy to share this day with you.",
+    "hero.fecha":"November 27, 2026","hero.frase":"We're so happy to share this day with you.","hero.scroll":"Scroll down",
     "eldia.eyebrow":"The Day","momento.ceremonia":"Religious ceremony","momento.recepcion":"Reception & party","momento.cierre":"End",
     "accion.comollegar":"Get directions","accion.agendar":"Add to calendar",
     "dress.eyebrow":"Dress code","dress.h2":"<em>Elegant</em>",
@@ -817,7 +834,7 @@ var TRANSLATIONS = {
   },
   fr: {
     "nav.eldia":"Le Jour J","nav.vestimenta":"Tenue","nav.playlist":"Musique","nav.regalos":"Cadeaux","nav.confirmar":"Confirmer","nav.dudas":"Questions",
-    "hero.fecha":"27 novembre 2026","hero.frase":"Nous sommes très heureux de partager ce jour avec vous.",
+    "hero.fecha":"27 novembre 2026","hero.frase":"Nous sommes très heureux de partager ce jour avec vous.","hero.scroll":"Faites défiler",
     "eldia.eyebrow":"Le Jour J","momento.ceremonia":"Cérémonie religieuse","momento.recepcion":"Réception et fête","momento.cierre":"Fin",
     "accion.comollegar":"Itinéraire","accion.agendar":"Ajouter au calendrier",
     "dress.eyebrow":"Tenue","dress.h2":"<em>Élégant</em>",
