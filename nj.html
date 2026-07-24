@@ -136,10 +136,9 @@ nav:not(.scrolled) .lang-switch button.active{color:#fff}
   display:flex;gap:.6rem;justify-content:center;
   padding:.8rem 1rem calc(.8rem + env(safe-area-inset-bottom));
   background:linear-gradient(to top,rgba(247,243,234,.98) 55%,rgba(247,243,234,0));
-  opacity:0;transform:translateY(12px);pointer-events:none;
+  opacity:1;transform:translateY(0);pointer-events:auto;
   transition:opacity .35s ease,transform .35s ease;
 }
-.float-actions.show{opacity:1;transform:translateY(0);pointer-events:auto}
 .float-actions.hide{opacity:0;transform:translateY(12px);pointer-events:none}
 .float-btn{
   flex:1;max-width:220px;text-align:center;
@@ -198,11 +197,13 @@ header::before{
 }
 @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .hero-scroll{
-  position:absolute;left:50%;bottom:1.7rem;transform:translateX(-50%);
+  position:absolute;left:50%;bottom:5.8rem;
   display:flex;flex-direction:column;align-items:center;gap:.5rem;
   color:#fff;text-decoration:none;z-index:1;
-  opacity:0;animation:fade 1.4s ease 1.15s forwards;
+  opacity:0;transform:translateX(-50%);
+  animation:fade-scroll 1.4s ease 1.15s forwards;
 }
+@keyframes fade-scroll{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
 .hero-scroll span{
   font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;font-weight:500;
   text-shadow:0 1px 4px rgba(0,0,0,.35);
@@ -996,8 +997,6 @@ document.querySelectorAll('#langSwitch button').forEach(function(b){
 /* ---- botón flotante ---- */
 (function(){
   var bar=document.getElementById('floatActions');
-  function onScroll(){bar.classList.toggle('show',window.scrollY>280)}
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
   var footer=document.querySelector('footer');
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(entries){
