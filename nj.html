@@ -156,7 +156,7 @@ header{
   position:relative;overflow:hidden;
   min-height:100svh;
   display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  text-align:center;padding:6.5rem 1.5rem 4rem;
+  text-align:center;padding:6.5rem 1.5rem 9.4rem;
 }
 .hero-foto{
   position:absolute;inset:0;z-index:-2;overflow:hidden;
@@ -171,10 +171,13 @@ header::before{
   background:linear-gradient(180deg,rgba(0,0,0,.10) 0%,rgba(0,0,0,.08) 38%,rgba(0,0,0,.45) 100%);
 }
 .hero-eyebrow{
+  position:absolute;top:6.5rem;left:50%;
   font-size:clamp(.9rem,4vw,1.05rem);font-weight:500;letter-spacing:.2em;text-transform:uppercase;
   color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.3);
-  opacity:0;animation:fade 1.4s ease .2s forwards;
+  opacity:0;transform:translateX(-50%);
+  animation:fade-top 1.4s ease .2s forwards;
 }
+@keyframes fade-top{from{opacity:0;transform:translate(-50%,-14px)}to{opacity:1;transform:translate(-50%,0)}}
 .hero-names{
   font-family:'Playfair Display',serif;font-weight:400;
   font-size:clamp(2.9rem,11.5vw,6rem);
@@ -197,7 +200,7 @@ header::before{
 }
 @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .hero-scroll{
-  position:absolute;left:50%;bottom:5.8rem;
+  position:absolute;left:50%;bottom:6.6rem;
   display:flex;flex-direction:column;align-items:center;gap:.5rem;
   color:#fff;text-decoration:none;z-index:1;
   opacity:0;transform:translateX(-50%);
